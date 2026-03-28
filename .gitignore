@@ -4,7 +4,11 @@
 
 .DS_Store
 .idea
+
+# Hugo generated files
 _vendor
+public
+resources/_gen
 
 
 # Binaries for programs and plugins
