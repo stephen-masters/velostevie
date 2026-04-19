@@ -1,0 +1,19 @@
+
+# default configuration for mermaid
+
+[modules]
+    [modules.mermaid]
+        integration = "optional"
+        disableTemplate = true
+        enableTemplate = "**/*.mjs"
+        state = "defer"
+        elk = false
+        layout = "dagre"
+        look = "classic"
+    [modules.mermaid.csp]
+        img-src = [
+            'data:'
+        ]
+        style-src = [
+            "'unsafe-inline'"
+        ]

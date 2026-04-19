@@ -1,0 +1,53 @@
+comment: >-
+  Displays a release button that links to a specific release. Use the state to
+  indicate if it is a new or deprecated feature.
+icon: new_label
+arguments:
+  version:
+    preview: true
+  release-state:
+    release: v1.0.0
+  short:
+  button-size:
+    release: v1.0.0
+  class:
+  inline:
+  link-type:
+    release: v1.0.0
+  # deprecated arguments
+  state:
+    type: select
+    optional: true
+    default: new
+    comment: State of the feature.
+    options:
+      values:
+        - new
+        - deprecated
+    deprecated: v1.0.0
+    alternative: release-state
+  size:
+    type: select
+    optional: true
+    default: md
+    comment: Size of the button.
+    options:
+      values:
+        - sm
+        - md
+        - lg
+    deprecated: v1.0.0
+    alternative: button-size
+  type:
+    type: select
+    optional: true
+    default: button
+    comment: Type of the element.
+    options:
+      values:
+        - link
+        - button
+    deprecated: v1.0.0
+    alternative: link-type
+example: |
+  {{< release version="v1.0.0" >}}

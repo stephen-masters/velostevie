@@ -1,0 +1,100 @@
+{
+  "name": "@gethinode/mod-bootstrap",
+  "version": "0.0.0-semantically-released",
+  "description": "A Hugo module to add the Bootstrap toolkit to your Hinode site",
+  "keywords": [
+    "hugo",
+    "module"
+  ],
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "prestart": "npm run -s mod:vendor",
+    "start": "hugo server -s exampleSite --bind=0.0.0.0 --disableFastRender --printI18nWarnings",
+    "start:dart": "hugo server -s exampleSite -e dart --bind=0.0.0.0 --disableFastRender --printI18nWarnings",
+    "prebuild": "npm run clean && npm run mod:vendor",
+    "build:libsass": "npm run -s prebuild && hugo --gc --minify -s exampleSite",
+    "build:dartsass": "npm run -s prebuild && hugo --gc --minify -s exampleSite -e dart",
+    "clean": "rimraf exampleSite/public",
+    "env": "hugo env",
+    "mod:clean": "hugo mod clean",
+    "mod:update": "rimraf _vendor && hugo mod get -u ./... && hugo mod get -u && npm run -s mod:vendor && npm run -s mod:tidy",
+    "mod:tidy": "hugo mod tidy && hugo mod tidy -s exampleSite",
+    "mod:vendor": "rimraf _vendor && hugo mod vendor",
+    "prepare": "node .husky/install.mjs",
+    "update-scss": "npm-run-all update:**",
+    "update:vendor:step1": "cpy node_modules/bootstrap/scss/vendor/_rfs.scss assets/scss/modules/bootstrap/_vendor --flat",
+    "update:vendor:step2": "shx echo '@use \"sass:math\";' > assets/scss/modules/bootstrap/_vendor/_rfs-dart.scss",
+    "update:vendor:step3": "shx cat assets/scss/modules/bootstrap/_vendor/_rfs.scss >> assets/scss/modules/bootstrap/_vendor/_rfs-dart.scss",
+    "update:vendor:step4": "replace-in-files --string=\"abs(\" --replacement=\"math.abs(\" ./assets/scss/modules/bootstrap/_vendor/_rfs-dart.scss",
+    "update:mixins:step1": "cpy node_modules/bootstrap/scss/_mixins.scss assets/scss/modules/bootstrap --flat --rename=_mixins-dart.scss",
+    "update:mixins:step2": "replace-in-files --string=\"vendor/rfs\" --replacement=\"vendor/rfs-dart\" ./assets/scss/modules/bootstrap/_mixins-dart.scss",
+    "update:bootstrap:step1": "cpy assets/scss/bootstrap.scss assets/scss --flat --rename=bootstrap-dart.scss",
+    "update:bootstrap:step2": "replace-in-files --string='libsass' --replacement='dartsass' ./assets/scss/bootstrap-dart.scss",
+    "update:bootstrap:step3": "replace-in-files --string='mixins\"' --replacement='mixins-dart\"' ./assets/scss/bootstrap-dart.scss",
+    "test": "npm-run-all build:**",
+    "upgrade": "npx npm-check-updates -u && npm run -s mod:update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gethinode/mod-bootstrap.git"
+  },
+  "author": "Mark Dumay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gethinode/hinode/issues"
+  },
+  "homepage": "https://gethinode.com",
+  "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "bootstrap": "^5.3.8",
+    "commitizen": "^4.3.1",
+    "cpy-cli": "^6.0.0",
+    "hugo-bin": "^0.149.2",
+    "husky": "^9.1.7",
+    "npm-run-all": "^4.1.5",
+    "replace-in-files-cli": "^4.0.0",
+    "rimraf": "^6.1.2",
+    "semantic-release": "^25.0.2",
+    "shx": "^0.4.0"
+  },
+  "hugo-bin": {
+    "buildTags": "extended"
+  },
+  "release": {
+    "branches": "main",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/exec",
+        {
+          "prepare": "npm install"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "dist",
+            "package.json",
+            "package-lock.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

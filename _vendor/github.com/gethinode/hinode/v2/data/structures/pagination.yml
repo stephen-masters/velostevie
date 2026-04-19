@@ -1,0 +1,20 @@
+comment: >-
+  Adds a pagination element to a page to split long lists across multiple pages.
+group: partial
+arguments:
+  page:
+    type:
+      - '*hugolib.pageState'
+      - '*hugolib.pageForShortcode'
+    optional: false
+    comment: Context of the current page.
+    group: partial
+  format:
+    type: select
+    optional: true
+    default: default
+    comment:
+    options:
+      values:
+        - default
+        - terse

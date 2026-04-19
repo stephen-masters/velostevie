@@ -1,0 +1,48 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{ $error := false }}
+
+{{/* Initialize arguments */}}
+{{ $args := partial "utilities/InitArgs.html" (dict "structure" "image" "child" "nav-item" "args" .Params "group" "shortcode" "named" .IsNamedParams) }}
+{{ if or $args.err $args.warnmsg }}
+    {{ partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial"  "shortcodes/image.html" 
+        "warnid"   "warn-invalid-arguments"
+        "msg"      "Invalid arguments"
+        "details"  ($args.errmsg | append $args.warnmsg)
+        "file"     page.File
+        "position" .Position
+    )}}
+    {{ $error = $args.err }}
+{{- end -}}
+
+{{/* Initialize arguments */}}
+{{- $src := or $args.src $args.url -}}
+{{ if not $src }}
+    {{ errorf "Missing value for param 'src': %s" .Position -}}
+    {{- $error = true -}}
+{{ end }}
+
+{{/* Main code */}}
+{{- if not $error -}}
+    {{- partial "assets/image.html" (dict 
+        "src"      $src
+        "ratio"    $args.ratio
+        "wrapper"  $args.wrapper
+        "class"    $args.class
+        "title"    $args.title
+        "caption"  $args.caption
+        "figclass" $args.figclass
+        "mode"     $args.mode
+        "portrait" $args.portrait
+        "plain"    $args.plain
+        "anchor"   $args.anchor
+        "loading"  $args.loading
+        "page"     .Page
+        "_default" $args.default
+    ) -}} 
+{{- end -}}

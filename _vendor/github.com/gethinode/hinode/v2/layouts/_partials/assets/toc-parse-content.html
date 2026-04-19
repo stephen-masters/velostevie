@@ -1,0 +1,104 @@
+{{/* 
+    Copyright © 2025 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{ define "_partials/inline/toc-item.html" }}
+    {{ $base := .base }}
+    {{ $startLevel := .startLevel }}
+    {{ $endLevel := .endLevel }}
+    {{ $item := .item }}
+    {{ $maxNumHeadings := .maxNumHeadings }}
+    {{ $result := .result | default slice }}
+
+    {{ if and (ge $item.Level $startLevel) (le $item.Level $endLevel) }}
+        {{- $attrs := dict "class" (printf "toc-item toc-level-%d" (add 1 (sub $item.Level $startLevel))) }}
+        {{- with $item.ID }}
+            {{- $attrs = merge $attrs (dict "href" (printf "%s#%s" $base .)) }}
+        {{- end }}
+
+        {{ $htmlAttr := "" }}
+        {{ range $k, $v := $attrs }}{{ $htmlAttr = printf "%s %s=%q" $htmlAttr $k $v | safeHTMLAttr }}{{ end }}
+        {{ $rendered := printf "<a %s>%s</a>" $htmlAttr $item.Title }}
+        {{ $result = $result | append $rendered }}
+    {{ end }}
+
+    {{ if lt $item.Level $endLevel }}
+        {{ range $item.Headings }}
+            {{ $result = $result | append (partial "inline/toc-item.html" (dict
+                "base"           $base
+                "item"           .
+                "startLevel"     $startLevel
+                "endLevel"       $endLevel
+                "maxNumHeadings" $maxNumHeadings
+            )) }}
+        {{ end }}
+    {{ end }}
+
+    {{ return $result }}
+{{ end }}
+
+{{- /* Get configuration. */}}
+{{- $startLevel := or (.Site.Params.navigation.startLevel | int) 2 }}
+{{- $endLevel := or (.Site.Params.navigation.endLevel | int) 3 }}
+{{- $minNumHeadings := or (.Site.Params.navigation.minNumHeadings | int) 2 }}
+{{- $maxNumHeadings := or (.Site.Params.navigation.maxNumHeadings | int) 9 }}
+
+{{- /* Render */}}
+{{- if .Site.Params.navigation.toc }}
+    {{- /* Check for custom headings in Page.Store or Page.Params, otherwise use Page.Fragments */}}
+    {{- $customHeadings := .Page.Store.Get "Headings" }}
+    {{- $customHeadingsMap := .Page.Store.Get "HeadingsMap" }}
+    {{- if not $customHeadings }}
+        {{- $customHeadings = .Page.Params.Headings }}
+        {{- $customHeadingsMap = .Page.Params.HeadingsMap }}
+    {{- end }}
+
+    {{- $fragments := cond $customHeadings (dict "Headings" $customHeadings "HeadingsMap" $customHeadingsMap) .Page.Fragments }}
+
+    {{- with $fragments }}
+        {{- if (ge (len .HeadingsMap) $minNumHeadings) }}
+            <strong class="d-block mb-2">{{ T "toc" }}</strong>
+            <nav class="toc">
+                {{ $result := slice }}
+                {{ range .Headings }}
+                    {{ $result = $result | append (partial "inline/toc-item.html" (dict
+                        "base"           $.RelPermalink
+                        "item"           .
+                        "startLevel"     $startLevel
+                        "endLevel"       $endLevel
+                        "maxNumHeadings" $maxNumHeadings
+                    )) }}
+                {{ end }}
+
+                {{ range $i, $v := $result }}
+                    {{ if eq $i $maxNumHeadings }}
+                        {{ partial "assets/button.html" (dict
+                            "id"          "btnTOCShowMore"
+                            "collapse-id" "toc-collapse-items"
+                            "link-type"   "link"
+                            "class"       "toc-item"
+                            "title"       (T "tocShowMore" (sub (len $result) $i))
+                            "spacing"     false
+                        ) }}
+                        <div class="collapse" id="toc-collapse-items">
+                        {{ end }}
+                    {{ print $v | safeHTML }}
+                {{ end }}
+
+                {{ if gt (len $result) $maxNumHeadings }}
+                    &nbsp;
+                    {{ partial "assets/button.html" (dict
+                        "id"          "btnTOCShowLess"
+                        "collapse-id" "toc-collapse-items"
+                        "link-type"   "link"
+                        "class"       "toc-item"
+                        "title"       (T "tocShowLess")
+                        "spacing"     false
+                    ) }}
+                </div>{{ end }}
+            </nav>
+        {{ end }}
+    {{ end }}
+{{ end }}

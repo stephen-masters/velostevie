@@ -1,0 +1,67 @@
+comment: >-
+  Defines an individual tab pane or accordion item for use within a nav group.
+icon: tab_new_right
+arguments:
+  page:
+    group: partial
+  id:
+    group: partial
+  parent-id:
+    release: v1.0.0
+  title:
+    release: v1.0.0
+    preview: true
+  show:
+  disabled:
+  fade:
+  class:
+  body:
+    group: partial
+  raw:
+    group: partial
+    release: v1.3.0
+  navitem-type:
+    release: v1.0.0
+  illustration:
+    type:
+      - string
+      - template.HTML
+    optional: true
+    group: partial
+  hook:
+    default: assets/hero-image.html
+    group: partial
+    release: v1.0.0
+  # deprecated arguments
+  header:
+    type: string
+    optional: true
+    comment: Header of the item.
+    deprecated: v1.0.0
+    alternative: title
+  item_type:
+    type: select
+    optional: true
+    comment: Type of the item to render.
+    options:
+      values:
+        - accordion
+        - tab-pane
+    group: partial
+    deprecated: v1.0.0
+    alternative: navitem-type
+  parentID:
+    type: string
+    optional: true
+    comment: Identification of the parent (e.g. nav control).
+    group: partial
+    deprecated: v1.0.0
+    alternative: parent-id
+body:
+  optional: false
+  comment: Content of the item.
+  group: shortcode
+example: |
+  {{< nav-item title="Tab #1" show="true" >}}
+    Content of the first tab pane.
+  {{< /nav-item >}}

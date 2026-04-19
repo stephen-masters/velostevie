@@ -1,0 +1,91 @@
+{
+  "name": "@gethinode/mod-mermaid",
+  "version": "0.0.0-semantically-released",
+  "description": "A Hugo module to add diagrams and charts powered by Mermaid to your Hinode site",
+  "keywords": [
+    "hugo",
+    "module"
+  ],
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "prestart": "npm run clean && npm run mod:vendor",
+    "start": "hugo server -s exampleSite --bind=0.0.0.0 --disableFastRender --printI18nWarnings",
+    "prebuild": "npm run clean && npm run mod:vendor",
+    "build": "hugo --gc --minify -s exampleSite",
+    "clean": "rimraf exampleSite/public exampleSite/resources",
+    "mod:clean": "hugo mod clean",
+    "mod:update": "rimraf _vendor && hugo mod get -u ./... && hugo mod get -u && npm run -s mod:vendor && npm run -s mod:tidy",
+    "mod:tidy": "hugo mod tidy",
+    "mod:vendor": "rimraf _vendor && hugo mod vendor",
+    "postinstall": "npm-run-all copy:**",
+    "copy:js1": "cpy node_modules/mermaid/dist/mermaid.js dist --flat",
+    "copy:js2": "cpy node_modules/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs dist/layout-elk --flat",
+    "copy:js3": "cpy node_modules/@mermaid-js/layout-elk/dist/chunks/mermaid-layout-elk.esm.min/ dist/layout-elk/chunks/mermaid-layout-elk.esm.min/ --flat",
+    "test": "npm run -s build",
+    "upgrade": "npx npm-check-updates -u && npm run -s mod:update",
+    "prepare": "node .husky/install.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gethinode/mod-mermaid.git"
+  },
+  "author": "Mark Dumay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gethinode/hinode/issues"
+  },
+  "homepage": "https://gethinode.com",
+  "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@mermaid-js/layout-elk": "^0.2.1",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "commitizen": "^4.3.1",
+    "cpy-cli": "^7.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "hugo-bin": "^0.149.2",
+    "husky": "^9.1.7",
+    "mermaid": "^11.13.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.1.3",
+    "semantic-release": "^25.0.3"
+  },
+  "hugo-bin": {
+    "buildTags": "extended"
+  },
+  "release": {
+    "branches": "main",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/exec",
+        {
+          "prepare": "npm install"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "dist",
+            "package.json",
+            "package-lock.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

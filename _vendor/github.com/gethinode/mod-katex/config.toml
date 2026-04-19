@@ -1,0 +1,38 @@
+[minify]
+  [minify.tdewolff.js]
+    keepVarNames = true
+    precision = 0
+    version = 2022
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.110.0"
+    max = ""
+  [[module.mounts]]
+    source = "dist/katex.js"
+    target = "assets/js/modules/katex/katex.js"
+  [[module.mounts]]
+    source = "dist/contrib/auto-render.js"
+    target = "assets/js/modules/katex/katex-autorender.js"
+  [[module.mounts]]
+    source = "dist"
+    target = "assets/scss"
+    includeFiles = "katex.scss"
+  [[module.mounts]]
+    source = "dist/fonts"
+    target = "static/fonts"
+  [[module.mounts]]
+    source = 'layouts'
+    target = 'layouts'
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    source = 'static'
+    target = 'static'
+
+[params.modules.katex]
+  integration = "optional"
+  disableTemplate = true
+  state = "defer"

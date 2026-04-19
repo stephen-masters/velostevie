@@ -1,0 +1,90 @@
+
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{/* Initialize arguments */}}
+{{- $args := partial "utilities/InitArgs.html" (dict "structure" "nav-item" "args" . "group" "partial") -}}
+{{- if or $args.err $args.warnmsg -}}
+    {{- partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial" "assets/nav-item.html" 
+        "warnid"  "warn-invalid-arguments"
+        "msg"     "Invalid arguments"
+        "details" ($args.errmsg | append $args.warnmsg)
+        "file"    page.File
+    ) -}}
+{{- end -}}
+
+{{/* Initialize local arguments */}}
+{{- $parentID := or $args.parentId $args.parentID -}}
+{{- $title := or $args.title $args.header -}}
+{{- $type := or $args.navitemType $args.item_type -}}
+{{- $illustration := "" -}}
+{{- if reflect.IsMap $args.illustration }}
+    {{ $illustration = partial $args.hook (dict
+        "page"         $args.page
+        "image"        $args.illustration.image
+        "icon"         $args.illustration.icon
+        "anchor"       $args.illustration.anchor
+        "mode"         $args.illustration.mode
+        "ratio"        $args.illustration.ratio
+        "sizes"        "25vw"
+        "title"        (T "heroImage")
+        "wrapper"      "mx-auto mx-md-0"
+        "class"        "hero-image"
+        "image-overlay" $args.imageOverlay
+    ) }}
+{{- else -}}
+    {{- $illustration = partial $args.hook (dict "page" $args.page "image" $args.illustration) -}}
+{{- end -}}
+
+{{/* Main code */}}
+{{- if not $args.err -}}
+    {{- if eq $type "accordion" -}}
+        <div class="accordion-item{{ if $args.show }} show{{ end }}{{ with $args.class }} {{ . }}{{ end }}">
+            {{- with $title -}}
+                <h2 id="accordion-{{ $parentID }}-heading-{{ $args.id }}" class="accordion-header m-0">
+                    <button
+                        class="accordion-button collapsed {{ if $args.disabled }} text-secondary{{ end }}"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordion-{{ $parentID }}-item-{{ $args.id }}"
+                        aria-expanded="false"
+                        aria-controls="accordion-{{ $parentID }}-item-{{ $args.id }}"
+                        {{ if $args.disabled }} disabled{{ end }}
+                    >
+                        {{- if $illustration -}}
+                            <div class="row">
+                                <div class="col-3 col-sm-2 my-auto">{{ $illustration | safeHTML }}</div>
+                                <div class="col-9 col-sm-10 fs-6 fs-sm-5 my-auto">{{ . }}</div>
+                            </div>
+                        {{- else }}
+                            {{ . }}
+                        {{ end -}}
+                    </button>
+                </h2>
+            {{- end -}}
+            <div
+                id="accordion-{{ $parentID }}-item-{{ $args.id }}"
+                class="accordion-collapse collapse{{ with $args.class }} {{ . }}{{ end }}"
+                aria-labelledby="{{ $parentID }}-heading-{{ $args.id }}"
+                data-bs-parent="#accordion-{{ $parentID }}"
+            >
+                <div class="accordion-body">{{ or $args.raw ($args.body | $args.page.RenderString) | safeHTML }}</div>
+            </div>
+        </div>
+    {{- else -}}
+        <div
+            id="{{ $parentID }}-{{ $args.id }}" 
+            class="tab-pane{{ if $args.show }} active{{ if $args.fade }} show{{ end }}{{ end }}{{ if $args.fade }} fade{{ end }}{{ with $args.class }} {{ . }}{{ end }}"
+            role="tabpanel"
+            aria-labelledby="{{ $parentID }}-btn-{{ $args.id }}"
+            tabindex="0"
+            data-has-content="{{ or (gt (len (or $args.raw "")) 0) (gt (len $args.body) 0 ) }}"
+        >
+            {{ or $args.raw ($args.body | $args.page.RenderString) | safeHTML }}
+        </div>
+    {{- end -}}
+{{- end -}}

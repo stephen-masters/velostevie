@@ -1,0 +1,36 @@
+comment: >-
+  Prints the full content of any given file with syntax highlighting, using the
+  Chroma syntax highlighter.
+icon: file_open
+example: |
+  {{< file file="config/_default/hugo.toml" lang="toml" >}}
+arguments:
+  file:
+    optional: true
+    release: v1.0.0
+    preview: true
+  lang:
+  show:
+    default: true
+  full:
+  id:
+  class:
+  highlight-options:
+    release: v1.0.0
+  # deprecated arguments
+  path:
+    type: string
+    comment: >-
+      Path of the input file. The path is relative to the `basePath` defined in
+      the `docs` section of the site's parameters. If the file starts with `./`,
+      the path of the repository is used as base path instead.
+    deprecated: v1.0.0
+    alternative: file
+  options:
+    type: string
+    optional: true
+    comment: >-
+        Hugo highlighting options, see https://gohugo.io/shortcodes/highlight/#options-1.
+    release: v0.27.6
+    deprecated: v1.0.0
+    alternative: highlight-options

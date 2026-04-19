@@ -1,0 +1,15 @@
+comment: >-
+  Captures a code snippet from a supported input file using named section
+  markers. The captured snippet is rendered using syntax highlighting.
+icon: code_blocks
+arguments:
+  name:
+    preview: true
+  file:
+  show:
+    default: true
+  full:
+  id:
+  class:
+example: |
+  {{< docs name="theme-colors" file="./data/style.toml" >}}

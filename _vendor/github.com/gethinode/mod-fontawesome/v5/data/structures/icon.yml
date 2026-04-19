@@ -1,0 +1,49 @@
+icon: interests
+example: |
+  {{< icon "fas circle-check" >}}
+comment: >-
+  Use the icon shortcode to quickly add a Font Awesome icon to your content. You
+  can also use fa for regular icons, fab for brand icons, and fas for solid
+  icons.
+
+arguments:
+  icon:
+    position: 0
+    comment: >-
+      Icon to include. You can use shorthand notation such as `fas sort` to
+      include a Font Awesome icon. The argument also supports files with an
+      `.svg` extension. Inline type definition overrides global for position support.
+  src:
+    type: string
+    optional: true
+    release: v0.22.0
+    comment: >-
+      Source of the icon file. If set, loads the icon from this path instead
+      of using the icon name.
+  inline-style:
+  spacing:
+    release: v0.21.0
+  wrapper:
+    release: v0.19.0
+  class:
+    optional: true
+    position: 1
+    comment: >-
+      Modifier classes for styling and animation (e.g., `fa-2x`, `fa-spin`,
+      `fa-beat`). Reintroduced in v2.0.0 after being deprecated in v1.0.0.
+      Previously used for full icon specification (family, name, styling); now
+      exclusively for modifier classes. When using family-specific shortcodes
+      with positional arguments, all arguments after the icon name are joined
+      as modifier classes.
+    release: v2.0.0
+  # deprecated arguments
+  style:
+    type: string
+    optional: true
+    deprecated: v1.0.0
+    alternative: inline-style
+  scale:
+    release: v0.24.0
+    deprecated: v2.0.0
+    comment: >-
+      Deprecated. This parameter is no longer used by the icon rendering engine.

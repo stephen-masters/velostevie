@@ -1,0 +1,70 @@
+comment: >-
+  Makes a Markdown table responsive with horizontal scrolling on smaller screens.
+  Sorting, paging, and searching require the simple-datatables module.
+icon: table_chart
+arguments:
+  page:
+    group: partial
+  input:
+    type:
+      - string
+      - template.HTML
+    optional: false
+    comment: Table input in markdown format.
+    group: partial
+  breakpoint:
+    default: ""
+    position: 0
+    preview: true
+  class:
+  sortable:
+    release: v0.24.13
+  paginate:
+    release: v1.23.0
+  pagination:
+    release: v1.23.0
+  pagination-select:
+    release: v1.23.0
+  searchable:
+    release: v0.24.13
+  wrap:
+  wrapper:
+    release: v2.0.0
+  # deprecated arguments
+  paging:
+    type: bool
+    optional: true
+    comment: Whether paging is enabled for the table.
+    release: v0.24.13
+    deprecated: v1.23.0
+    alternative: paginate
+  pagingOptionPerPage:
+    type: int
+    optional: true
+    comment: >-
+      Sets the maximum number of rows to display on each page. Requires
+      `paging = true`.
+    release: v0.27.8
+    deprecated: v1.23.0
+    alternative: pagination
+  pagingOptionPageSelect:
+    type: string
+    optional: true
+    comment: >-
+      Sets the per page options in the dropdown. Must be an array of integers or
+      arrays in the format [label (string), value (int)]. Requires
+      `paginate = true`.
+    release: v0.27.8
+    deprecated: v1.23.0
+    alternative: pagination-select
+example: |
+  {{< table >}}
+  | Column 1 | Column 2 | Column 3 |
+  |----------|----------|----------|
+  | Cell 1   | Cell 2   | Cell 3   |
+  | Cell 4   | Cell 5   | Cell 6   |
+  {{< /table >}}
+body:
+  type: string
+  optional: false
+  comment: Table input in markdown format.

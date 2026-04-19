@@ -1,0 +1,170 @@
+comment: >-
+  Displays a Bootstrap card that links to a content page. Individual arguments
+  such as title, href, and thumbnail override the corresponding page attributes.
+icon: article
+arguments:
+  title:
+    optional: true
+    preview: true
+  path:
+  href:
+    group: partial
+  class:
+    parent: merge
+  color:
+    optional: true
+    parent: cascade
+  padding:
+    parent: cascade
+    default: 3
+  gutter:
+    default: 0
+    parent: cascade
+  header-style:
+    parent: cascade
+    release: 1.0.0
+  body-style:
+    parent: cascade
+    release: 1.0.0
+  footer-style:
+    parent: cascade
+    release: 1.0.0
+  description:
+    group: partial
+  loading:
+    parent: cascade
+    group: partial
+  thumbnail:
+  ratio:
+    parent: cascade
+    group: partial
+  portrait:
+    parent: cascade
+    release: v0.24.16
+  alt:
+    release: v0.19.0
+  icon:
+  icon-rounded:
+    release: v1.0.0
+  align:
+    default: start
+    parent: cascade
+    release: v0.23.0
+  scroll:
+    parent: cascade
+    group: partial
+  wrapper:
+  icon-style:
+    release: v1.0.0
+  orientation:
+    parent: cascade
+  subtle:
+    parent: cascade
+    release: v0.23.0
+  button:
+    parent: cascade
+    release: v0.23.0
+  button-label:
+    release: v1.0.0
+  link-type:
+  hook:
+    default: assets/image.html
+    group: partial
+  sizes:
+    group: partial
+  anchor:
+    release: v0.24.23
+  links:
+    release: v1.14.0
+  exact:
+    release: v1.22.0
+  # deprecated arguments
+  header:
+    type: select
+    optional: true
+    default: full
+    parent: cascade
+    comment: >-
+      Header components of the card, displayed in small caps.
+    options:
+      values:
+        - full
+        - publication
+        - tags
+        - none
+    deprecated: 1.0.0
+    alternative: header-style
+  body:
+    type: select
+    optional: true
+    default: full
+    parent: cascade
+    release: v0.24.16
+    comment: >-
+      Body components of the element.
+    options:
+      values:
+        - full
+        - title
+        - none
+    deprecated: 1.0.0
+    alternative: body-style
+  footer:
+    type: select
+    optional: true
+    default: none
+    parent: cascade
+    comment: >-
+      Footer components of the element, displayed in small caps.
+    options:
+      values:
+        - full
+        - publication
+        - tags
+        - none
+    deprecated: v1.0.0
+    alternative: footer-style
+  iconRounded:
+    type: bool
+    parent: cascade
+    optional: true
+    release: v0.24.8
+    deprecated: v1.0.0
+    alternative: icon-rounded
+    comment: Stack the icon in a round container.
+  buttonType:
+    type: select
+    parent: cascade
+    optional: true
+    default: button
+    comment: Type of the button element.
+    release: v0.23.18
+    deprecated: v1.0.0
+    alternative: link-type
+    options:
+      values:
+        - link
+        - button
+  style:
+    type: string
+    parent: cascade
+    optional: true
+    release: v0.23.0
+    comment: Icon style.
+    deprecated: v1.0.0
+    alternative: icon-style
+  buttonLabel:
+    type: string
+    optional: true
+    release: v0.23.2
+    comment: >-
+      Label of the link button, defaults to the card title.
+    deprecated: v1.0.0
+    alternative: button-label
+example: |
+  {{< card path="/blog/first-post" ratio="16x9" >}}
+body:
+  optional: true
+  comment: >-
+    Description of the card.
+  group: shortcode

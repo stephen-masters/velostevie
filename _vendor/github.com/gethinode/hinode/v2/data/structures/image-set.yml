@@ -1,0 +1,15 @@
+comment: >-
+  Defines the rewrite parameters used to process an image via a CDN adapter
+  hook, including transform, format, and anchor options.
+group: partial
+arguments:
+  src:
+  img:
+  absolute-url:
+    release: v1.0.0
+  dims:
+  hook:
+  transform:
+  format:
+  anchor:
+  include-width:

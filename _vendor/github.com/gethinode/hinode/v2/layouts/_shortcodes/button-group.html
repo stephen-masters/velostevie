@@ -1,0 +1,34 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{/* Validate and initialize arguments */}}
+{{ $args := partial "utilities/InitArgs.html" (dict "structure" "button-group" "args" .Params "named" .IsNamedParams "group" "shortcode") }}
+{{ if or $args.err $args.warnmsg }}
+    {{ partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial"  "shortcodes/button-group.html" 
+        "warnid"   "warn-invalid-arguments"
+        "msg"      "Invalid arguments"
+        "details"  ($args.errmsg | append $args.warnmsg)
+        "file"     page.File
+        "position" .Position
+    )}}
+{{ end }}
+
+{{/* Initialize local arguments */}}
+{{ $label := or $args.label $args.ariaLabel }}
+{{ $inner := .Scratch.Get "inner" }}
+{{ $input := trim .Inner " \r\n" }}
+{{ if $input }}
+    {{ $input = replace $input "\n" "\n  " }}
+    {{ warnf "Unexpected inner content: %s\r\n      %s" .Position $input }}
+{{ end }}
+
+{{/* Main code */}}
+{{ if not $args.err }}
+    <div class="btn-group" role="group" {{ with $label }}aria-label="{{ . }}"{{ end }}>
+        {{ $inner | safeHTML }}
+    </div>
+{{ end }}

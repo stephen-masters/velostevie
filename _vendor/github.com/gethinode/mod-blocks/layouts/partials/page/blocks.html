@@ -1,0 +1,14 @@
+{{ with .Params.content_blocks }}
+    {{ partial "bookshop_bindings" `.Params.content_blocks` | safeHTML }}
+    {{ partial "bookshop_partial" (slice "page" .) | safeHTML }}
+
+    {{/* Apply padding between last item and footer when appropriate*/}}
+    {{ $last := . | last 1 }}
+    {{ with index $last 0 }}
+        {{ $fluid := index . "fluid" | default true }}
+        {{ if and (index (index . "background") "color") (not $fluid) }}
+            {{- $padding := partial "utilities/GetPadding.html" -}}
+            <div class="pb-{{ $padding.y }}"></div>
+        {{ end }}
+    {{ end }}
+{{ end }}

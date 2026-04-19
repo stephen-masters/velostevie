@@ -1,0 +1,12 @@
+section.cta {
+    background-color: var(--#{$prefix}primary-bg-subtle);
+}
+
+.section-xxl section.cta {
+    border-radius: #{$theme-border-radius} if($enable-important-utilities, !important, null);
+}
+
+section.cta .contact-img {
+    background-color: var(--#{$prefix}body-bg);
+    border-radius: var(--bs-border-radius);
+}

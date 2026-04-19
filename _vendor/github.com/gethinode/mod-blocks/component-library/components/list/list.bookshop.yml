@@ -1,0 +1,50 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: List
+  description: Show a sortable, filterable list of articles
+  icon: format_list_bulleted
+  tags: []
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  heading:
+    preheading:
+    title:
+    content:
+    align: start
+    arrangement:
+    width:
+    size:
+  background:
+    backdrop:
+    color:
+    subtle:
+  hide_empty:
+  input:
+    section:
+    nested:
+    keywords:
+    categories:
+    tags:
+    reverse:
+    sort:
+  hook:
+  limit:
+  class:
+  width:
+  justify: start
+  sortable:
+  paginate:
+  pagination:
+  pagination_select:
+  searchable:
+  wrap:
+  wrapper:
+  fluid:
+  theme:
+  cover:
+  overlay_mode:
+  section_class:
+  bg_class:

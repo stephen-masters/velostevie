@@ -1,0 +1,77 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{ $error := false }}
+
+{{/* Validate and initialize arguments */}}
+{{ $args := partial "utilities/InitArgs.html" (dict "structure" "button" "args" .Params "named" .IsNamedParams "group" "shortcode") }}
+{{ if or $args.err $args.warnmsg }}
+    {{ partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial"  "shortcodes/button.html" 
+        "warnid"   "warn-invalid-arguments"
+        "msg"      "Invalid arguments"
+        "details"  ($args.errmsg | append $args.warnmsg)
+        "file"     page.File
+        "position" .Position
+    )}}
+    {{ $error = $args.err }}
+{{ end }}
+
+{{/* Initialize arguments */}}
+{{ $label := or $args.label $args.ariaLabel -}}
+{{ $title := trim .Inner " \r\n" | .Page.RenderString -}}
+{{ if not (or $title $args.icon) -}}
+    {{ errorf "Missing icon or inner element text: %s" .Position -}}
+    {{ $error = true }}
+{{ end -}}
+{{ $href := $args.href -}}
+{{ if $args.relref }}
+    {{ $href = relref . $args.relref }}
+{{ end }}
+{{ $spacing := cond .Parent false $args.spacing }}
+
+{{/* Main code */}}
+{{ if not $error }}
+    {{- $output := partial "assets/button.html" (dict 
+        "link-type" (or $args.linkType $args.type)
+        "title"        $title
+        "button-size"  (or $args.buttonSize $args.size)
+        "color"        $args.color
+        "outline"      $args.outline
+        "badge"        $args.badge
+        "label"        $label
+        "tooltip"      $args.tooltip
+        "collapse-id"  (or $args.collapseId $args.collapse)
+        "href"         $args.href
+        "id"           $args.id
+        "button-state" (or $args.buttonState $args.state)
+        "class"        $args.class
+        "placement"    $args.placement
+        "icon"         $args.icon
+        "order"        $args.order
+        "justify"      $args.justify
+        "cue"          $args.cue
+        "tab"          $args.tab
+        "toast-id"     (or $args.toastId $args.toast)
+        "spacing"      $spacing
+        "_default"     $args.default
+    ) -}}
+
+    {{ with $args.wrapper }}
+        {{ $output = printf `<div class="%s">%s</div>` . $output }}
+    {{ end }}
+
+    {{- if .Parent -}}
+        {{ $current := .Parent.Scratch.Get "inner" }}
+        {{ if $current }}
+            {{ .Parent.Scratch.Set "inner" (print $current $output) }}
+        {{ else }}
+            {{ .Parent.Scratch.Set "inner" $output }}
+        {{ end }}
+    {{- else -}}
+        {{ $output | safeHTML }}
+    {{- end -}}
+{{ end }}

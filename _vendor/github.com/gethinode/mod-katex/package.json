@@ -1,0 +1,79 @@
+{
+  "name": "@gethinode/mod-katex",
+  "version": "0.0.0-semantically-released",
+  "description": "Adds KaTeX as Hugo module to your Hinode site",
+  "keywords": [
+    "hugo",
+    "module"
+  ],
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "prestart": "npm run clean && npm run mod:vendor",
+    "start": "hugo server -s exampleSite --bind=0.0.0.0 --disableFastRender --printI18nWarnings",
+    "prebuild": "npm run clean && npm run mod:vendor",
+    "build": "hugo --gc --minify -s exampleSite",
+    "clean": "rimraf exampleSite/public exampleSite/resources",
+    "mod:tidy": "hugo mod tidy && hugo mod tidy -s exampleSite",
+    "mod:update": "hugo mod get -u ./... && npm run -s mod:vendor && npm run -s mod:tidy",
+    "mod:vendor": "rimraf _vendor && hugo mod vendor",
+    "postinstall": "npm run -s copy:css && npm run -s copy:js && npm run -s copy:contrib && npm run -s copy:fonts && npm run -s update:scss",
+    "copy:css": "cpy node_modules/katex/dist/katex.css dist --rename=katex.scss --flat",
+    "copy:js": "cpy node_modules/katex/dist/katex.js dist --flat",
+    "copy:contrib": "cpy \"node_modules/katex/dist/contrib/*.js\" \"!node_modules/katex/dist/contrib/*.min.js\"  dist/contrib --flat",
+    "copy:fonts": "cpy node_modules/katex/dist/fonts/** dist/fonts --flat",
+    "update:scss": "replace-in-files --string=\"fonts/\" --replacement=\"../fonts/\" dist/katex.scss",
+    "test": "npm run -s build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gethinode/mod-katex.git"
+  },
+  "author": "Mark Dumay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gethinode/hinode/issues"
+  },
+  "homepage": "https://gethinode.com",
+  "devDependencies": {
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "cpy-cli": "^5.0.0",
+    "hugo-bin": "^0.144.9",
+    "katex": "^0.16.22",
+    "replace-in-files-cli": "^3.0.0",
+    "rimraf": "^6.0.1",
+    "semantic-release": "^24.2.6"
+  },
+  "hugo-bin": {
+    "buildTags": "extended"
+  },
+  "release": {
+    "branches": "main",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/exec",
+        {
+          "prepare": "npm install"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "dist",
+            "package.json",
+            "package-lock.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  }
+}

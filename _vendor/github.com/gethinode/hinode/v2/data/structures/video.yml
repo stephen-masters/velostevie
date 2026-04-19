@@ -1,0 +1,54 @@
+comment: >-
+  Embeds a responsive video player for supported video providers such as YouTube
+  and Cloudinary.
+icon: videocam
+arguments:
+  page:
+    release: v0.26.5
+  position:
+    release: v0.26.5
+  provider:
+    release: v1.0.0
+  title:
+  class:
+    position: 1
+  media-id:
+    position: 0
+    release: v1.0.0
+    preview: true
+  account:
+    release: v0.26.5
+  autoplay:
+  autotitle:
+    release: v0.25.2
+  ratio:
+    release: v0.26.5
+  query-args:
+    release: v1.0.0
+  # deprecated arguments
+  id:
+    type: string
+    optional: true
+    comment: ID of the video to be embedded.
+    deprecated: v1.0.0
+    alternative: media-id
+  options:
+    type: string
+    optional: true
+    comment: >-
+      Optional query parameters to append to video asset's url. The query string
+      is prepended with a `?` symbol. Only applicable to Cloudinary.
+    release: v0.28.2
+    deprecated: v1.0.0
+    alternative: query-args
+  host:
+    type: string
+    optional: true
+    comment: >-
+      Host name of the video provider. It should match one of the registered
+      providers in the site's parameters under `videos`.
+    release: v0.26.5
+    deprecated: v1.0.0
+    alternative: provider
+example: |
+  {{< video provider="youtube" media-id="dQw4w9WgXcQ" title="Example Video" >}}

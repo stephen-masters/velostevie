@@ -1,0 +1,77 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{- $error := false -}}
+
+{{/* Initialize arguments */}}
+{{- $args := partial "utilities/InitArgs.html" (dict "structure" "image" "args" . "group" "partial") -}}
+{{- if or $args.err $args.warnmsg -}}
+    {{- partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial" "assets/image.html" 
+        "warnid"  "warn-invalid-arguments"
+        "msg"     "Invalid arguments"
+        "details" ($args.errmsg | append $args.warnmsg)
+        "file"    page.File
+    ) -}}
+    {{- $error = $args.err -}}
+{{- end -}}
+
+{{/* Initialize global arguments */}}
+{{- $absoluteURL := site.Params.main.canonifyAssetsURLs | default false -}}
+{{- $modes := site.Params.main.modes | default (slice "light" "dark") -}}
+
+{{/* Initialize local arguments */}}
+{{- $caption := $args.caption -}}
+{{- if and site.Params.main.titleCase (not page.Params.exact) (eq $caption (plainify $caption)) -}}
+    {{- $caption = title $caption -}}
+{{- end -}}
+{{- $priority := $args.priority -}}
+{{- if eq $priority "auto" }}{{ $priority = "" }}{{ end -}}
+{{- $src := or $args.src $args.url -}}
+
+{{/* Main code */}}
+{{- $params := dict -}}
+{{- $params = merge $params (dict
+    "page"         $args.page
+    "ratio"        $args.ratio
+    "portrait"     $args.portrait
+    "image-width"  $args.imageWidth
+    "image-height" $args.imageHeight
+    "wrapper"      $args.wrapper
+    "class"        $args.class
+    "title"        $args.title
+    "caption"      $caption
+    "figclass"     $args.figclass
+    "loading"      $args.loading
+    "priority"     $priority
+    "sizes"        $args.sizes
+    "absolute-url" $absoluteURL
+    "plain"        $args.plain
+    "anchor"       $args.anchor
+    )
+-}}
+
+{{- if not $error -}}
+    {{- if $args.mode -}}
+        {{- $ext := path.Ext $src -}}
+        {{- $base := strings.TrimSuffix $ext $src -}}
+        {{- range $suffix := $modes -}}
+            {{- $base = strings.TrimSuffix (printf "-%s" $suffix) $base -}}
+        {{- end -}}
+
+        {{- range $suffix := $modes -}}
+            {{- $image := printf "%s-%s%s" $base $suffix $ext -}}
+            {{- $params = merge $params (dict
+                    "src"   $image
+                    "wrapper" (printf "%s d-none-%s" $args.wrapper (cond (eq $suffix "dark") "light" "dark"))
+            ) -}}
+            {{- partial "assets/helpers/image-definition.html" $params -}}
+        {{- end -}}
+    {{ else }}
+        {{- $params = merge $params (dict "src" $src) -}}
+        {{- partial "assets/helpers/image-definition.html" $params -}}
+    {{- end -}}
+{{- end -}}

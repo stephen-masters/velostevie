@@ -1,0 +1,16 @@
+comment: Defines a hero image with optional overlay and positioning.
+group: partial
+arguments:
+  page:
+  icon:
+  image:
+  anchor:
+  mode:
+  ratio:
+  portrait:
+  sizes:
+  title:
+  wrapper:
+  class:
+  image-overlay:
+  justify:

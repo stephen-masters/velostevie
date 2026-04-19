@@ -1,0 +1,98 @@
+comment: >-
+  Display a button with a hyperlink.
+icon: touch_app
+arguments:
+  title:
+    preview: true
+  class:
+  color:
+    default: primary
+  href:
+  relref:
+    group: shortcode
+  id:
+  button-state:
+    release: v1.0.0
+  button-size:
+    release: v1.0.0
+  outline:
+  badge:
+  label:
+  aria-label:
+    group: shortcode
+  tooltip:
+  collapse-id:
+  link-type:
+    release: v1.0.0
+  placement:
+  icon:
+  icon-class:
+    release: v2.0.0
+  order:
+  justify:
+  toast-id:
+    release: v1.0.0
+  clipboard:
+  cue:
+  tab:
+  attributes:
+  spacing:
+  wrapper:
+    group: shortcode
+  # deprecated arguments
+  type:
+    type: select
+    optional: true
+    default: button
+    comment: Type of the element.
+    options:
+      values:
+        - link
+        - button
+    deprecated: v1.0.0
+    alternative: link-type
+  state:
+    type: select
+    optional: true
+    default: enabled
+    comment: State of the button.
+    options:
+      values:
+        - enabled
+        - disabled
+        - active
+        - inactive
+    deprecated: v1.0.0
+    alternative: button-state
+  size:
+    type: select
+    optional: true
+    default: md
+    comment: Size of the button.
+    options:
+      values:
+        - sm
+        - md
+        - lg
+    deprecated: v1.0.0
+    alternative: button-size
+  toast:
+    type: string
+    optional: true
+    comment: Identifier (ID) of the toast to display when the button is clicked.
+    deprecated: v1.0.0
+    alternative: toast-id
+  collapse:
+    type: string
+    optional: true
+    comment: >-
+      ID of the panel to collapse. Cannot be used together with tooltip. Ignored
+      for active/inactive buttons.
+    deprecated: v1.0.0
+    alternative: collapse-id
+body:
+  type: string
+  optional: false
+  comment: Label text of the button.
+example: |
+  {{< button color="primary" href="/docs/" button-size="sm" >}}Learn more{{< /button >}}

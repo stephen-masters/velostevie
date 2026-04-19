@@ -1,0 +1,35 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{/* Initialize arguments */}}
+{{ $args := partial "utilities/InitArgs.html" (dict "structure" "table" "args" .Params "group" "shortcode" "named" .IsNamedParams) }}
+{{ if or $args.err $args.warnmsg }}
+    {{ partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial"  "shortcodes/table.html" 
+        "warnid"   "warn-invalid-arguments"
+        "msg"      "Invalid arguments"
+        "details"  ($args.errmsg | append $args.warnmsg)
+        "file"     page.File
+        "position" .Position
+    )}}
+{{- end -}}
+
+{{/* Main code */}}
+{{ if not $args.err }}
+    {{ partial "assets/table.html" (dict
+        "page"                   .Page
+        "input"                  .Inner
+        "breakpoint"             $args.breakpoint
+        "class"                  $args.class
+        "sortable"               $args.sortable
+        "paginate"               $args.paginate
+        "pagination"             (or $args.pagination $args.pagingOptionPerPage)
+        "pagination-select"      (or $args.paginationSelect $args.pagingOptionPageSelect)
+        "searchable"             $args.searchable
+        "wrap"                   $args.wrap
+        "_default"               $args.default
+    ) }}
+{{ end }}

@@ -1,0 +1,107 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{- $error := false -}}
+
+{{- define "_partials/inline/nav-dropdown.html" -}}
+    {{ $id := .id }}
+    {{ $class := .class }}
+    {{ $titles := .titles }}
+    {{ $wrap := .wrap }}
+
+    <div id="dropdown-{{ $id }}" class="dropdown panel-dropdown {{ $class }}">
+    <a class="link-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ cond (gt (len $titles) 0) (index $titles 0) (T "sectionMenu") }}
+    </a>
+        <ul class="dropdown-menu">
+            {{- range $index, $item := $titles -}}
+                {{ $itemID := printf "%s-btn-%d" $id $index -}}
+                {{- $show := eq $index 0 -}}
+                <li>
+                    <a class="dropdown-item {{ if not $wrap }} text-nowrap{{ end }}{{ if $show }} active{{ end }}"
+                    data-link="#{{ $id }}-btn-{{ $index }}" type="button">{{ $item }}</a>
+                </li>
+            {{ end }}
+        </ul>
+    </div>
+{{- end -}}
+
+{{/* Initialize arguments */}}
+{{- $args := partial "utilities/InitArgs.html" (dict "structure" "nav" "args" . "group" "partial") -}}
+{{- if or $args.err $args.warnmsg -}}
+    {{- partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial" "assets/nav.html" 
+        "warnid"  "warn-invalid-arguments"
+        "msg"     "Invalid arguments"
+        "details" ($args.errmsg | append $args.warnmsg)
+        "file"    page.File
+    ) -}}
+    {{- $error = $args.err -}}
+{{- end -}}
+
+{{/* Initialize global arguments */}}
+{{- $padding := partial "utilities/GetPadding.html" -}}
+{{- $breakpoint := partial "utilities/GetBreakpoint.html" -}}
+
+{{/* Initialize local arguments */}}
+{{- $page := $args.page -}}
+{{- $id := $args.id | default "0" -}}
+{{- $type := or $args.tabType $args.type -}}
+{{- $wrap := $args.wordWrap -}}
+{{- $titles := slice -}}
+{{- range $args.list }}{{ $titles = $titles | append .Title }} {{ end -}}
+{{- if reflect.IsSlice $args.navTitles }}{{ $titles = $titles | append $args.navTitles }}{{ end -}}
+
+{{/* Main code */}}
+<div class="col col-12 col-{{ $breakpoint.current }}-{{ $args.width }} mx-auto">
+    {{ if $args.vertical }}<div class="d-{{ if $args.responsive }}{{ $breakpoint.current }}{{ end }}-flex align-items-start">{{ end }}
+    {{ if $args.responsive }}
+        {{ partial "inline/nav-dropdown.html" (dict
+            "id"     $id
+            "class"  (printf "d-%s-none py-%d" $breakpoint.current $padding.y)
+            "titles" $titles
+            "wrap"   $wrap
+        ) }}
+    {{ end }}
+    
+    <div class="{{ if $args.responsive }}d-none d-{{ $breakpoint.current }}-block{{ end }}">
+    <ul
+        class="nav nav-panel{{ with $type }} nav-{{ . }}{{ end -}}{{ with $args.class }} {{ . }}{{ end }}{{ if $args.vertical }} flex-column{{ end }} tabs-dropdown" 
+        id="nav-{{ $id }}" 
+        role="tablist"
+        {{ if $args.vertical }}aria-orientation="vertical"{{ end }}
+        data-companion="dropdown-{{ $id }}"
+    >
+        {{- $titles := slice -}}
+        {{- range $args.list }}{{ $titles = $titles | append .Title }} {{ end -}}
+        {{- if reflect.IsSlice $args.navTitles }}{{ $titles = $titles | append $args.navTitles }}{{ end -}}
+        {{- range $index, $item := $titles -}}
+            {{ $itemID := printf "%s-btn-%d" $args.id $index -}}
+            {{- $show := eq $index 0 -}}
+            {{- if $args.navShow }}{{ $show = eq $args.navShow $itemID }}{{ end -}}
+            {{- $disabled := in $args.navDisabled $itemID -}}
+            <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link{{ if not $wrap }} text-nowrap{{ end }}{{ if $show }} active{{ end }}{{ if $disabled }} disabled{{ end }}"
+                    id="{{ $itemID }}"
+                    data-bs-toggle="pill"
+                    data-bs-target="#{{ $id }}-{{ $index }}"
+                    type="button"
+                    role="tab"
+                    aria-controls="{{ $id }}-{{ $index }}"
+                    aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}"
+                >
+                    {{ $item }}
+                </button>
+            </li>
+        {{ end -}}
+    </ul>
+    </div>
+    <div class="tab-content {{ if in (slice "tabs" "callout") $type }}border p-3 bg-body {{ else if $args.vertical }}ms-{{ $breakpoint.current }}-3{{ else }}mt-3{{ end }}">
+        {{- $args.navItems | safeHTML -}}
+    </div>
+    {{- if $args.vertical }}</div>{{ end -}}
+</div>

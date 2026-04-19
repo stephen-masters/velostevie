@@ -1,0 +1,29 @@
+comment: >-
+  Prepares a dismissible toast notification message. Use a button trigger to
+  display the message on screen.
+icon: toast
+arguments:
+  title:
+    release: v1.0.0
+    preview: true
+  id:
+  class:
+  message:
+    group: partial
+  # deprecated arguments
+  header:
+    type: string
+    optional: true
+    comment: Header of the toast message. Uses the site title by default.
+    deprecated: v1.0.0
+    alternative: title
+body:
+  type: string
+  optional: false
+  comment: Toast message.
+  group: shortcode
+example: |
+  {{< button toast-id="toast-1" >}}Show notification{{< /button >}}
+  {{< toast id="toast-1" title="Update available" >}}
+    A new version has been released.
+  {{< /toast >}}

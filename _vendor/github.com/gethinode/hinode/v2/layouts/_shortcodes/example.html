@@ -1,0 +1,57 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+
+    This source code adapts the original embedded shortcode as maintained by the The Bootstrap Authors. It introduces
+    the following modifications:
+     - Added validation of shortcode arguments
+     - Modified the layout
+    
+    The original source code is available on:
+    Source: https://github.com/twbs/bootstrap/blob/main/site/layouts/shortcodes/example.html
+    Copyright (c) 2011-2023 The Bootstrap Authors. Licensed under The MIT License (MIT).
+*/}}
+
+{{/* Initialize arguments */}}
+{{- $args := partial "utilities/InitArgs.html" (dict "structure" "example" "args" .Params "named" .IsNamedParams "group" "shortcode") -}}
+{{- if or $args.err $args.warnmsg -}}
+    {{- partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial"  "shortcodes/example.html" 
+        "warnid"   "warn-invalid-arguments"
+        "msg"      "Invalid arguments"
+        "details"  ($args.errmsg | append $args.warnmsg)
+        "file"     page.File
+        "position" .Position
+    )}}
+{{- end -}}
+
+{{/* Initialize arguments */}}
+{{- $lang := $args.lang -}}
+{{- $showPreview := $args.showPreview }}
+{{- $showMarkup := $args.showMarkup }}
+{{- if eq $lang "hugo" }}{{ $lang = "markdown" }}{{ end -}}
+{{- $content := .InnerDeindent -}}
+
+{{/* Main code */}}
+{{ if not $args.err }}
+    <div class="border {{ if and $showPreview $showMarkup }}rounded mb-3{{ else if $showPreview }}rounded-top border-bottom-0{{ else }}rounded-bottom{{ end }}">
+        {{- if $showPreview -}}
+            <div {{ with $args.id }}id="{{ . }}"{{ end }} class="p-5 {{ if $showMarkup }}rounded-top{{ end }} {{ with $args.class }} {{ . }}{{ end }}">
+                {{- if eq $lang "html" -}}
+                    {{- $content | safeHTML -}}
+                {{- else -}}
+                    {{- $content | .Page.RenderString | safeHTML -}}
+                {{- end -}}
+            </div>
+        {{- end -}}
+        {{- if $showMarkup -}}
+            <div class="d-flex align-items-center ps-3 pe-3 py-1{{ if $showPreview }} border-top{{ else }} rounded-top{{ end }} border-bottom syntax-highlight">
+                <small class="font-monospace text-body text-uppercase">{{- $lang -}}</small>
+            </div>
+            <div class="rounded-bottom syntax-highlight border-none">
+                {{- highlight (trim $content "\r\n") $lang "" | safeHTML -}}
+            </div>
+        {{- end -}}
+    </div>
+{{ end }}

@@ -1,0 +1,155 @@
+// scss-docs-start sidebar
+.sidebar {
+    top: var(--navbar-offset);
+}
+
+.sidebar-overflow {
+    top: calc(var(--navbar-offset) + 1rem);
+    max-height: calc(100vh - var(--navbar-offset));
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.sidebar-item {
+    --bs-border-radius: #{$theme-border-radius};
+    --bs-border-radius-sm: #{$theme-border-radius};
+    --bs-border-radius-lg: #{$theme-border-radius};
+    --bs-border-radius-xl: #{$theme-border-radius};
+    --bs-border-radius-xxl: #{$theme-border-radius};
+
+    color: rgba(0, 0, 0, 0.65);
+    margin-left: 0 !important;
+    display: inline-block;
+    padding: 0.1875rem 0.5rem !important;
+
+    &.active {
+        color: $primary;
+    }
+
+    &:hover,
+    &:focus {
+        color: $primary;
+        background-color: tint-color($primary, 90%);
+    }
+}
+
+.sidebar-item-group {
+    --#{$prefix}link-opacity: 0.65;
+
+    border-radius: #{$theme-border-radius};
+
+    &:hover,
+    &:focus {
+        color: $primary;
+        background-color: tint-color($primary, 90%);
+    }
+    
+    > div > a {
+        color: rgba(var(--#{$prefix}body-color-rgb), var(--#{$prefix}link-opacity, 1));
+        text-decoration: none;
+        cursor: pointer;
+        
+        &:hover,
+        &:focus {
+            color: $primary;
+        }
+    }
+}
+
+.sidebar-item-group > div {
+    padding: 0.1875rem 0.5rem !important;
+}
+
+.btn-toggle-group {
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.65);
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+        background-color: transparent;
+    }
+
+    &::before {
+        width: 1.25em;
+        line-height: 0;
+        content: $btn-toggle;
+        transition: transform 0.35s ease;
+        transform-origin: 0.5em 50%;
+    }
+}
+
+.btn-toggle-group[aria-expanded="true"] {
+    &::before {
+        transform: rotate(90deg);
+    }
+}
+
+@if $enable-dark-mode {
+    @include color-mode(dark) {
+        .sidebar-item {
+            --#{$prefix}link-opacity: 0.65;
+
+            color: rgba(var(--#{$prefix}body-color-rgb), var(--#{$prefix}link-opacity, 1));
+
+            &.active {
+                color: $primary-text-emphasis-dark !important;
+            }
+
+            &:hover,
+            &:focus {
+                color: $primary-text-emphasis-dark !important;
+                background-color: transparent;
+                box-shadow: inset 0 0 0 1px $primary-bg-subtle-dark;
+    }
+        }
+
+        .sidebar-item-group {
+            color: var(--bs-body-color) !important;
+
+            &.active {
+                color: $primary-text-emphasis-dark !important;
+            }
+
+            &:hover,
+            &:focus {
+                color: $primary-text-emphasis-dark !important;
+                background-color: transparent;
+                box-shadow: inset 0 0 0 1px $primary-bg-subtle-dark;
+            }
+
+            > div > a {
+                &:hover,
+                &:focus {
+                    color: $primary-text-emphasis-dark !important;
+                }
+            }
+        }
+
+        .btn-toggle-group {
+            color: var(--bs-body-color);
+        
+            &:hover,
+            &:focus {
+                background-color: transparent;
+            }
+        
+            &::before {
+                content: $btn-toggle-dark;
+            }
+        }
+
+        .btn-toggle-group[aria-expanded="true"] {
+            color: var(--bs-secondary-color);
+        }
+                    }
+}
+
+// scss-docs-end sidebar
+
+.dropdown-toggle {
+    outline: 0;
+    display: flex;
+    align-items: center;
+}

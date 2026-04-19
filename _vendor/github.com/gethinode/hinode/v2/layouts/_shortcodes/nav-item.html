@@ -1,0 +1,88 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{/* Initialize arguments */}}
+{{- $args := partial "utilities/InitArgs.html" (dict "structure" "nav-item" "args" .Params "group" "shortcode" "named" .IsNamedParams) -}}
+{{- if or $args.err $args.warnmsg -}}
+    {{- partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial"  "shortcodes/nav-item.html" 
+        "warnid"   "warn-invalid-arguments"
+        "msg"      "Invalid arguments"
+        "details"  ($args.errmsg | append $args.warnmsg)
+        "file"     page.File
+        "position" .Position
+    ) -}}
+{{- end -}}
+
+{{/* Initialize arguments */}}
+{{- if not .Parent -}}
+    {{- errorf "The nav-item shortcode should be contained within a nav shortcode: %s" .Position -}}
+{{- else if not $args.err -}}
+    {{- $id := .Ordinal -}}
+    {{- $parent := printf "nav-%d" .Parent.Ordinal -}}
+    {{- with (.Parent.Get "id") }}{{ $parent = . }}{{ end -}}
+
+    {{- $fade := $args.fade -}}
+    {{- $parentFade := false }}
+    {{- if isset .Parent.Params "fade" }}{{ $parentFade = partial "utilities/CastBool.html" (.Parent.Get "fade") }}{{ end -}}
+    {{- $fade = or $fade $parentFade -}}
+    {{- $title := or $args.title $args.header -}}
+    {{- $itemID := printf "%s-btn-%d" $parent $id }}
+    {{- $disabledID := cond $args.disabled $itemID "" }}
+    {{- $body := trim .Inner " \r\n" -}}
+    {{- $current := "" -}}
+
+    {{/* Main code */}}
+    {{- $output := partial "assets/nav-item.html" (dict 
+        "page"      .Page
+        "id"        $id
+        "parent-id" $parent
+        "fade"      $fade
+        "title"     $title
+        "class"     $args.class
+        "body"      $body
+        "show"      $args.show
+        "disabled"  $args.disabled
+        "_default"  $args.default
+        )
+    -}}
+
+    {{- $current := .Parent.Scratch.Get "inner" -}}
+    {{- $titles := .Parent.Scratch.Get "inner-title" -}}
+    {{- $disabled := .Parent.Scratch.Get "inner-disabled" -}}
+    {{- if $args.show }}{{ .Parent.Scratch.Set "inner-show" $itemID }}{{ end -}}
+    {{- if $current -}}
+        {{- .Parent.Scratch.Set "inner" (print $current $output) -}}
+        {{- .Parent.Scratch.Set "inner-title" ($titles | append $title) -}}
+        {{- .Parent.Scratch.Set "inner-disabled" ($disabled | append $disabledID) -}}
+    {{- else -}}
+        {{- .Parent.Scratch.Set "inner" $output -}}
+        {{- .Parent.Scratch.Set "inner-title" (slice $title) -}}
+        {{- .Parent.Scratch.Set "inner-disabled" (slice $disabledID) -}}
+    {{- end }}
+
+    {{- $alternative := partial "assets/nav-item.html" (dict 
+        "page"         .Page
+        "id"           $id
+        "parent-id"    $parent
+        "fade"         $fade
+        "title"        $title
+        "class"        $args.class
+        "body"         $body
+        "show"         $args.show
+        "disabled"     $args.disabled
+        "navitem-type" "accordion"
+        "_default"     $args.default
+        )
+    -}}
+
+    {{- $current := .Parent.Scratch.Get "alternative" -}}
+    {{- if $current -}}
+        {{- .Parent.Scratch.Set "alternative" (print $current $alternative) -}}
+    {{- else -}}
+        {{- .Parent.Scratch.Set "alternative" $alternative -}}
+    {{ end }}
+{{ end }}

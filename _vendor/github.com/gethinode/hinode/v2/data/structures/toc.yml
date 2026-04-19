@@ -1,0 +1,10 @@
+comment: Renders the table of contents of a single page.
+group: partial
+arguments:
+  page:
+    type:
+      - '*hugolib.pageState'
+      - '*hugolib.pageForShortcode'
+    optional: false
+    comment: Context of the current page.
+    group: partial

@@ -1,6 +1,9 @@
 baseURL = 'https://example.org/'
-languageCode = 'en-us'
+locale = 'en-gb'
 title = 'Velostevie'
-
+copyright = 'Copyright 2026 <a href="https://github.com/stephen-masters">Stephen Masters</a>.'
+[module]
 [[module.imports]]
-path = 'github.com/gethinode/hinode'
+  path = 'github.com/gethinode/hinode'
+[[module.imports]]
+  path = 'github.com/gethinode/mod-blocks'

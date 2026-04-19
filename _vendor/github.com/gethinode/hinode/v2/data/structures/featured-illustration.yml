@@ -1,0 +1,14 @@
+comment: Defines a featured illustration with optional icon or image.
+group: partial
+arguments:
+  page:
+  icon:
+  image:
+  mode:
+  ratio:
+  portrait:
+  sizes:
+  title:
+  wrapper:
+  class:
+  anchor:

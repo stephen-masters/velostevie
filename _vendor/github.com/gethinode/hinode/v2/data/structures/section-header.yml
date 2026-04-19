@@ -1,0 +1,19 @@
+comment: >-
+  Renders a simple page section header with title, description, and content
+  fields.
+group: partial
+arguments:
+  title:
+    type: string
+    optional: true
+    comment: Title of the section.
+  description:
+    type: string
+    optional: true
+    comment: Section description.
+  content:
+    type:
+      - string
+      - template.HTML
+    optional: true
+    comment: Section content.

@@ -1,0 +1,60 @@
+comment: >-
+  Generates a table of structured arguments defined in a data file identified
+  by a structure name.
+icon: table_chart
+arguments:
+  page:
+    optional: false
+    group: partial
+  structure:
+    type: string
+    position: 0
+    optional: false
+    preview: true
+    comment: >-
+      Name of the data file that contains argument definitions. Supported data
+      formats include JSON, TOML, YAML, and XML. You can omit the file
+      extension. The file should reside in the `data/structures` folder. For
+      bookshop components, add the `bookshop-` prefix to the structure name.
+  group:
+    type: string
+    position: 1
+    optional: true
+    comment: >-
+      Name of the group filter. This is typically used when a shortcode and
+      partial have common arguments. The group filter binds a specific argument
+      to a particular group. By default, an argument belongs to all groups.
+  parent:
+    type: bool
+    position: 2
+    optional: true
+    comment: >-
+      Flag to filter only arguments that have a parent attribute (either
+      `cascade` or `merge`).
+  render-type:
+    type: select
+    position: 3
+    default: both
+    optional: true
+    comment: >-
+      Option whether to render arguments, user-defined types, or both. Please
+      note that the arguments will render a link to a user-defined type in any
+      case.
+    options:
+      values:
+        - arguments
+        - types
+        - both
+    release: v1.0.0
+  header-level:
+    type: int
+    default: 3
+    optional: true
+    options:
+      min: 1
+      max: 6
+    comment: >-
+      The header level to use for the user-defined type headers.
+    release: v1.0.0
+example: |
+  {{< args structure="alert" >}}

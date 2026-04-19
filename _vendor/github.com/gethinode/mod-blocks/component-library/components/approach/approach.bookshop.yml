@@ -1,0 +1,54 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Approach
+  description: Show a featured image with one or more steps
+  icon: stairs
+  tags: []
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  heading:
+    preheading:
+    title:
+    content:
+    align: start
+    arrangement:
+    width:
+    size:
+  background:
+    backdrop:
+    color:
+    subtle:
+  cols:
+  icon_rounded:
+  icon_style:
+  link_type: button
+  padding:
+  illustration:
+    image:
+    icon:
+    ratio:
+    class:
+    anchor:
+    mode:
+  elements:
+    - title:
+      icon:
+      image:
+      mode:
+      content:
+      link:
+  orientation:
+  class:
+  width:
+  justify: start
+  align: start
+  wrapper:
+  fluid:
+  theme:
+  cover:
+  overlay_mode:
+  section_class:
+  bg_class:

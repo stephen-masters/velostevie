@@ -1,0 +1,20 @@
+comment: >-
+  Defines the interface to be implemented by a CDN image adapter.
+group: partial
+arguments:
+  url-host:
+    release: v1.0.0
+  url-dir:
+    release: v1.0.0
+  url-file:
+    release: v1.0.0
+  absolute-url:
+    release: v1.0.0
+  img:
+  format:
+  transform:
+  image-height:
+    release: v1.0.0
+  image-width:
+    release: v1.0.0
+  anchor:

@@ -1,0 +1,30 @@
+{{/* 
+    Copyright © 2022 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+    Use of this source code is governed by The MIT License (MIT) that can be found in the LICENSE file.
+    Visit gethinode.com/license for more details.
+*/}}
+
+{{/* Initialize arguments */}}
+{{ $args := partial "utilities/InitArgs.html" (dict "structure" "page-alert" "args" . "group" "partial") }}
+{{ if or $args.err $args.warnmsg }}
+    {{ partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial" "assets/page-alert.html" 
+        "warnid"  "warn-invalid-arguments"
+        "msg"     "Invalid arguments"
+        "details" ($args.errmsg | append $args.warnmsg)
+        "file"    page.File
+    )}}
+{{ end }}
+
+{{/* Initialize local arguments */}}
+{{- $pageAlertMsg := $args.page.Scratch.Get "pageAlertMsg" -}}
+{{- $pageAlertURL := $args.page.Scratch.Get "pageAlertURL" -}}
+{{- $version := $args.page.Scratch.Get "version" -}}
+
+{{/* Main code */}}
+{{- if and (not $args.err) $pageAlertMsg -}}
+    <div id="page-alert" class="alert alert-primary alert-no-decoration fade show d-flex align-items-center small m-0 py-1" data-page-alert-version="{{ $version }}">
+        <a {{ with $pageAlertURL }}href="{{ . }}"{{ end }} class="text-decoration-none flex-grow-1 text-center">{{ $pageAlertMsg }}</a>
+        <button id="page-alert-btn-close" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ T "close" }}"></button>
+    </div>
+{{- end -}}

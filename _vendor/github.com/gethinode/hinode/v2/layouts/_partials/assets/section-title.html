@@ -1,0 +1,112 @@
+<!-- 
+    Copyright © 2024 - 2026 The Hinode Team / Mark Dumay. All rights reserved.
+-->
+
+{{/* Initialize arguments */}}
+ {{ $args := partial "utilities/InitArgs.html" (dict "structure" "section-title" "args" . "group" "partial") }}
+{{ if or $args.err $args.warnmsg }}
+    {{ partial (cond $args.err "utilities/LogErr.html" "utilities/LogWarn.html") (dict 
+        "partial" "assets/section-title.html" 
+        "warnid"  "warn-invalid-arguments"
+        "msg"     "Invalid arguments"
+        "details" ($args.errmsg | append $args.warnmsg)
+        "file"    page.File
+    )}}
+{{ end }}
+
+{{/* Initialize global arguments */}}
+{{- $breakpoint := partial "utilities/GetBreakpoint.html" -}}
+{{- $padding := partial "utilities/GetPadding.html" -}}
+
+{{/* Initialize local arguments */}}
+{{- $size := (or $args.heading.size site.Params.style.title.size) | default 4 -}}
+{{- $arrangement := (or $args.arrangement site.Params.style.title.arrangement) | default "above" -}}
+{{- $headingStyle := (or $args.headingStyle site.Params.style.title.headingStyle) | default "display" -}}
+{{- $contentStyle := (or $args.contentStyle site.Params.style.title.contentStyle) | default "lead text-muted" -}}
+{{- $preheading := $args.heading.preheading }}
+{{- $title := $args.heading.title }}
+{{- $width := $args.heading.width | default 12 -}}
+{{- $width = cond (lt $width 12) (printf "col-12 col-%s-%d" $breakpoint.current $width) "" }}
+{{- if and (not $preheading) $args.useSection }}{{ $preheading = page.CurrentSection.Name }}{{ end -}}
+{{- $justify := cond (eq $args.justify "start") "" (cond (eq $args.justify "end") "me-0" "mx-auto") -}}
+
+{{ if and site.Params.main.titleCase (not $args.page.Params.exact) }}
+    {{ $preheading = title $preheading }}
+    {{ $title = title $title }}
+{{ end }}
+
+{{ define "_partials/assets/section-title-header.html" }}
+    {{ $headingStyle := .headingStyle }}
+
+    {{ if (index . "use-title") }}
+        {{ $title := .title | page.RenderString }}
+        {{ $label := trim (replaceRE "\r\n?|\n" " " ($title | plainify)) " " }}
+        <h1 id="{{ anchorize .title }}" {{ if ne $title $label }}aria-label="{{ $label }}"{{ end -}}        
+            class="{{ $headingStyle }}-{{ .size }}{{ with .color }} text-{{ . }}{{ end }} pt-1">
+                {{ .title | page.RenderString | safeHTML }}
+        </h1>
+    {{ else }}
+        <div id="{{ anchorize .title }}" class="{{ $headingStyle }}-{{ .size }}{{ with .color }} text-{{ . }}{{ end }} pt-1">
+            {{ .title | page.RenderString | safeHTML }}
+        </div>
+    {{ end }}
+{{ end }}
+
+{{ $header := "" }}
+{{ if $title }}
+    {{ $header = partial "assets/section-title-header.html" (dict
+        "use-title"    $args.useTitle
+        "title"        $title
+        "headingStyle" $headingStyle
+        "color"        $args.color
+        "size"         $size
+    ) }}
+{{ end }}
+
+{{ $links := "" }}
+{{ if $args.links }}
+    {{ $links = partial "assets/links.html" (dict
+        "page"      $args.page
+        "links"     $args.links
+        "align"     $args.heading.align
+        "justify"   $args.justify
+        "link-type" $args.linkType
+    ) }}
+{{ end }}
+
+{{/* Main code */}}
+{{ if or $args.heading.title $args.heading.content }}
+    <div class="section-title text-{{ $args.heading.align | default "start" }}{{ with $justify }} {{ . }}{{ end }}{{ with $args.class }} {{ . }}{{ end }} {{ with $width }}{{ . }}{{ else }}width-100{{ end }}">
+        {{ if and $preheading (eq $arrangement "first") }}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-{{ $breakpoint.current }}-2 p-0">
+                        {{ with $preheading }}
+                            <p class="preheading {{ if ne $args.color "body" }}text-{{ $args.color }}{{ else }}text-primary{{ end }}">
+                                {{ . | page.RenderString | safeHTML }}
+                            </p>
+                        {{ end }}
+                    </div>
+                    <div class="col-12 col-{{ $breakpoint.current }}-8 p-0">
+                        {{ $header }}
+                        {{ with $args.heading.content }}
+                            <div class="{{ $contentStyle }} pt-{{ $padding.y }}">{{ . | page.RenderString | safeHTML }}</div>
+                        {{ end }}
+                        {{ $links }}
+                    </div>
+                </div>
+            </div>
+
+        {{/* Place above */}}
+        {{ else }}
+            {{ with $preheading }}
+                <p class="preheading {{ if ne $args.color "body" }}text-{{ $args.color }}{{ else }}text-primary{{ end }}">
+                    {{ . | page.RenderString | safeHTML }}
+                </p>
+            {{ end }}
+            {{ $header }}
+            {{ with $args.heading.content }}<div class="{{ $contentStyle }} pt-{{ $padding.y }}">{{ . | page.RenderString | safeHTML }}</div>{{ end }}
+            {{ $links }}
+        {{ end }}
+    </div>
+{{ end }}

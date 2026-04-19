@@ -1,0 +1,44 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Panels
+  description: Display multiple togglable panels with tab controls
+  icon: tab
+  tags: []
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  heading:
+    preheading:
+    title:
+    content:
+    align: start
+    arrangement:
+    width:
+    size:
+  background:
+    backdrop:
+    color:
+    subtle:
+  padding:
+  content_style:
+  elements:
+    - title:
+      icon:
+      image:
+      mode:
+      content:
+  tab_type:
+  ratio:
+  responsive:
+  class:
+  width:
+  justify: start
+  wrapper:
+  fluid:
+  theme:
+  cover:
+  overlay_mode:
+  section_class:
+  bg_class:
