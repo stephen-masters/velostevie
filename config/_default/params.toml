@@ -108,7 +108,7 @@
 
 [schema]
     type = "Organization"
-    name = "Hinode"
+    name = "Scattercode"
     locale = "en-US"
     linkedIn = "https://www.linkedin.com/in/stephenmasters/"
     github = "https://github.com/stephen-masters"

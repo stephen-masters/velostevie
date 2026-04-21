@@ -39,6 +39,12 @@ jobs:
           node-version: lts/*
           cache: npm
 
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.159.1'
+          extended: true
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -47,14 +53,16 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          hugo --gc --minify --destination ./public
+          ls -la ./public
         env:
           HUGO_BASEURL: ${{ steps.pages.outputs.base_url }}/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: ./public
 
   deploy:
     environment:

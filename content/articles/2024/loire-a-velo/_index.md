@@ -1,7 +1,7 @@
 ---
 author: Stephen Masters
 title: Vélostevie - La Loire à Vélo
-description: Following the banks of the Loire River by bicycle in August 2024.
+description: Cycling the length of France's longest river, from Nevers to the Atlantic coast in August 2024.
 thumbnail:
   url: /images/articles/2024/loire-a-velo/lav_day_06/10_chambord_selfie.png
 content_blocks:
