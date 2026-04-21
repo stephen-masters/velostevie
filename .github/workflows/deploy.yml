@@ -27,12 +27,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
-          cache: true
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -52,10 +46,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Vendor Hugo modules
+        run: hugo mod vendor
+
       - name: Build
-        run: |
-          hugo --gc --minify --destination ./public
-          ls -la ./public
+        run: hugo --gc --minify
         env:
           HUGO_BASEURL: ${{ steps.pages.outputs.base_url }}/
 
