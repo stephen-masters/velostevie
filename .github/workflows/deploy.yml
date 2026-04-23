@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macbookpro
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -57,7 +57,7 @@ jobs:
         run: hugo mod vendor
 
       - name: Build
-        run: hugo --gc
+        run: hugo --gc --minify
         env:
           HUGO_BASEURL: ${{ steps.pages.outputs.base_url }}/
 
