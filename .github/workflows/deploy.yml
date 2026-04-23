@@ -43,6 +43,13 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Cache Hugo resources
+        uses: actions/cache@v4
+        with:
+          path: resources/_gen
+          key: hugo-resources-${{ hashFiles('assets/images/**') }}
+          restore-keys: hugo-resources-
+
       - name: Install dependencies
         run: npm ci
 
