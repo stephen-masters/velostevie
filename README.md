@@ -34,6 +34,14 @@ npm run build
 
 Output is written to the `public/` directory.
 
+## GitHub Actions build
+
+`.github/workflows/deploy.yml` has been modified based on the assumption it is using a self-hosted runner.
+
+On my mac, this can be found in: `/Users/stevie/dev/utils/actions-runner`
+
+Start a shell in that directory and run: `./run-helper.sh run`
+
 ## Other commands
 
 | Command | Description |
