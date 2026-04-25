@@ -14,6 +14,6 @@ Today’s included a stop at the beautiful abbey at Moissac. It’s important to
 
 At the end of the day, I’m so pleased that I was able to stay on a Péniche GEMJO (a péniche is a barge) at Castelsarasin. The hosts were wonderfully friendly and welcoming.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-03_cdm_day_03/gallery" >}}
 
 {{< gallery dir="images/articles/2025/canal-des-deux-mers/2025-09-03_cdm_day_03/gallery" >}}

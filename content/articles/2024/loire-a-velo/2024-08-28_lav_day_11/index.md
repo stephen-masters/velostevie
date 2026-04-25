@@ -23,6 +23,6 @@ they could cook dinner for me. I had looked at eating options nearby and there w
 
 I was sent to have a swim in the cool pool and then sit in the hot tub. In the hot tub, monsieur came over and gave me a glass of sparking crémant de Loire. I headed to my room to get changed and came down again. I was then sat at a table looking across the yard, and madame brought me a bottle of wine and served a three course meal. All excellent. If you're cycling through the area, I have to recommend that you stop here. You won't regret it.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_11/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_11/gallery" >}}

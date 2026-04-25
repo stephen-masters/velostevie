@@ -12,6 +12,6 @@ thumbnail:
 
 The final leg of the trip. I took my time in the morning, and paid a visit to the pink salt ponds at Gruissan before making my way along the cost for most of the route back to Béziers where I was planning to catch a train back to Paris.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-12_cdm_day_09/gallery" >}}
 
 {{< gallery dir="images/articles/2025/canal-des-deux-mers/2025-09-12_cdm_day_09/gallery" >}}

@@ -27,6 +27,6 @@ I stayed at the [Logis Hôtel des Châteaux de la Loire](https://www.logishotels
 
 The gothic cathedral of Saint Gatien was built through the 13th and 14th centuries, and is an impressive sight. Although at the time I was in the area, there was a service in progress, so I skipped going inside. However, it is known for its stained-glass windows, so I'm sure that it would be worth a proper visit, time allowing.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_08/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_08/gallery" >}}

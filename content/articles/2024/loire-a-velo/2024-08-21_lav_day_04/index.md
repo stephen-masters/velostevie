@@ -28,6 +28,6 @@ I was staying at a chambre d'hôtes (private B&B) called [Evasion de Loire](http
 
 I walked across the river to explore the town on the other side. It was a relaxing evening in the twilight, visiting a group of goats grazing on the bank and watching men standing in waders and fishing.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_04/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_04/gallery" >}}

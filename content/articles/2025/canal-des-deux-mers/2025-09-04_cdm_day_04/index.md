@@ -24,6 +24,6 @@ It was also exciting to come across the Cave Poésie, a club that puts on live p
 
 I had a day in Toulouse, so I got the train to Les Halles de la Machine. This is one of the most amazing experiences you could have. It’s a place full of mechanical contraptions, instruments and giant mechanical creatures. Some based on animals and others based on mythical beasts. Being close to them while they are moving is a thrill, and it’s also rather amusing when a giant mechanical dragon sneezes on you.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-04_cdm_day_04/gallery" >}}
 
 {{< gallery dir="images/articles/2025/canal-des-deux-mers/2025-09-04_cdm_day_04/gallery" >}}

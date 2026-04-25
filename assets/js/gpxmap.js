@@ -8,13 +8,22 @@
     });
   }
 
-  function addPhotoMarkers(map, el) {
+  function addPhotoMarkers(map, el, onBoundsReady) {
     var raw = el.dataset.photos;
-    if (!raw || typeof exifr === 'undefined') return;
+    if (!raw || typeof exifr === 'undefined') {
+      if (onBoundsReady) onBoundsReady(L.latLngBounds());
+      return;
+    }
     var urls = raw.split('|').filter(Boolean);
+    var photoBounds = L.latLngBounds();
+    var remaining = urls.length;
+    function done() {
+      remaining--;
+      if (remaining === 0 && onBoundsReady) onBoundsReady(photoBounds);
+    }
     urls.forEach(function (url, i) {
       exifr.gps(url).then(function (gps) {
-        if (!gps || !gps.latitude || !gps.longitude) return;
+        if (!gps || !gps.latitude || !gps.longitude) { done(); return; }
         var filename = url.split('/').pop();
         var caption = filename.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
         var num = i + 1;
@@ -26,6 +35,7 @@
             iconAnchor: [11, 11]
           })
         }).addTo(map);
+        photoBounds.extend([gps.latitude, gps.longitude]);
         marker.bindTooltip(caption, { direction: 'top', offset: [0, -14] });
         marker.on('click', function () {
           var triggers = document.querySelectorAll('.lb-trigger');
@@ -38,29 +48,38 @@
             } catch (e) { /* malformed URI — skip */ }
           }
         });
-      }).catch(function () { /* no GPS data — skip silently */ });
+        done();
+      }).catch(function () { done(); });
     });
   }
 
   function initMap(el) {
-    var raw = el.dataset.gpxFiles;
-    if (!raw) return;
-    var urls = raw.split('|').filter(Boolean);
-    if (!urls.length) return;
-
     var map = L.map(el);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19
     }).addTo(map);
 
+    var gpxRaw = el.dataset.gpxFiles;
+    var gpxUrls = gpxRaw ? gpxRaw.split('|').filter(Boolean) : [];
+
+    if (gpxUrls.length === 0) {
+      // Photo-markers-only mode: fit map to photo GPS bounds
+      addPhotoMarkers(map, el, function (photoBounds) {
+        if (photoBounds && photoBounds.isValid()) {
+          map.fitBounds(photoBounds, { padding: [40, 40] });
+        }
+      });
+      return;
+    }
+
     var colors = ['#2563eb', '#dc2626'];
     var bounds = L.latLngBounds();
-    var pending = urls.length;
+    var pending = gpxUrls.length;
 
-    addPhotoMarkers(map, el);
+    addPhotoMarkers(map, el, null);
 
-    urls.forEach(function (url, i) {
+    gpxUrls.forEach(function (url, i) {
       fetch(url)
         .then(function (res) { return res.text(); })
         .then(function (text) {

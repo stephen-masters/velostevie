@@ -23,6 +23,6 @@ Arriving in Saumur, I made my way to the [Logis Cristal Hôtel Restaurant](https
 
 Having stashed my bike and luggage, I explored the city. There are plenty of options for places to eat and drink, although the hotel where I was staying had a nice restaurant terrace out front looking out to the river, so I decided to eat there.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_10/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_10/gallery" >}}

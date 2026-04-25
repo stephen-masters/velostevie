@@ -18,6 +18,6 @@ Once I was in Nantes and able to drop my luggage I was on a mission to get to Le
 
 In the evening, I ate at [Chez Maman,](https://maps.app.goo.gl/vU5Lb25RiS4m7dMB9) a very cute restaurant full of movie memorabilia, old children's toys, and books.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_13/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_13/gallery" >}}

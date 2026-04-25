@@ -24,6 +24,6 @@ I stayed at the [Urban Style Hôtel des Cèdres](https://www.logishotels.com/en/
 
 The riverfront is particularly pleasant for a walk, with a number of boats moored, including a New Orleans style paddleboat. I must admit that on this occasion, I struggled to find somewhere really good to eat. Many of the restaurants were packed, but there were plenty of bars and pubs to choose from, so I grabbed myself a tasty craft beer and then ate at an Italian restaurant; sitting outside, watching the world go by.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_05/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_05/gallery" >}}

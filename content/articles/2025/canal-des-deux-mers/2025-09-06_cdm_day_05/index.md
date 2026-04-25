@@ -16,6 +16,6 @@ Arriving at the Grand Bassin of Castelnaudary, it feels like you have arrived at
 
 Castelnaudary is considered (by some anyway) to be the home of cassoulet. Knowing this, it was a bit of a mission of mine to sample a local cassoulet. The Logis Hotel le Clos Fleuri where I was staying had a rather nice restaurant and served cassoulet, so I ordered that. It was excellent! If you do stay there, it’s worth making a point of booking yourself in the restaurant early. It seems to be popular with locals and filled up fast.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-06_cdm_day_05/gallery" >}}
 
 {{< gallery dir="images/articles/2025/canal-des-deux-mers/2025-09-06_cdm_day_05/gallery" >}}

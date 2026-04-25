@@ -5,9 +5,9 @@ tags:
   - "La Loire à Vélo"
   - "bikepacking"
   - "veloroute"
-image: /images/articles/2024/loire-a-velo/lav_day_00/gallery/1_home.png
+image: "/images/articles/2024/loire-a-velo/lav_day_00/gallery/01_Leaving home.png"
 thumbnail:
-  url: /images/articles/2024/loire-a-velo/lav_day_00/gallery/1_home.png
+  url: "/images/articles/2024/loire-a-velo/lav_day_00/gallery/01_Leaving home.png"
 ---
 
 I live in Staffordshire, so getting to Nevers was a bit of a mission. The Eurostar doesn't accept bicycles except in bags, so it wasn't an option for me on this occasion. Therefore, I planned the route to get trains to Dover on Saturday, take a ferry across the Channel, a train from Calais to Paris, then a train from Paris to Nevers.
@@ -26,6 +26,6 @@ It was quite the contrast to see all my bags loaded up with gear for two weeks s
 
 After eating, I caught a train to Paris Gare du Nord, then cycled to the Gare de Lyon for my final train of the day to Nevers. I arrived in Nevers in the evening, made my way to the hotel, and found a nearby restaurant that was still open. A plate of steak frites felt just right for settling me into the rhythm of the trip.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_00/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_00/gallery" >}}

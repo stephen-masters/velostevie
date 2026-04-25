@@ -32,6 +32,6 @@ I stayed at the [Logis Hôtel le Monarque](https://www.logishotels.com/en/hotel/
 
 I was a bit worn out from my day of riding, so I didn't want to stray too far across town. So I had my meal at the hotel and found it to be excellent. I enjoyed a fish cake to start, followed by chicken breast on a bed of polenta with a delicious sauce, and finally soft meringue.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_06/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_06/gallery" >}}

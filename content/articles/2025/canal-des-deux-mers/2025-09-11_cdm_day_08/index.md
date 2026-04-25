@@ -20,6 +20,6 @@ I took a few photos, ate a delicious fish stew, and enjoyed a chilled glass of r
 
 Given the type of buildings on the beach here, you’re not going to find a luxury hotel. However, the Sunrise Beach Hotel was comfortable and had the most wonderful terrace outside to enjoy a drink, some good food, and the most beautiful view for breakfast the following morning.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-11_cdm_day_08/gallery" >}}
 
 {{< gallery dir="images/articles/2025/canal-des-deux-mers/2025-09-11_cdm_day_08/gallery" >}}

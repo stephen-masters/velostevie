@@ -20,6 +20,6 @@ Heading across the river towards my hotel, there was an incredibly strong wind b
 
 I was staying at the [Logis Hôtel la Brèche](https://www.logishotels.com/en/hotel/logis-hotel-la-breche-3421) for the night. This is a very pretty hotel with a garden where guests could relax outside. It looks like it has a very nice restaurant, but it was a Sunday, so the restaurant was closed. Therefore, I headed into Amboise old town for some food. 
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_07/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_07/gallery" >}}

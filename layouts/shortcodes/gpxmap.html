@@ -1,11 +1,22 @@
 {{- $gpxFiles := .Page.Resources.Match "*.gpx" -}}
-{{- if $gpxFiles -}}
+{{- $dir := .Get "gallery" -}}
+{{- $photoUrls := slice -}}
+{{- if $dir -}}
+  {{- $files := readDir (printf "static/%s" $dir) -}}
+  {{- range $files -}}
+    {{- if not (hasPrefix .Name ".") -}}
+      {{- $photoUrls = $photoUrls | append (printf "/%s/%s" $dir .Name) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if or $gpxFiles $photoUrls -}}
   {{- $urls := slice -}}
   {{- range $gpxFiles -}}
     {{- $urls = $urls | append .RelPermalink -}}
   {{- end -}}
   <div class="gpx-block">
-    <div class="gpx-map" data-gpx-files="{{ delimit $urls "|" }}"></div>
+    <div class="gpx-map"{{- with $urls }} data-gpx-files="{{ delimit . "|" }}"{{- end }}{{- with $photoUrls }} data-photos="{{ delimit . "|" }}"{{- end }}></div>
+    {{- with $gpxFiles -}}
     <div class="gpx-download">
       {{- range $i, $f := $gpxFiles -}}
         {{- $label := "Download GPX" -}}
@@ -15,5 +26,6 @@
         <a href="{{ $f.RelPermalink }}" download="{{ $f.Name }}" class="gpx-download-link">↓ {{ $label }}</a>
       {{- end -}}
     </div>
+    {{- end -}}
   </div>
 {{- end -}}

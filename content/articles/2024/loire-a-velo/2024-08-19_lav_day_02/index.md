@@ -37,6 +37,6 @@ The owner gave me a key to the laundry room where I was able to lock up my bike 
 
 Effectively, this is a truck stop on a busy road, but it had a lively atmosphere with plenty of locals and drivers in there for their meal.  They had a couple of options for a main course and for the starter, you could go and help yourself to a buffet of salads and crudités. It's nothing fancy, but it's tasty and great value.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_02/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_02/gallery" >}}

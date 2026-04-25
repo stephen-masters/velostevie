@@ -16,6 +16,6 @@ This way, I was able to get to Saint Nazaire by late morning, cycle to the beach
 
 I was keen to get to Paris in good time so that I could make my way to the Louvre for the evening. After the Olympics, the "hot air balloon" that had been used as the Olympic flame was still actively being lit and raised in the evenings. Although on this occasion, a lightning storm was due into the area, so it could not be raised. Still it was nice to go and see it all lit up.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_14/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_14/gallery" >}}

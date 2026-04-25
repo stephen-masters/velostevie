@@ -25,6 +25,6 @@ Arriving at the town of Sully-sur-Loire, the first thing that stands out is the 
 
 I was staying overnight at [Le Grand Sully](https://www.logishotels.com/fr/hotel/logis-hostellerie-du-grand-sully-8866?partid=1535), one of the hotels that I had found on the Logis Hotels website. They class it as a "cosy" hotel with a "restaurant savoureux" and the food was indeed excellent. As with many the Logis Hotels group, the hotel restaurant offers a set three course menu for (if I remember right) about €45. Not a cheap meal, but great value for the quality of what was served.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_03/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_03/gallery" >}}

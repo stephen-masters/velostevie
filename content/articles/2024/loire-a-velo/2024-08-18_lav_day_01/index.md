@@ -28,6 +28,6 @@ Pouilly sur Loire is famed for being the home of Pouilly Fumé wine and across t
 
 When you're tired from a day of riding, a delicious meal with a glass of local wine really hits the spot. This hotel serves incredible dishes, so I had to take photos of all the courses I ate. As a meal at the end of my first day of riding, it left me hoping that I should be lucky enough to experience more such meals on this trip.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_01/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_01/gallery" >}}

@@ -25,6 +25,6 @@ The Château d'Ussé also has a chapel and gardens. This includes a large sectio
 
 I stayed at [Le clos d'Ussé](https://le-clos-dusse.loire-valley-hotels.com/en/), a lovely hotel in the village only a minute's walk from the château. The rooms were clean, comfortable, and took full advantage of the bare stone walls inside to give character. The restaurant was also very good, which was handy, given that there didn't seem to be any other options nearby for an evening meal.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2024/loire-a-velo/lav_day_09/gallery" >}}
 
 {{< gallery dir="images/articles/2024/loire-a-velo/lav_day_09/gallery" >}}
