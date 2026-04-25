@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 18px 24px; }
+  .grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; align-items: end; }
+  .cell { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+  .box { background: var(--forest); border-radius: var(--radius-sm); width: 100%; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="cell"><div class="box" style="height:4px"></div><div class="lbl">4</div></div>
+    <div class="cell"><div class="box" style="height:8px"></div><div class="lbl">8</div></div>
+    <div class="cell"><div class="box" style="height:12px"></div><div class="lbl">12</div></div>
+    <div class="cell"><div class="box" style="height:16px"></div><div class="lbl">16</div></div>
+    <div class="cell"><div class="box" style="height:24px"></div><div class="lbl">24</div></div>
+    <div class="cell"><div class="box" style="height:32px"></div><div class="lbl">32</div></div>
+    <div class="cell"><div class="box" style="height:48px"></div><div class="lbl">48</div></div>
+    <div class="cell"><div class="box" style="height:64px"></div><div class="lbl">64</div></div>
+  </div>
+  <div style="margin-top:14px;font-family:var(--font-mono);font-size:11px;color:var(--fg-muted);">4px base grid · tokens continue to 96 / 128</div>
+</body></html>

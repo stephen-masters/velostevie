@@ -1,4 +1,0 @@
-comment: >-
-  Renders a visual separator between page sections.
-example: |
-  section_class: my-separator

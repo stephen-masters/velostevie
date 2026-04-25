@@ -1,9 +1,0 @@
-# Production-specific parameters
-
-[style]
-    purge = true
-
-[modules.hinode.csp]
-    frame-ancestors = [
-        "'self'"
-    ]

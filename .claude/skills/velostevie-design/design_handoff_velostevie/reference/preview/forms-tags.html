@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 22px 24px; }
+  .row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .inp {
+    font-family: var(--font-sans); font-size: 15px;
+    padding: 10px 14px; background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--radius); color: var(--ink); width: 240px;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  .inp:focus { outline: none; border-color: var(--forest); }
+  .inp::placeholder { color: var(--fg-muted); }
+  .tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 9999px; background: var(--paper-deep); color: var(--ink-soft); }
+  .tag.on { background: var(--forest); color: var(--paper); }
+  .tagrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+</style></head>
+<body>
+  <div class="row">
+    <input class="inp" placeholder="Search routes…">
+    <select class="inp"><option>All countries</option><option>France</option><option>Scotland</option></select>
+  </div>
+  <div class="tagrow">
+    <span class="tag on">France</span>
+    <span class="tag">Scotland</span>
+    <span class="tag">Spain</span>
+    <span class="tag">Gravel</span>
+    <span class="tag">Paved</span>
+  </div>
+</body></html>

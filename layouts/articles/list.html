@@ -1,0 +1,72 @@
+{{ define "main" }}
+{{- if .Parent.IsHome }}
+  {{/* Top-level /articles/ page — list route sections */}}
+  {{- $routeSections := slice }}
+  {{- range where .Site.Pages "Kind" "section" }}
+    {{- if strings.HasPrefix .RelPermalink "/articles/" }}
+      {{- $inner := strings.TrimSuffix "/" (strings.TrimPrefix "/articles/" .RelPermalink) }}
+      {{- if eq (len (split $inner "/")) 2 }}
+        {{- $routeSections = $routeSections | append . }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- $routeSections = sort $routeSections "Date" "desc" }}
+
+<div class="list-header container">
+  <div class="list-eyebrow">Index</div>
+  <h1 class="list-title">{{ .Title }}</h1>
+  <p class="list-intro">{{ len $routeSections }} {{ if eq (len $routeSections) 1 }}route{{ else }}routes{{ end }}, so far.</p>
+</div>
+
+<div class="list-grid container">
+  {{ range $routeSections }}
+  {{- $thumb := .Params.image -}}
+  {{- with .Params.thumbnail -}}
+    {{- if reflect.IsMap . -}}{{- with index . "url" -}}{{ $thumb = . }}{{- end -}}
+    {{- else -}}{{ $thumb = . }}
+    {{- end -}}
+  {{- end -}}
+  <a href="{{ .RelPermalink }}" class="route-card">
+    <div class="card-image">
+      {{ with $thumb }}
+      <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+      {{ end }}
+    </div>
+    <div class="card-eyebrow">Route</div>
+    <div class="card-title">{{ .Title }}</div>
+    <div class="card-meta">{{ .Date.Format "January 2006" }}</div>
+  </a>
+  {{ end }}
+</div>
+{{- else }}
+  {{/* Route section page — list only this section's day articles */}}
+  {{- $pages := .Pages.ByDate.Reverse }}
+
+<div class="list-header container">
+  <div class="list-eyebrow">Route report</div>
+  <h1 class="list-title">{{ .Title }}</h1>
+  {{ with .Description }}<p class="list-intro">{{ . }}</p>{{ end }}
+</div>
+
+<div class="list-grid container">
+  {{ range $pages }}
+  {{- $thumb := .Params.image -}}
+  {{- with .Params.thumbnail -}}
+    {{- if reflect.IsMap . -}}{{- with index . "url" -}}{{ $thumb = . }}{{- end -}}
+    {{- else -}}{{ $thumb = . }}
+    {{- end -}}
+  {{- end -}}
+  <a href="{{ .RelPermalink }}" class="route-card">
+    <div class="card-image">
+      {{ with $thumb }}
+      <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+      {{ end }}
+    </div>
+    <div class="card-eyebrow">Day report</div>
+    <div class="card-title">{{ .Title }}</div>
+    <div class="card-meta">{{ .Date.Format "2 Jan 2006" }}</div>
+  </a>
+  {{ end }}
+</div>
+{{- end }}
+{{ end }}

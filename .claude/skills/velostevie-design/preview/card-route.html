@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 20px 24px; }
+  .card {
+    width: 300px; background: var(--paper); cursor: pointer;
+    transition: transform var(--dur) var(--ease-out);
+  }
+  .photo { width: 100%; aspect-ratio: 3/2; background-size: cover; background-position: center;
+    background-image: linear-gradient(135deg, #6B8A6E 0%, #2F4A3A 60%, #1F1B17 100%);
+    overflow: hidden;
+  }
+  .photo::after { content: ""; display: block; width: 100%; height: 100%;
+    background-image: radial-gradient(ellipse at 30% 20%, rgba(246,241,231,0.35), transparent 50%),
+                      radial-gradient(ellipse at 80% 90%, rgba(184,92,60,0.25), transparent 60%);
+  }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); letter-spacing: 0.1em; text-transform: uppercase; margin: 12px 0 4px; }
+  .title { font-family: var(--font-serif); font-weight: 700; font-size: 22px; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 6px 0; }
+  .stats { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+  .pair { display: flex; gap: 24px; }
+</style></head>
+<body>
+  <div class="pair">
+    <div class="card">
+      <div class="photo"></div>
+      <div class="eyebrow">Route report · Brittany</div>
+      <div class="title">Finistère in four days</div>
+      <div class="stats">237 km · 3,420 m · Apr 2026</div>
+    </div>
+  </div>
+</body></html>

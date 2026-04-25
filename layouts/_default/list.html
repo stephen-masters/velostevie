@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="list-header container">
+  <div class="list-eyebrow">Index</div>
+  <h1 class="list-title">{{ .Title }}</h1>
+</div>
+
+<div class="list-grid container">
+  {{ range .Pages }}
+  {{- $thumb := .Params.image -}}
+  {{- with .Params.thumbnail -}}
+    {{- if reflect.IsMap . -}}{{- with index . "url" -}}{{ $thumb = . }}{{- end -}}
+    {{- else -}}{{ $thumb = . }}
+    {{- end -}}
+  {{- end -}}
+  <a href="{{ .RelPermalink }}" class="route-card">
+    <div class="card-image">
+      {{ with $thumb }}
+      <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+      {{ end }}
+    </div>
+    <div class="card-eyebrow">Route report</div>
+    <div class="card-title">{{ .Title }}</div>
+    <div class="card-meta">{{ .Date.Format "2 Jan 2006" }}</div>
+  </a>
+  {{ end }}
+</div>
+{{ end }}

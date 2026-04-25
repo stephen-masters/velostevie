@@ -1,0 +1,60 @@
+{{ define "main" }}
+{{- $pages  := where .Site.RegularPages "Section" "articles" }}
+{{- $hero   := index $pages 0 }}
+{{- $routeSections := slice }}
+{{- range where .Site.Pages "Kind" "section" }}
+  {{- if strings.HasPrefix .RelPermalink "/articles/" }}
+    {{- $inner := strings.TrimSuffix "/" (strings.TrimPrefix "/articles/" .RelPermalink) }}
+    {{- if eq (len (split $inner "/")) 2 }}
+      {{- $routeSections = $routeSections | append . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- $routeSections = sort $routeSections "Date" "desc" }}
+{{- $recent := first 4 $routeSections }}
+
+{{ with $hero }}
+<section class="hero container">
+  <div class="eyebrow">Latest route report</div>
+  <h1 class="hero-title">{{ .Title }}</h1>
+  <p class="hero-lede">{{ .Summary }}</p>
+  <div class="hero-cta">
+    <a href="{{ .RelPermalink }}" class="btn btn--primary">Read the report</a>
+    <span class="hero-date">
+      {{ .Date.Format "2 January 2006" }}
+    </span>
+  </div>
+</section>
+
+{{ with .Params.image }}
+<div class="hero-image container">
+  <img src="{{ . }}" alt="{{ $hero.Title }}" loading="lazy">
+</div>
+{{ end }}
+{{ end }}
+
+<section class="container">
+  <div class="section-header">
+    <h2>Recent route reports</h2>
+    <a href="{{ "/articles" | relURL }}" class="see-all">All routes →</a>
+  </div>
+  <div class="route-grid">
+    {{ range $recent }}
+    {{- $thumb := .Params.image -}}
+    {{- with .Params.thumbnail -}}
+      {{- if reflect.IsMap . -}}{{- with index . "url" -}}{{ $thumb = . }}{{- end -}}
+      {{- else -}}{{ $thumb = . }}
+      {{- end -}}
+    {{- end -}}
+    <a href="{{ .RelPermalink }}" class="route-card">
+      <div class="card-image">
+        {{ with $thumb }}<img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">{{ end }}
+      </div>
+      <div class="card-eyebrow">Route report</div>
+      <div class="card-title">{{ .Title }}</div>
+      <div class="card-meta">{{ .Date.Format "2 Jan 2006" }}</div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

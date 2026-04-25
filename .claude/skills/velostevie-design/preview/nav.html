@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 0; }
+  .nav { height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; border-bottom: 1px solid var(--border); background: var(--paper); }
+  .wm {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    text-decoration: underline;
+    text-decoration-color: var(--clay);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.15em;
+  }
+  .links { display: flex; gap: 28px; }
+  .links a { font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--ink-soft); text-decoration: none; }
+  .links a.cur { color: var(--ink); }
+  .links a:hover { color: var(--clay); }
+</style></head>
+<body>
+  <div class="nav">
+    <span class="wm">vélostevie</span>
+    <div class="links">
+      <a href="#" class="cur">Routes</a>
+      <a href="#">Map</a>
+      <a href="#">Gallery</a>
+      <a href="#">About</a>
+      <a href="#">RSS</a>
+    </div>
+  </div>
+</body></html>

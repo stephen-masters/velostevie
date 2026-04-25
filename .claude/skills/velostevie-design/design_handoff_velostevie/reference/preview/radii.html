@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 20px 24px; }
+  .row { display: flex; gap: 28px; align-items: center; }
+  .cell { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+  .sw { width: 64px; height: 64px; background: var(--paper-deep); border: 1px solid var(--border); }
+  .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="cell"><div class="sw" style="border-radius:0"></div><div class="lbl">0 · image</div></div>
+    <div class="cell"><div class="sw" style="border-radius:2px"></div><div class="lbl">2 · sm</div></div>
+    <div class="cell"><div class="sw" style="border-radius:4px"></div><div class="lbl">4 · default</div></div>
+    <div class="cell"><div class="sw" style="border-radius:8px"></div><div class="lbl">8 · card</div></div>
+    <div class="cell"><div class="sw" style="border-radius:9999px;width:80px;height:28px;"></div><div class="lbl">pill · tag</div></div>
+  </div>
+</body></html>

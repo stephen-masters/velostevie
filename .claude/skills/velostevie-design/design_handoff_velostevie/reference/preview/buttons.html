@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 24px; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    font-family: var(--font-sans); font-size: 15px; font-weight: 500;
+    padding: 10px 18px; border-radius: var(--radius);
+    border: 1px solid transparent; cursor: pointer; transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+  }
+  .primary { background: var(--forest); color: var(--paper); }
+  .primary:hover { background: var(--forest-deep); }
+  .secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .secondary:hover { background: var(--ink); color: var(--paper); }
+  .ghost { background: transparent; color: var(--forest); }
+  .ghost:hover { color: var(--clay); text-decoration: underline; text-underline-offset: 4px; }
+  .icon { display: inline-flex; align-items: center; gap: 8px; }
+</style></head>
+<body>
+  <div class="row">
+    <button class="btn primary">Download GPX</button>
+    <button class="btn secondary">View route</button>
+    <button class="btn ghost">Read more →</button>
+    <button class="btn primary icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      GPX
+    </button>
+  </div>
+</body></html>

@@ -1,0 +1,19 @@
+{{- $gpxFiles := .Page.Resources.Match "*.gpx" -}}
+{{- if $gpxFiles -}}
+  {{- $urls := slice -}}
+  {{- range $gpxFiles -}}
+    {{- $urls = $urls | append .RelPermalink -}}
+  {{- end -}}
+  <div class="gpx-block">
+    <div class="gpx-map" data-gpx-files="{{ delimit $urls "|" }}"></div>
+    <div class="gpx-download">
+      {{- range $i, $f := $gpxFiles -}}
+        {{- $label := "Download GPX" -}}
+        {{- if gt (len $gpxFiles) 1 -}}
+          {{- $label = printf "Download GPX (%d of %d)" (add $i 1) (len $gpxFiles) -}}
+        {{- end -}}
+        <a href="{{ $f.RelPermalink }}" download="{{ $f.Name }}" class="gpx-download-link">↓ {{ $label }}</a>
+      {{- end -}}
+    </div>
+  </div>
+{{- end -}}

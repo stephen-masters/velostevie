@@ -1,6 +1,6 @@
 # Velostevie
 
-A personal cycling blog by Stephen Masters, built with [Hugo](https://gohugo.io) and the [Hinode](https://gethinode.com) theme.
+A personal cycling blog by Stephen Masters, built with [Hugo](https://gohugo.io).
 
 ## Prerequisites
 

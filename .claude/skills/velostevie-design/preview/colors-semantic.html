@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+  .row2 { display: grid; grid-template-columns: 120px 1fr 120px; align-items: center; gap: 16px; padding: 6px 0; border-bottom: 1px solid var(--border-soft); }
+  .row2:last-child { border-bottom: 0; }
+  .dot { width: 16px; height: 16px; border-radius: 50%; display: inline-block; border: 1px solid rgba(31,27,23,0.06); margin-right: 8px; vertical-align: middle; }
+  .label { font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--fg); }
+  .role  { font-family: var(--font-sans); font-size: 12px; color: var(--fg-muted); }
+  .hex   { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); text-align: right; }
+</style></head>
+<body>
+  <div class="rows">
+    <div class="row2"><div class="label"><span class="dot" style="background:#2F4A3A"></span>primary</div><div class="role">buttons, nav accents, marker-start</div><div class="hex">#2F4A3A</div></div>
+    <div class="row2"><div class="label"><span class="dot" style="background:#B85C3C"></span>accent</div><div class="role">route lines, links on hover, pull quotes</div><div class="hex">#B85C3C</div></div>
+    <div class="row2"><div class="label"><span class="dot" style="background:#1F1B17"></span>fg</div><div class="role">body copy, headings</div><div class="hex">#1F1B17</div></div>
+    <div class="row2"><div class="label"><span class="dot" style="background:#8B8579"></span>fg-muted</div><div class="role">captions, metadata</div><div class="hex">#8B8579</div></div>
+    <div class="row2"><div class="label"><span class="dot" style="background:#C8C0B0"></span>border</div><div class="role">hairline rules, dividers</div><div class="hex">#C8C0B0</div></div>
+  </div>
+</body></html>

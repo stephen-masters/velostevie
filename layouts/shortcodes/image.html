@@ -1,0 +1,7 @@
+{{- $src     := .Get "src" -}}
+{{- $caption := .Get "caption" -}}
+
+<figure class="article-fig">
+  <img src="{{ $src }}" alt="{{ $caption }}" loading="lazy">
+  {{- if $caption -}}<figcaption>{{ $caption }}</figcaption>{{- end -}}
+</figure>

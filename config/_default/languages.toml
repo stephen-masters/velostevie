@@ -1,11 +1,4 @@
 [en]
-    languageName = "English"
-    contentDir = "content"
-    weight = 1
-    [en.params.head]
-        tagline = "My travels by bicycle."
-    [en.params.social]
-        title = "Follow me somewhere else"
-        caption = "I also design and develop systems in the financial and energy sectors."
-    [en.params.footer]
-        # license = "Licensed under Creative Commons (<a href='https://creativecommons.org/licenses/by-nc-sa/4.0/' class='link-secondary' target='_blank' rel='noopener noreferrer'>CC BY-NC-SA 4.0</a>)."
+  languageName = "English"
+  contentDir = "content"
+  weight = 1

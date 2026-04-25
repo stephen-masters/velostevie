@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}">
+<head>{{ partial "head.html" . }}</head>
+<body>
+  {{ partial "nav.html" . }}
+  <main>{{ block "main" . }}{{ end }}</main>
+  {{ partial "footer.html" . }}
+  {{ $js := resources.Get "js/lightbox.js" | minify | fingerprint }}
+  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+  {{- if .HasShortcode "gpxmap" }}
+  <script src="/leaflet/leaflet.js" defer></script>
+  {{ $gpxMapJs := resources.Get "js/gpxmap.js" | minify | fingerprint }}
+  <script src="{{ $gpxMapJs.RelPermalink }}" integrity="{{ $gpxMapJs.Data.Integrity }}" defer></script>
+  {{- end }}
+</body>
+</html>

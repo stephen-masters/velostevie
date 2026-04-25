@@ -1,0 +1,17 @@
+{{- $dir := .Get "dir" -}}
+{{- $files := readDir (printf "static/%s" $dir) -}}
+<div class="photo-gallery">
+  {{- range $files -}}
+    {{- if not (hasPrefix .Name ".") -}}
+    {{- $base := strings.TrimSuffix (path.Ext .Name) .Name -}}
+    {{- $noPrefix := replaceRE "^[0-9]+" "" $base -}}
+    {{- $trimmed := strings.Trim $noPrefix "_" -}}
+    {{- $caption := replace $trimmed "_" " " -}}
+    <figure class="gallery-item">
+      <button class="lb-trigger" data-src="/{{ $dir }}/{{ .Name }}" data-caption="{{ $caption }}" aria-label="View larger image">
+        <img src="/{{ $dir }}/{{ .Name }}" alt="{{ $caption }}" loading="lazy">
+      </button>
+    </figure>
+    {{- end -}}
+  {{- end -}}
+</div>

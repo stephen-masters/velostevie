@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .swatch { display: flex; flex-direction: column; gap: 6px; }
+  .chip { height: 72px; border-radius: var(--radius); border: 1px solid rgba(31,27,23,0.06); }
+  .name { font-family: var(--font-sans); font-size: 12px; font-weight: 500; color: var(--fg); }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="swatch"><div class="chip" style="background:#8B8579"></div><div class="name">Stone</div><div class="hex">#8B8579</div></div>
+    <div class="swatch"><div class="chip" style="background:#C8C0B0"></div><div class="name">Stone soft</div><div class="hex">#C8C0B0</div></div>
+    <div class="swatch"><div class="chip" style="background:#E4DECC"></div><div class="name">Stone faint</div><div class="hex">#E4DECC</div></div>
+  </div>
+</body></html>

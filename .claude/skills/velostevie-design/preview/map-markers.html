@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_base.css">
+<style>
+  body { padding: 20px 24px; }
+  .row { display: flex; gap: 40px; align-items: center; }
+  .ic { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .ic img { width: 36px; height: 36px; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+  .route { flex: 1; height: 56px; position: relative; }
+  .route svg { width: 100%; height: 100%; overflow: visible; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="ic"><img src="../assets/marker-start.svg" alt=""><div class="lbl">start</div></div>
+    <div class="route">
+      <svg viewBox="0 0 300 56" preserveAspectRatio="none"><path d="M 10 36 Q 70 8, 120 30 T 220 20 T 290 36" stroke="#B85C3C" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="ic"><img src="../assets/marker-waypoint.svg" alt=""><div class="lbl">waypoint</div></div>
+    <div class="ic"><img src="../assets/marker-end.svg" alt=""><div class="lbl">end</div></div>
+  </div>
+</body></html>
