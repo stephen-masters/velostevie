@@ -8,6 +8,40 @@
     });
   }
 
+  function addPhotoMarkers(map, el) {
+    var raw = el.dataset.photos;
+    if (!raw || typeof exifr === 'undefined') return;
+    var urls = raw.split('|').filter(Boolean);
+    urls.forEach(function (url, i) {
+      exifr.gps(url).then(function (gps) {
+        if (!gps || !gps.latitude || !gps.longitude) return;
+        var filename = url.split('/').pop();
+        var caption = filename.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
+        var num = i + 1;
+        var marker = L.marker([gps.latitude, gps.longitude], {
+          icon: L.divIcon({
+            className: 'photo-marker',
+            html: '<span class="photo-marker-label">' + num + '</span>',
+            iconSize: [22, 22],
+            iconAnchor: [11, 11]
+          })
+        }).addTo(map);
+        marker.bindTooltip(caption, { direction: 'top', offset: [0, -14] });
+        marker.on('click', function () {
+          var triggers = document.querySelectorAll('.lb-trigger');
+          for (var j = 0; j < triggers.length; j++) {
+            try {
+              if (decodeURIComponent(triggers[j].dataset.src) === decodeURIComponent(url)) {
+                triggers[j].click();
+                break;
+              }
+            } catch (e) { /* malformed URI — skip */ }
+          }
+        });
+      }).catch(function () { /* no GPS data — skip silently */ });
+    });
+  }
+
   function initMap(el) {
     var raw = el.dataset.gpxFiles;
     if (!raw) return;
@@ -23,6 +57,8 @@
     var colors = ['#2563eb', '#dc2626'];
     var bounds = L.latLngBounds();
     var pending = urls.length;
+
+    addPhotoMarkers(map, el);
 
     urls.forEach(function (url, i) {
       fetch(url)
