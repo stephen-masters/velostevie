@@ -118,7 +118,7 @@ npm run start 2>&1 | grep -i "error\|warn"
 
 ## Playwright tests
 
-Tests live in `tests/`. Run with Node 22 (a `.nvmrc` is present — run `nvm use` to switch).
+Tests live in `tests/`. Run with Node 24 (a `.nvmrc` is present — run `nvm use` to switch).
 
 ```bash
 # Run all tests (requires dev server running on :1313)
