@@ -4,12 +4,16 @@
 
 This is **Velostevie** — a personal cycling blog by Stephen Masters. It is a Hugo static site with custom layouts (no external theme). Content covers cycling routes, including La Loire à Vélo (2024) and Canal des Deux Mers (2025).
 
+## Language
+
+All content, comments, and documentation should use **British English** (e.g. "colour" not "color", "organise" not "organize", "travelling" not "traveling").
+
 ## Architecture
 
 - **Content:** `content/articles/<year>/<series>/<date>_<slug>/index.md` — page bundles with YAML front matter.
 - **Images:** `static/images/articles/<year>/<series>/<slug>/` — served at `/images/...` paths. **Not** `assets/images/`.
 - **Layouts:** Custom templates in `layouts/` — `_default/`, `articles/`, `partials/`, `shortcodes/`, and `index.html`. No external theme.
-- **Styles:** Single SCSS file at `assets/scss/main.scss`, processed via Hugo pipes (dart-sass). CSS custom properties are used as design tokens throughout.
+- **Styles:** Single SCSS file at `assets/scss/main.scss`, processed via Hugo pipes (dart-sass). CSS custom properties are used as design tokens throughout. The full visual design system — colours, typography, voice, and UI components — is defined in the `velostevie-design` skill at `.claude/skills/velostevie-design/`. Load that skill before making any design or styling changes.
 - **JavaScript:** `assets/js/` — loaded via Hugo pipes in `layouts/_default/baseof.html` with fingerprinting. Currently: `lightbox.js`.
 - **Config:** `config/_default/` — `hugo.toml`, `params.toml`, `languages.toml`, `menus/`, etc.
 - **Build output:** `public/` — generated, do not edit directly.
@@ -50,6 +54,65 @@ npm run build        # production build → public/
 - Do **not** add `crossorigin=""` to locally-served scripts — it forces a CORS request that will fail for same-origin files.
 - Go's `html/template` URL-encodes any attribute whose name contains `"url"`. Use a different attribute name (e.g. `data-gpx-files`) for data passed to JavaScript.
 - GPX files use a default XML namespace; use `getElementsByTagName('trkpt')` not `querySelectorAll('trkpt')`.
+
+## GPX maps — architecture and diagnostics
+
+### How it fits together
+
+```
+{{< gpxmap gallery="images/articles/…/gallery" >}}
+```
+
+1. **`layouts/shortcodes/gpxmap.html`** runs at Hugo build time:
+   - Finds `*.gpx` page-bundle resources → passed as `data-gpx-files="url1|url2"` on the map div.
+   - Reads the `gallery` param, lists `static/<gallery>/` → passed as `data-photos="url1|url2"` on the map div.
+   - Renders only if at least one GPX file **or** at least one photo URL exists.
+   - When no GPX files are present the download section is omitted entirely.
+
+2. **`assets/js/gpxmap.js`** runs in the browser (IIFE, no ES modules):
+   - Picks up the map div by `.gpx-map` class.
+   - If `data-gpx-files` is present: fetches each GPX, draws a coloured polyline, fits map to route bounds.
+   - Calls `addPhotoMarkers()` which reads `data-photos`, then calls `exifr.gps(url)` on each image.
+   - Images with GPS get a numbered `L.divIcon` marker; clicking a marker triggers the lightbox for that image.
+   - If no GPX files: waits for all photo GPS reads to complete (`onBoundsReady` callback), then fits map to photo bounds.
+
+3. **`static/exifr/exifr-lite.umd.js`** — despite the filename this is the **full** exifr build (supports PNG GPS). It was replaced with `node_modules/exifr/dist/full.umd.js`. Loaded only on pages that use `{{< gpxmap >}}`.
+
+4. **`static/leaflet/`** — Leaflet served locally (not CDN). Loaded only on pages that use `{{< gpxmap >}}`.
+
+### Common failure modes
+
+| Symptom | Likely cause | Fix |
+|---|---|---|
+| Map div renders but is blank / tiles don't load | Leaflet JS not loaded, or `L` undefined at script execution time | Check `baseof.html` — Leaflet and gpxmap scripts must have `defer`; gpxmap checks `typeof L !== 'undefined'` |
+| Route polyline missing | GPX not in page bundle, or namespace issue | GPX files must be in the article directory alongside `index.md`. Use `getElementsByTagName('trkpt')` not `querySelectorAll` |
+| Photo markers don't appear | Images lack GPS metadata, or exifr not loaded | Run `./scripts/check-gps.sh` to find images missing GPS. Check browser console for exifr errors |
+| Clicking a marker doesn't open lightbox | URL mismatch between `data-photos` and `data-src` on `.lb-trigger` | `data-photos` uses literal spaces; `data-src` may be percent-encoded. Always use `decodeURIComponent` on both sides before comparing |
+| Map fits to wrong location / zoom | `fitBounds` called before async GPS reads complete | In photo-only mode, `fitBounds` is called inside the `onBoundsReady` callback after all images are processed |
+| `data-gpx-files` attribute URL-encoded by Hugo | Attribute name contains `"url"` — Go's `html/template` encodes those | Use `data-gpx-files` (no `url` substring) for GPX paths; use `data-photos` for photo paths |
+
+### Diagnostic steps
+
+```bash
+# Check which images are missing GPS metadata
+./scripts/check-gps.sh
+
+# Inspect GPS tags on a specific image
+exiftool -GPSLatitude -GPSLongitude "/path/to/image.png"
+
+# Confirm the built page has the correct data attributes
+curl -s http://localhost:1313/<article-url>/ | grep 'data-gpx\|data-photos'
+
+# Check Hugo build output for shortcode errors
+npm run start 2>&1 | grep -i "error\|warn"
+```
+
+### Key implementation gotchas (hard-won)
+
+- **exifr must be the full build** — the lite build does not support PNG GPS. The file at `static/exifr/exifr-lite.umd.js` is misleadingly named but contains the full build.
+- **No `crossorigin=""` on local scripts** — adding it to same-origin Leaflet/exifr script tags causes a CORS preflight that will fail.
+- **GPX namespace** — GPX files use a default XML namespace so `querySelectorAll('trkpt')` finds nothing; `getElementsByTagName('trkpt')` works correctly.
+- **URL encoding** — literal spaces in `data-photos` vs `%20` in `.lb-trigger[data-src]` will break marker click if not normalised with `decodeURIComponent`.
 
 ## Playwright tests
 

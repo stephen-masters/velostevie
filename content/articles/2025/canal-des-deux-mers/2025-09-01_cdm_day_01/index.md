@@ -18,6 +18,6 @@ The final third of the today’s route turned away from the cycle trail towards 
 
 I found that my planned route didn’t take me all the way to my destination, so I created a new route for the final few kilometres.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/gallery" >}}
 
 {{< gallery dir="images/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/gallery" >}}
