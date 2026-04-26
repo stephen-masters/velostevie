@@ -1,26 +1,16 @@
-name: Deploy to GitHub Pages
+name: Build check
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,17 +23,6 @@ jobs:
           node-version: '24'
           cache: npm
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
-      - name: Cache Hugo resources
-        uses: actions/cache@v4
-        with:
-          path: resources/_gen
-          key: hugo-resources-${{ hashFiles('assets/images/**') }}
-          restore-keys: hugo-resources-
-
       - name: Install dependencies
         run: npm ci
 
@@ -53,20 +32,4 @@ jobs:
       - name: Build
         run: hugo --gc --minify
         env:
-          HUGO_BASEURL: ${{ steps.pages.outputs.base_url }}/
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          HUGO_BASEURL: https://velostevie.pages.dev/

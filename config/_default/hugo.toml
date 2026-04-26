@@ -2,7 +2,7 @@ title = "Vélostevie"
 copyright = "Copyright © 2026 Stephen Masters"
 enableGitInfo = true
 
-baseURL = "https://example.com/"
+baseURL = "https://velostevie.pages.dev/"
 canonifyURLs = true
 enableEmoji = true
 enableRobotsTXT = true
