@@ -29,7 +29,7 @@
   {{- end -}}
   {{- $absPhotoUrls := slice -}}
   {{- range $photoUrls -}}
-    {{- $absPhotoUrls = $absPhotoUrls | append (absURL .) -}}
+    {{- $absPhotoUrls = $absPhotoUrls | append (relURL .) -}}
   {{- end -}}
   <div class="gpx-block">
     <div class="gpx-map"{{- with $urls }} data-gpx-files="{{ delimit . "|" }}"{{- end }}{{- with $absPhotoUrls }} data-photos="{{ delimit . "|" }}"{{- end }}></div>
