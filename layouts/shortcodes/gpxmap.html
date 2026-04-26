@@ -25,10 +25,14 @@
 {{- if or $gpxFiles $photoUrls -}}
   {{- $urls := slice -}}
   {{- range $gpxFiles -}}
-    {{- $urls = $urls | append .RelPermalink -}}
+    {{- $urls = $urls | append .Permalink -}}
+  {{- end -}}
+  {{- $absPhotoUrls := slice -}}
+  {{- range $photoUrls -}}
+    {{- $absPhotoUrls = $absPhotoUrls | append (absURL .) -}}
   {{- end -}}
   <div class="gpx-block">
-    <div class="gpx-map"{{- with $urls }} data-gpx-files="{{ delimit . "|" }}"{{- end }}{{- with $photoUrls }} data-photos="{{ delimit . "|" }}"{{- end }}></div>
+    <div class="gpx-map"{{- with $urls }} data-gpx-files="{{ delimit . "|" }}"{{- end }}{{- with $absPhotoUrls }} data-photos="{{ delimit . "|" }}"{{- end }}></div>
     {{- if and (not $isSection) $gpxFiles -}}
     <div class="gpx-download">
       {{- range $i, $f := $gpxFiles -}}
@@ -36,7 +40,7 @@
         {{- if gt (len $gpxFiles) 1 -}}
           {{- $label = printf "Download GPX (%d of %d)" (add $i 1) (len $gpxFiles) -}}
         {{- end -}}
-        <a href="{{ $f.RelPermalink }}" download="{{ $f.Name }}" class="gpx-download-link">↓ {{ $label }}</a>
+        <a href="{{ $f.Permalink }}" download="{{ $f.Name }}" class="gpx-download-link">↓ {{ $label }}</a>
       {{- end -}}
     </div>
     {{- end -}}
