@@ -17,7 +17,7 @@
   {{- $files := readDir (printf "static/%s" $dir) -}}
   {{- range $files -}}
     {{- if not (hasPrefix .Name ".") -}}
-      {{- $photoUrls = $photoUrls | append (printf "/%s/%s" $dir .Name) -}}
+      {{- $photoUrls = $photoUrls | append (printf "%s/%s" $dir .Name) -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
@@ -29,7 +29,7 @@
   {{- end -}}
   {{- $absPhotoUrls := slice -}}
   {{- range $photoUrls -}}
-    {{- $absPhotoUrls = $absPhotoUrls | append (relURL .) -}}
+    {{- $absPhotoUrls = $absPhotoUrls | append (absURL .) -}}
   {{- end -}}
   <div class="gpx-block">
     <div class="gpx-map"{{- with $urls }} data-gpx-files="{{ delimit . "|" }}"{{- end }}{{- with $absPhotoUrls }} data-photos="{{ delimit . "|" }}"{{- end }}></div>
