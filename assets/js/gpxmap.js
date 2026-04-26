@@ -24,7 +24,7 @@
     urls.forEach(function (url, i) {
       exifr.gps(url).then(function (gps) {
         if (!gps || !gps.latitude || !gps.longitude) { done(); return; }
-        var filename = url.split('/').pop();
+        var filename = decodeURIComponent(url.split('/').pop());
         var caption = filename.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
         var num = i + 1;
         var marker = L.marker([gps.latitude, gps.longitude], {
