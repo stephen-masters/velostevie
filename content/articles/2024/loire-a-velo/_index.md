@@ -7,3 +7,4 @@ thumbnail:
   url: /images/articles/2024/loire-a-velo/lav_day_06/gallery/10_Selfie at Chambord.png
 ---
 
+{{< gpxmap >}}

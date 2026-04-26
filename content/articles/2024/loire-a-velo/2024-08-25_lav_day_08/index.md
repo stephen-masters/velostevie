@@ -5,9 +5,9 @@ tags:
   - "La Loire à Vélo"
   - "bikepacking"
   - "veloroute"
-image: "/images/articles/2024/loire-a-velo/lav_day_08/gallery/11_Tours - Lebanese Cedar.png"
+image: "/images/articles/2024/loire-a-velo/lav_day_08/gallery/08_Château du Clos Lucé.png"
 thumbnail:
-  url: "/images/articles/2024/loire-a-velo/lav_day_08/gallery/11_Tours - Lebanese Cedar.png"
+  url: "/images/articles/2024/loire-a-velo/lav_day_08/gallery/08_Château du Clos Lucé.png"
 ---
 
 After breakfast in the luxurious dining room of the [Logis Hôtel la Brèche](https://www.logishotels.com/en/hotel/logis-hotel-la-breche-3421),

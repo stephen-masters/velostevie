@@ -1,7 +1,19 @@
+{{- $isSection := eq .Page.Kind "section" -}}
 {{- $gpxFiles := .Page.Resources.Match "*.gpx" -}}
+
+{{- /* On section pages, aggregate GPX files from all child articles */ -}}
+{{- if $isSection -}}
+  {{- range .Page.RegularPages.ByDate -}}
+    {{- range .Resources.Match "*.gpx" -}}
+      {{- $gpxFiles = $gpxFiles | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* On single pages, build photo URL list from gallery param */ -}}
 {{- $dir := .Get "gallery" -}}
 {{- $photoUrls := slice -}}
-{{- if $dir -}}
+{{- if and (not $isSection) $dir -}}
   {{- $files := readDir (printf "static/%s" $dir) -}}
   {{- range $files -}}
     {{- if not (hasPrefix .Name ".") -}}
@@ -9,6 +21,7 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
+
 {{- if or $gpxFiles $photoUrls -}}
   {{- $urls := slice -}}
   {{- range $gpxFiles -}}
@@ -16,7 +29,7 @@
   {{- end -}}
   <div class="gpx-block">
     <div class="gpx-map"{{- with $urls }} data-gpx-files="{{ delimit . "|" }}"{{- end }}{{- with $photoUrls }} data-photos="{{ delimit . "|" }}"{{- end }}></div>
-    {{- with $gpxFiles -}}
+    {{- if and (not $isSection) $gpxFiles -}}
     <div class="gpx-download">
       {{- range $i, $f := $gpxFiles -}}
         {{- $label := "Download GPX" -}}

@@ -16,6 +16,7 @@ All content, comments, and documentation should use **British English** (e.g. "c
 - **Styles:** Single SCSS file at `assets/scss/main.scss`, processed via Hugo pipes (dart-sass). CSS custom properties are used as design tokens throughout. The full visual design system — colours, typography, voice, and UI components — is defined in the `velostevie-design` skill at `.claude/skills/velostevie-design/`. Load that skill before making any design or styling changes.
 - **JavaScript:** `assets/js/` — loaded via Hugo pipes in `layouts/_default/baseof.html` with fingerprinting. Currently: `lightbox.js`.
 - **Config:** `config/_default/` — `hugo.toml`, `params.toml`, `languages.toml`, `menus/`, etc.
+- **Scripts:** `scripts/` — utility shell scripts (e.g. `check-gps.sh`). Run from the project root.
 - **Build output:** `public/` — generated, do not edit directly.
 
 ## Developer commands
@@ -84,6 +85,7 @@ npm run build        # production build → public/
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
+| Hugo build fails with `readDir: no such file or directory` | `gallery` param in `{{< gpxmap >}}` or `{{< gallery >}}` points to a directory that doesn't exist | Check the path in the shortcode matches the actual directory under `static/`. Common cause: wrong date slug in the path. |
 | Map div renders but is blank / tiles don't load | Leaflet JS not loaded, or `L` undefined at script execution time | Check `baseof.html` — Leaflet and gpxmap scripts must have `defer`; gpxmap checks `typeof L !== 'undefined'` |
 | Route polyline missing | GPX not in page bundle, or namespace issue | GPX files must be in the article directory alongside `index.md`. Use `getElementsByTagName('trkpt')` not `querySelectorAll` |
 | Photo markers don't appear | Images lack GPS metadata, or exifr not loaded | Run `./scripts/check-gps.sh` to find images missing GPS. Check browser console for exifr errors |

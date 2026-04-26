@@ -5,9 +5,9 @@ tags:
   - "La Loire à Vélo"
   - "bikepacking"
   - "veloroute"
-image: /images/articles/2024/loire-a-velo/lav_day_14/gallery/01_saint-nazaire.png
+image: "/images/articles/2024/loire-a-velo/lav_day_14/gallery/03_Saint-Nazaire foot sculpture.png"
 thumbnail:
-  url: /images/articles/2024/loire-a-velo/lav_day_14/gallery/01_saint-nazaire.png
+  url: "/images/articles/2024/loire-a-velo/lav_day_14/gallery/03_Saint-Nazaire foot sculpture.png"
 ---
 
 The Loire à Vélo route officially finishes at the coast, either at Saint Brevin les Pins or Saint Nazaire. In the time constraints I had, I didn't have time to cycle that and return to Nantes for my train to Paris. But I did have time to get a train from Nantes to Saint Nazaire and back again with a couple of hours to have a look around.

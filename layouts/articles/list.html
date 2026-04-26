@@ -48,6 +48,8 @@
   {{ with .Description }}<p class="list-intro">{{ . }}</p>{{ end }}
 </div>
 
+{{ .Content }}
+
 <div class="list-grid container">
   {{ range $pages }}
   {{- $thumb := .Params.image -}}

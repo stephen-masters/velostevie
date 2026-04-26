@@ -5,9 +5,9 @@ tags:
   - "Le Canal des Deux Mers"
   - "bikepacking"
   - "veloroute"
-image: /images/articles/2025/canal-des-deux-mers/2025-09-07_cdm_day_06/gallery/03_carcassonne.png
+image: /images/articles/2025/canal-des-deux-mers/2025-09-07_cdm_day_06/gallery/11_Carcassonne.png
 thumbnail:
-  url: /images/articles/2025/canal-des-deux-mers/2025-09-07_cdm_day_06/gallery/03_carcassonne.png
+  url: /images/articles/2025/canal-des-deux-mers/2025-09-07_cdm_day_06/gallery/11_Carcassonne.png
 ---
 
 If you’re following the Canal des Deux Mers, then an essential stop is the City of Carcassonne and its spectacular fortified city. There is such a lot to see up there that you really should keep a day set aside to take your time and explore.

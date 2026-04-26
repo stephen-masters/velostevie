@@ -5,9 +5,9 @@ tags:
   - "Le Canal des Deux Mers"
   - "bikepacking"
   - "veloroute"
-image: /images/articles/2025/canal-des-deux-mers/2025-09-03_cdm_day_03/gallery/07_moissac_abbaye.png
+image: "/images/articles/2025/canal-des-deux-mers/2025-09-03_cdm_day_03/gallery/08_Moissac cloisters.png"
 thumbnail:
-  url: /images/articles/2025/canal-des-deux-mers/2025-09-03_cdm_day_03/gallery/07_moissac_abbaye.png
+  url: "/images/articles/2025/canal-des-deux-mers/2025-09-03_cdm_day_03/gallery/08_Moissac cloisters.png"
 ---
 
 Today’s included a stop at the beautiful abbey at Moissac. It’s important to go around to the back of the church and go inside the cloisters; they’re gorgeous.

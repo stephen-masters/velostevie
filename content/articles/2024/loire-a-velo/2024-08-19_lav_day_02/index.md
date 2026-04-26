@@ -5,9 +5,9 @@ tags:
   - "La Loire à Vélo"
   - "bikepacking"
   - "veloroute"
-image: "/images/articles/2024/loire-a-velo/lav_day_02/gallery/06_View of vineyards from Sancerre.png"
+image: "/images/articles/2024/loire-a-velo/lav_day_02/gallery/05_View of vineyards from Sancerre.png"
 thumbnail:
-  url: "/images/articles/2024/loire-a-velo/lav_day_02/gallery/06_View of vineyards from Sancerre.png"
+  url: "/images/articles/2024/loire-a-velo/lav_day_02/gallery/05_View of vineyards from Sancerre.png"
 ---
 
 Day two of my La Loire à Vélo itinerary took me 60 km from Pouilly-sur-Loire to Ousson-sur-Loire with stops in Sancerre and Cosne-Cours-sur-Loire.

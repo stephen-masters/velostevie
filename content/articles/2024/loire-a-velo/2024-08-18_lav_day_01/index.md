@@ -5,9 +5,9 @@ tags:
   - "La Loire à Vélo"
   - "bikepacking"
   - "veloroute"
-image: "/images/articles/2024/loire-a-velo/lav_day_01/gallery/15_La_Charité-sur-Loire.png"
+image: "/images/articles/2024/loire-a-velo/lav_day_01/gallery/08_On the aqueduct.png"
 thumbnail:
-  url: "/images/articles/2024/loire-a-velo/lav_day_01/gallery/15_La_Charité-sur-Loire.png"
+  url: "/images/articles/2024/loire-a-velo/lav_day_01/gallery/08_On the aqueduct.png"
 ---
 
 Today was the first day of my La Loire à Vélo itinerary, taking me 60km from Neversto Pouilly-sur-Loire. The day would take me past Cuffy, Bec d'Alier, and include a stop at La Charité-sur-Loire to have a look around the bookshops.
