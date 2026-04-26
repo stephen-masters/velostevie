@@ -32,4 +32,4 @@ jobs:
       - name: Build
         run: hugo --gc --minify
         env:
-          HUGO_BASEURL: https://velostevie.pages.dev/
+          HUGO_BASEURL: https://velostevie.com/

@@ -144,13 +144,13 @@ The site is deployed to **Cloudflare Pages** (`velostevie.pages.dev`). Cloudflar
 | Build command | `npm ci && hugo mod vendor && hugo --gc --minify` |
 | Output directory | `public` |
 | `HUGO_VERSION` env var | `0.158.0` |
-| `HUGO_BASEURL` env var | `https://velostevie.pages.dev/` |
+| `HUGO_BASEURL` env var | `https://velostevie.com/` |
 
 `HUGO_VERSION` is required — without it Cloudflare uses an older built-in Hugo that fails on newer config options (e.g. the `modulequeries` cache name).
 
 The `.github/workflows/deploy.yml` is a **build-check only** workflow (no deployment step); it runs on push to catch build errors in CI independently of Cloudflare.
 
-To test a production build locally: `HUGO_BASEURL="https://velostevie.pages.dev/" npm run build`
+To test a production build locally: `HUGO_BASEURL="https://velostevie.com/" npm run build`
 
 ## Guardrails
 
