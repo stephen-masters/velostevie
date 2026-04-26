@@ -14,7 +14,7 @@ All content, comments, and documentation should use **British English** (e.g. "c
 - **Images:** `static/images/articles/<year>/<series>/<slug>/` — served at `/images/...` paths. **Not** `assets/images/`.
 - **Layouts:** Custom templates in `layouts/` — `_default/`, `articles/`, `partials/`, `shortcodes/`, and `index.html`. No external theme.
 - **Styles:** Single SCSS file at `assets/scss/main.scss`, processed via Hugo pipes (dart-sass). CSS custom properties are used as design tokens throughout. The full visual design system — colours, typography, voice, and UI components — is defined in the `velostevie-design` skill at `.claude/skills/velostevie-design/`. Load that skill before making any design or styling changes.
-- **JavaScript:** `assets/js/` — loaded via Hugo pipes in `layouts/_default/baseof.html` with fingerprinting. Currently: `lightbox.js`.
+- **JavaScript:** `assets/js/` — loaded via Hugo pipes in `layouts/_default/baseof.html` with fingerprinting. Currently: `lightbox.js`, `gpxmap.js`.
 - **Config:** `config/_default/` — `hugo.toml`, `params.toml`, `languages.toml`, `menus/`, etc.
 - **Scripts:** `scripts/` — utility shell scripts (e.g. `check-gps.sh`). Run from the project root.
 - **Build output:** `public/` — generated, do not edit directly.
@@ -115,6 +115,8 @@ npm run start 2>&1 | grep -i "error\|warn"
 - **No `crossorigin=""` on local scripts** — adding it to same-origin Leaflet/exifr script tags causes a CORS preflight that will fail.
 - **GPX namespace** — GPX files use a default XML namespace so `querySelectorAll('trkpt')` finds nothing; `getElementsByTagName('trkpt')` works correctly.
 - **URL encoding** — literal spaces in `data-photos` vs `%20` in `.lb-trigger[data-src]` will break marker click if not normalised with `decodeURIComponent`.
+- **`absURL` requires a path-relative input** — `absURL "/images/foo"` (leading `/`) treats the path as domain-root-relative and strips the base URL subpath, giving the wrong URL on subdomain deployments. Always omit the leading `/`: `absURL "images/foo"` appends correctly to the full base URL. For page bundle resources use `.Permalink` (absolute) not `.RelPermalink` (root-relative).
+- **`canonifyURLs = true` does not rewrite `data-*` attributes** — it only rewrites standard HTML URL attributes (`href`, `src`, etc.). URLs passed to JavaScript via `data-gpx-files`, `data-photos`, or any other `data-*` attribute must be made absolute in the Hugo shortcode itself using `absURL "path/..."` or `.Permalink`.
 
 ## Playwright tests
 
@@ -132,6 +134,23 @@ npx playwright test tests/gpxmap.spec.ts --project=chromium --reporter=line
 - `tests/gpxmap.spec.ts` — validates that the Leaflet map renders tiles and the GPX polyline loads.
 - The dev server must be running (`npm run start`) before executing tests.
 - `tests/example.spec.ts` is the Playwright scaffold — ignore or delete.
+
+## Deployment
+
+The site is deployed to **Cloudflare Pages** (`velostevie.pages.dev`). Cloudflare builds and deploys automatically on every push to `main` — no manual step required.
+
+| Setting | Value |
+|---|---|
+| Build command | `npm ci && hugo mod vendor && hugo --gc --minify` |
+| Output directory | `public` |
+| `HUGO_VERSION` env var | `0.158.0` |
+| `HUGO_BASEURL` env var | `https://velostevie.pages.dev/` |
+
+`HUGO_VERSION` is required — without it Cloudflare uses an older built-in Hugo that fails on newer config options (e.g. the `modulequeries` cache name).
+
+The `.github/workflows/deploy.yml` is a **build-check only** workflow (no deployment step); it runs on push to catch build errors in CI independently of Cloudflare.
+
+To test a production build locally: `HUGO_BASEURL="https://velostevie.pages.dev/" npm run build`
 
 ## Guardrails
 
