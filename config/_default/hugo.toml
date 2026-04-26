@@ -3,7 +3,7 @@ copyright = "Copyright © 2026 Stephen Masters"
 enableGitInfo = true
 
 baseURL = "https://example.com/"
-canonifyURLs = false
+canonifyURLs = true
 enableEmoji = true
 enableRobotsTXT = true
 enableInlineShortcodes = true
