@@ -2,7 +2,15 @@
 {{- $caption := .Get "caption" -}}
 {{- $img := resources.Get (strings.TrimLeft "/" $src) -}}
 {{- if $img -}}
-{{- $processed := $img.Resize "1200x webp" -}}
+{{- $resized := $img.Resize "1200x webp" -}}
+{{- $year := .Page.Date.Format "2006" -}}
+{{- $copyright := printf "© %s Stephen Masters" $year -}}
+{{- $font := resources.Get "fonts/watermark.ttf" -}}
+{{- $wmX := sub $resized.Width 260 -}}
+{{- $wmY := sub $resized.Height 26 -}}
+{{- $wmShadow := images.Text $copyright (dict "color" "#000000cc" "size" 16 "font" $font "x" (add $wmX 1) "y" (add $wmY 1)) -}}
+{{- $wmText := images.Text $copyright (dict "color" "#ffffff" "size" 16 "font" $font "x" $wmX "y" $wmY) -}}
+{{- $processed := $resized | images.Filter $wmShadow $wmText -}}
 <figure class="article-fig">
   <img src="{{ $processed.RelPermalink }}" alt="{{ $caption }}" loading="lazy">
   {{- if $caption -}}<figcaption>{{ $caption }}</figcaption>{{- end -}}

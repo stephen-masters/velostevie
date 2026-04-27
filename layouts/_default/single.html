@@ -3,7 +3,15 @@
   {{ with .Params.image }}
   {{- $img := resources.Get (strings.TrimLeft "/" .) -}}
   {{- if $img -}}
-  {{- $hero := $img.Resize "1400x webp" -}}
+  {{- $heroBase := $img.Resize "1400x webp" -}}
+  {{- $year := $.Date.Format "2006" -}}
+  {{- $copyright := printf "© %s Stephen Masters" $year -}}
+  {{- $font := resources.Get "fonts/watermark.ttf" -}}
+  {{- $wmX := sub $heroBase.Width 260 -}}
+  {{- $wmY := sub $heroBase.Height 26 -}}
+  {{- $wmShadow := images.Text $copyright (dict "color" "#000000cc" "size" 16 "font" $font "x" (add $wmX 1) "y" (add $wmY 1)) -}}
+  {{- $wmText := images.Text $copyright (dict "color" "#ffffff" "size" 16 "font" $font "x" $wmX "y" $wmY) -}}
+  {{- $hero := $heroBase | images.Filter $wmShadow $wmText -}}
   <div class="article-hero-image container">
     <img src="{{ $hero.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
   </div>

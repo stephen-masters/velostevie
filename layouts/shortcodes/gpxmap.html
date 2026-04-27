@@ -15,6 +15,9 @@
 {{- $photoMarkers := slice -}}
 {{- if and (not $isSection) $dir -}}
   {{- $gpsData := index $.Site.Data "photo-gps" -}}
+  {{- $year := $.Page.Date.Format "2006" -}}
+  {{- $copyright := printf "© %s Stephen Masters" $year -}}
+  {{- $font := resources.Get "fonts/watermark.ttf" -}}
   {{- $images := resources.Match (printf "%s/*" $dir) -}}
   {{- range $images -}}
     {{- $filename := path.Base .Name -}}
@@ -22,7 +25,12 @@
       {{- $key := strings.TrimLeft "/" .Name -}}
       {{- $gps := index $gpsData $key -}}
       {{- if $gps -}}
-        {{- $full := .Resize "1920x webp" -}}
+        {{- $fullBase := .Resize "1920x webp" -}}
+        {{- $wmX := sub $fullBase.Width 260 -}}
+        {{- $wmY := sub $fullBase.Height 26 -}}
+        {{- $wmShadow := images.Text $copyright (dict "color" "#000000cc" "size" 16 "font" $font "x" (add $wmX 1) "y" (add $wmY 1)) -}}
+        {{- $wmText := images.Text $copyright (dict "color" "#ffffff" "size" 16 "font" $font "x" $wmX "y" $wmY) -}}
+        {{- $full := $fullBase | images.Filter $wmShadow $wmText -}}
         {{- $base := strings.TrimSuffix (path.Ext $filename) $filename -}}
         {{- $noPrefix := replaceRE "^[0-9]+" "" $base -}}
         {{- $trimmed := strings.Trim $noPrefix "_" -}}
