@@ -16,6 +16,6 @@ And it’s well worth taking a day to explore Narbonne. It’s a very pretty tow
 
 The food in Narbonne was excellent. On my first evening, I ate tagline at Le Figuier; a Moroccan restaurant by the river. That was great value, friendly, and a nice change from the more traditional French food I had been eating on the route. For lunch on my rest day, I went to the market. I always love checking out the fresh ingredients in French markets, and this one is excellent with some great looking seafood. In the end, I ate steak frites, but I spotted that the restaurant will also cook any fresh ingredients that you pick up in the market. If I went back, I’d definitely give that a try. I’d love to pick up some fresh fish and shellfish and eat it there and then.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-09_cdm_day_07/gallery" >}}
 
 {{< gallery dir="images/articles/2025/canal-des-deux-mers/2025-09-09_cdm_day_07/gallery" >}}

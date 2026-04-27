@@ -14,6 +14,6 @@ An essential stop on this leg was to visit the 12th century church of Saint Vinc
 
 I can highly recommend the Logis Hôtel Le Prince Noir as a place to stay. It is a beautiful stone building which is reflected in the rooms, and there is a swimming pool to refresh a little after a day in the saddle.
 
-{{< gpxmap >}}
+{{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-02_cdm_day_02/gallery" >}}
 
 {{< gallery dir="images/articles/2025/canal-des-deux-mers/2025-09-02_cdm_day_02/gallery" >}}
