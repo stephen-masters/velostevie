@@ -4,3 +4,11 @@
 [author]
   name = "Stephen Masters"
   github = "https://github.com/stephen-masters"
+
+[giscus]
+  repo       = "stephen-masters/velostevie"
+  repoId     = "R_kgDORzLGcA"
+  category   = "General"
+  categoryId = "DIC_kwDORzLGcM4C71Dv"
+  mapping    = "pathname"
+  theme      = "light"

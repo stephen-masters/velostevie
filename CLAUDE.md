@@ -63,6 +63,26 @@ All images go through Hugo's asset pipeline:
 | Article hero | `.Resize "1400x webp"` | `_default/single.html` |
 | Route cards / homepage | `.Resize "640x webp"` | `index.html`, list layouts |
 
+A copyright watermark ("© YYYY Stephen Masters") is applied at build time to the three largest sizes; thumbnails are too small to be useful:
+
+| Use case | Watermarked |
+|---|---|
+| Gallery lightbox (1920px) | Yes |
+| Inline article images (1200px) | Yes |
+| Article hero (1400px) | Yes |
+| Gallery thumbnails (800px) | No |
+| Route card thumbnails (640px) | No |
+
+The year comes from the article's `date` front matter, so 2024 articles get "© 2024" and 2025 articles get "© 2025" automatically.
+
+**Font:** `assets/fonts/watermark.ttf` — DejaVu Sans (Bitstream Vera / SIL licence, freely redistributable). Hugo's default `basicfont` is ASCII-only and cannot render ©; a TTF font is required for the symbol to appear.
+
+**Technique:** Two `images.Text` filters applied in sequence — a dark semi-transparent layer offset 1px down-right (shadow), then full-white text on top. This keeps the label legible on both light and dark photo backgrounds without needing a solid background box.
+
+**Adjusting:** Edit the filter parameters in `gallery.html`, `gpxmap.html`, `image.html`, and `_default/single.html`. After any change, delete `resources/_gen/images/` to force Hugo to reprocess all images — otherwise the old cached versions are served.
+
+**Gallery / gpxmap URL consistency:** `gallery.html` and `gpxmap.html` must use **identical** watermark filter parameters (same size, colour, font, offsets). Hugo's image pipeline caches by source + operations; if the parameters match, both shortcodes produce the same processed-image URL, keeping map marker click-through working.
+
 Hugo caches processed images in `resources/_gen/`. The first build after adding images is slow; subsequent builds only reprocess changed files.
 
 **Adding new images:** Place them in `assets/images/articles/<year>/<series>/<slug>/gallery/`. Run `npm run extract-gps` to update `data/photo-gps.json`, or just run `npm run start` / `npm run build` which include this step automatically.
@@ -113,6 +133,7 @@ Hugo caches processed images in `resources/_gen/`. The first build after adding 
 | Map div renders but is blank / tiles don't load | Leaflet JS not loaded, or `L` undefined at script execution time | Check `baseof.html` — Leaflet and gpxmap scripts must have `defer`; gpxmap checks `typeof L !== 'undefined'` |
 | Route polyline missing | GPX not in page bundle, or namespace issue | GPX files must be in the article directory alongside `index.md`. Use `getElementsByTagName('trkpt')` not `querySelectorAll` |
 | Photo markers don't appear | Images lack GPS, or `data/photo-gps.json` is stale | Run `npm run extract-gps` after adding new images. Run `./scripts/check-gps.sh` to find images without GPS. |
+| Photo markers don't appear but gallery shows images | `gallery` param missing from `{{< gpxmap >}}` | Add `gallery="images/articles/…/gallery"` — must match the `dir` param on the `{{< gallery >}}` shortcode on the same page. |
 | Clicking a marker doesn't open lightbox | URL mismatch between `data-photo-markers[].url` and `data-src` on `.lb-trigger` | Both should use `.Permalink` (absolute URL). `canonifyURLs = true` rewrites `data-src` to absolute; marker URLs must also be absolute. |
 | `data-gpx-files` attribute URL-encoded by Hugo | Attribute name contains `"url"` — Go's `html/template` encodes those | Use `data-gpx-files` (no `url` substring) for GPX paths |
 

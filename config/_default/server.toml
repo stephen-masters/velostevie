@@ -12,13 +12,13 @@
         font-src 'self' fonts.gstatic.com data:; \
         form-action 'self'; \
         frame-ancestors 'self' http://localhost:1313 gethinode.com; \
-        frame-src *.googletagmanager.com player.cloudinary.com www.youtube-nocookie.com www.youtube.com player.vimeo.com; \
+        frame-src giscus.app *.googletagmanager.com player.cloudinary.com www.youtube-nocookie.com www.youtube.com player.vimeo.com; \
         img-src 'self' *.google-analytics.com *.googletagmanager.com googletagmanager.com ssl.gstatic.com www.gstatic.com data: *.imgix.net *.imagekit.io *.cloudinary.com i.ytimg.com *.tile.openstreetmap.org i.vimeocdn.com; \
         manifest-src 'self'; \
         media-src 'self'; \
         object-src 'none'; \
-        script-src 'self' unpkg.com *.google-analytics.com *.googletagmanager.com *.analytics.google.com googletagmanager.com tagmanager.google.com player.vimeo.com; \
-        style-src 'self' unpkg.com googletagmanager.com tagmanager.google.com fonts.googleapis.com www.youtube.com 'unsafe-inline'; \
+        script-src 'self' giscus.app unpkg.com *.google-analytics.com *.googletagmanager.com *.analytics.google.com googletagmanager.com tagmanager.google.com player.vimeo.com; \
+        style-src 'self' giscus.app unpkg.com googletagmanager.com tagmanager.google.com fonts.googleapis.com www.youtube.com 'unsafe-inline'; \
         """
     Permissions-Policy = 'geolocation=(), midi=(), sync-xhr=(), microphone=(), camera=(), magnetometer=(), gyroscope=(), fullscreen=(), payment=() '
     Referrer-Policy = 'strict-origin'
