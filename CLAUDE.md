@@ -196,6 +196,18 @@ The `.github/workflows/deploy.yml` is a **build-check only** workflow (no deploy
 
 To test a production build locally: `HUGO_BASEURL="https://velostevie.com/" npm run build`
 
+## Architectural principle: build time over runtime
+
+**The site's priority is a fast experience for readers.** Longer build times are an acceptable trade-off. When facing a design choice, always prefer doing work at build time over doing it in the browser.
+
+Concrete examples of this principle in practice:
+
+- **GPS coordinates** are extracted from image EXIF by a Node script before Hugo runs and embedded directly in the HTML as `data-photo-markers` JSON. The browser never fetches images to read GPS — the coordinates are already there.
+- **Images** are resized and converted to WebP by Hugo's pipeline at build time, not served at original resolution for the browser to scale.
+- **Captions** are derived from filenames in Hugo templates and embedded in the HTML — no JavaScript string manipulation at runtime.
+
+When adding new features, ask: *can this computation happen during the build instead?* If yes, do it there. Reserve JavaScript for things that genuinely require the browser: user interaction, the Leaflet map canvas, the lightbox UI.
+
 ## Guardrails
 
 - Edit source files (`content/`, `config/`, `assets/`, `static/`) — never edit generated `public/` output.
