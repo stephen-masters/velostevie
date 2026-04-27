@@ -6,17 +6,21 @@
 
 <div class="list-grid container">
   {{ range .Pages }}
-  {{- $thumb := .Params.image -}}
+  {{- $thumbPath := .Params.image -}}
   {{- with .Params.thumbnail -}}
-    {{- if reflect.IsMap . -}}{{- with index . "url" -}}{{ $thumb = . }}{{- end -}}
-    {{- else -}}{{ $thumb = . }}
+    {{- if reflect.IsMap . -}}{{- with index . "url" -}}{{ $thumbPath = . }}{{- end -}}
+    {{- else -}}{{ $thumbPath = . }}
     {{- end -}}
   {{- end -}}
   <a href="{{ .RelPermalink }}" class="route-card">
     <div class="card-image">
-      {{ with $thumb }}
-      <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
-      {{ end }}
+      {{- if $thumbPath -}}
+      {{- $thumbImg := resources.Get (strings.TrimLeft "/" $thumbPath) -}}
+      {{- with $thumbImg -}}
+      {{- $thumb := .Resize "640x webp" -}}
+      <img src="{{ $thumb.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
+      {{- end -}}
+      {{- end -}}
     </div>
     <div class="card-eyebrow">Route report</div>
     <div class="card-title">{{ .Title }}</div>

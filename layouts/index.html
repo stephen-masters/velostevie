@@ -27,9 +27,13 @@
 </section>
 
 {{ with .Params.image }}
+{{- $img := resources.Get (strings.TrimLeft "/" .) -}}
+{{- with $img -}}
+{{- $heroImg := .Resize "1400x webp" -}}
 <div class="hero-image container">
-  <img src="{{ . }}" alt="{{ $hero.Title }}" loading="lazy">
+  <img src="{{ $heroImg.RelPermalink }}" alt="{{ $hero.Title }}" loading="lazy">
 </div>
+{{- end -}}
 {{ end }}
 {{ end }}
 
@@ -40,15 +44,21 @@
   </div>
   <div class="route-grid">
     {{ range $recent }}
-    {{- $thumb := .Params.image -}}
+    {{- $thumbPath := .Params.image -}}
     {{- with .Params.thumbnail -}}
-      {{- if reflect.IsMap . -}}{{- with index . "url" -}}{{ $thumb = . }}{{- end -}}
-      {{- else -}}{{ $thumb = . }}
+      {{- if reflect.IsMap . -}}{{- with index . "url" -}}{{ $thumbPath = . }}{{- end -}}
+      {{- else -}}{{ $thumbPath = . }}
       {{- end -}}
     {{- end -}}
     <a href="{{ .RelPermalink }}" class="route-card">
       <div class="card-image">
-        {{ with $thumb }}<img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">{{ end }}
+        {{- if $thumbPath -}}
+        {{- $thumbImg := resources.Get (strings.TrimLeft "/" $thumbPath) -}}
+        {{- with $thumbImg -}}
+        {{- $thumb := .Resize "640x webp" -}}
+        <img src="{{ $thumb.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
+        {{- end -}}
+        {{- end -}}
       </div>
       <div class="card-eyebrow">Route report</div>
       <div class="card-title">{{ .Title }}</div>

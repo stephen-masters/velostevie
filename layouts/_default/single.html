@@ -1,9 +1,13 @@
 {{ define "main" }}
 <article>
   {{ with .Params.image }}
+  {{- $img := resources.Get (strings.TrimLeft "/" .) -}}
+  {{- if $img -}}
+  {{- $hero := $img.Resize "1400x webp" -}}
   <div class="article-hero-image container">
-    <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+    <img src="{{ $hero.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
   </div>
+  {{- end -}}
   {{ end }}
 
   <header class="article-header container">

@@ -9,7 +9,6 @@
   <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
   {{- if .HasShortcode "gpxmap" }}
   <script src="/leaflet/leaflet.js" defer></script>
-  <script src="/exifr/exifr-lite.umd.js" defer></script>
   {{ $gpxMapJs := resources.Get "js/gpxmap.js" | minify | fingerprint }}
   <script src="{{ $gpxMapJs.RelPermalink }}" integrity="{{ $gpxMapJs.Data.Integrity }}" defer></script>
   {{- end }}

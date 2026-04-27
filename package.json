@@ -4,10 +4,11 @@
   "description": "Hinode is a production-ready Hugo theme built on Bootstrap 5. Open source, actively maintained, and built for developers.",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm run -s mod:vendor",
+    "extract-gps": "node scripts/extract-gps.mjs",
+    "prestart": "npm run -s mod:vendor && npm run -s extract-gps",
     "start": "hugo server --bind=0.0.0.0 --disableFastRender --printI18nWarnings",
     "start:prod": "npm run -s prestart  && hugo server --bind=0.0.0.0 --disableFastRender --printI18nWarnings -e production",
-    "prebuild": "npm run clean:public && npm run -s mod:vendor",
+    "prebuild": "npm run clean:public && npm run -s mod:vendor && npm run -s extract-gps",
     "build": "hugo --gc --minify",
     "build:cache": "npm run -s prebuild && hugo config | grep cachedir && hugo --gc --minify -e ci",
     "build:debug": "hugo -e debug --debug",

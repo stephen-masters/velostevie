@@ -9,48 +9,36 @@
   }
 
   function addPhotoMarkers(map, el, onBoundsReady) {
-    var raw = el.dataset.photos;
-    if (!raw || typeof exifr === 'undefined') {
-      if (onBoundsReady) onBoundsReady(L.latLngBounds());
-      return;
-    }
-    var urls = raw.split('|').filter(Boolean);
+    var raw = el.dataset.photoMarkers;
+    var markers = [];
+    try { markers = raw ? JSON.parse(raw) : []; } catch (e) {}
+
     var photoBounds = L.latLngBounds();
-    var remaining = urls.length;
-    function done() {
-      remaining--;
-      if (remaining === 0 && onBoundsReady) onBoundsReady(photoBounds);
-    }
-    urls.forEach(function (url, i) {
-      exifr.gps(url).then(function (gps) {
-        if (!gps || !gps.latitude || !gps.longitude) { done(); return; }
-        var filename = decodeURIComponent(url.split('/').pop());
-        var caption = filename.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
-        var num = i + 1;
-        var marker = L.marker([gps.latitude, gps.longitude], {
-          icon: L.divIcon({
-            className: 'photo-marker',
-            html: '<span class="photo-marker-label">' + num + '</span>',
-            iconSize: [22, 22],
-            iconAnchor: [11, 11]
-          })
-        }).addTo(map);
-        photoBounds.extend([gps.latitude, gps.longitude]);
-        marker.bindTooltip(caption, { direction: 'top', offset: [0, -14] });
-        marker.on('click', function () {
-          var triggers = document.querySelectorAll('.lb-trigger');
-          for (var j = 0; j < triggers.length; j++) {
-            try {
-              if (decodeURIComponent(triggers[j].dataset.src) === decodeURIComponent(url)) {
-                triggers[j].click();
-                break;
-              }
-            } catch (e) { /* malformed URI — skip */ }
-          }
-        });
-        done();
-      }).catch(function () { done(); });
+    markers.forEach(function (m, i) {
+      var marker = L.marker([m.lat, m.lng], {
+        icon: L.divIcon({
+          className: 'photo-marker',
+          html: '<span class="photo-marker-label">' + (i + 1) + '</span>',
+          iconSize: [22, 22],
+          iconAnchor: [11, 11]
+        })
+      }).addTo(map);
+      photoBounds.extend([m.lat, m.lng]);
+      marker.bindTooltip(m.caption, { direction: 'top', offset: [0, -14] });
+      marker.on('click', function () {
+        var triggers = document.querySelectorAll('.lb-trigger');
+        for (var j = 0; j < triggers.length; j++) {
+          try {
+            if (decodeURIComponent(triggers[j].dataset.src) === decodeURIComponent(m.url)) {
+              triggers[j].click();
+              break;
+            }
+          } catch (e) { /* malformed URI — skip */ }
+        }
+      });
     });
+
+    if (onBoundsReady) onBoundsReady(photoBounds.isValid() ? photoBounds : L.latLngBounds());
   }
 
   function initMap(el) {

@@ -10,29 +10,39 @@
   {{- end -}}
 {{- end -}}
 
-{{- /* On single pages, build photo URL list from gallery param */ -}}
+{{- /* On single pages, build pre-processed photo marker list from gallery param */ -}}
 {{- $dir := .Get "gallery" -}}
-{{- $photoUrls := slice -}}
+{{- $photoMarkers := slice -}}
 {{- if and (not $isSection) $dir -}}
-  {{- $files := readDir (printf "static/%s" $dir) -}}
-  {{- range $files -}}
-    {{- if not (hasPrefix .Name ".") -}}
-      {{- $photoUrls = $photoUrls | append (printf "%s/%s" $dir .Name) -}}
+  {{- $gpsData := index $.Site.Data "photo-gps" -}}
+  {{- $images := resources.Match (printf "%s/*" $dir) -}}
+  {{- range $images -}}
+    {{- $filename := path.Base .Name -}}
+    {{- if not (hasPrefix $filename ".") -}}
+      {{- $key := strings.TrimLeft "/" .Name -}}
+      {{- $gps := index $gpsData $key -}}
+      {{- if $gps -}}
+        {{- $full := .Resize "1920x webp" -}}
+        {{- $base := strings.TrimSuffix (path.Ext $filename) $filename -}}
+        {{- $noPrefix := replaceRE "^[0-9]+" "" $base -}}
+        {{- $trimmed := strings.Trim $noPrefix "_" -}}
+        {{- $caption := replace $trimmed "_" " " -}}
+        {{- $marker := dict "url" $full.Permalink "lat" $gps.lat "lng" $gps.lng "caption" $caption -}}
+        {{- $photoMarkers = $photoMarkers | append $marker -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
-{{- if or $gpxFiles $photoUrls -}}
+{{- if or $gpxFiles $photoMarkers -}}
   {{- $urls := slice -}}
   {{- range $gpxFiles -}}
     {{- $urls = $urls | append .Permalink -}}
   {{- end -}}
-  {{- $absPhotoUrls := slice -}}
-  {{- range $photoUrls -}}
-    {{- $absPhotoUrls = $absPhotoUrls | append (absURL .) -}}
-  {{- end -}}
   <div class="gpx-block">
-    <div class="gpx-map"{{- with $urls }} data-gpx-files="{{ delimit . "|" }}"{{- end }}{{- with $absPhotoUrls }} data-photos="{{ delimit . "|" }}"{{- end }}></div>
+    <div class="gpx-map"
+      {{- with $urls }} data-gpx-files="{{ delimit . "|" }}"{{- end }}
+      {{- with $photoMarkers }} data-photo-markers="{{ jsonify . }}"{{- end }}></div>
     {{- if and (not $isSection) $gpxFiles -}}
     <div class="gpx-download">
       {{- range $i, $f := $gpxFiles -}}

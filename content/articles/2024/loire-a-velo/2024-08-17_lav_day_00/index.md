@@ -12,7 +12,7 @@ thumbnail:
 
 I live in Staffordshire, so getting to Nevers was a bit of a mission. The Eurostar doesn't accept bicycles except in bags, so it wasn't an option for me on this occasion. Therefore, I planned the route to get trains to Dover on Saturday, take a ferry across the Channel, a train from Calais to Paris, then a train from Paris to Nevers.
 
-It was a bit of a logistical challenge, but it worked..
+It was a bit of a logistical challenge, but it worked.
 
 I started on a Saturday afternoon, catching a train from Stoke-on-Trent to London Euston, then through to Dover where I stayed the night at the Premier Inn close to the ferry terminal.
 

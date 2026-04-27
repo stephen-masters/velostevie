@@ -1,7 +1,10 @@
 {{- $src     := .Get "src" -}}
 {{- $caption := .Get "caption" -}}
-
+{{- $img := resources.Get (strings.TrimLeft "/" $src) -}}
+{{- if $img -}}
+{{- $processed := $img.Resize "1200x webp" -}}
 <figure class="article-fig">
-  <img src="{{ $src }}" alt="{{ $caption }}" loading="lazy">
+  <img src="{{ $processed.RelPermalink }}" alt="{{ $caption }}" loading="lazy">
   {{- if $caption -}}<figcaption>{{ $caption }}</figcaption>{{- end -}}
 </figure>
+{{- end -}}

@@ -1,15 +1,18 @@
 {{- $dir := .Get "dir" -}}
-{{- $files := readDir (printf "static/%s" $dir) -}}
+{{- $images := resources.Match (printf "%s/*" $dir) -}}
 <div class="photo-gallery">
-  {{- range $files -}}
-    {{- if not (hasPrefix .Name ".") -}}
-    {{- $base := strings.TrimSuffix (path.Ext .Name) .Name -}}
+  {{- range $images -}}
+    {{- $filename := path.Base .Name -}}
+    {{- if not (hasPrefix $filename ".") -}}
+    {{- $thumb := .Resize "800x webp" -}}
+    {{- $full  := .Resize "1920x webp" -}}
+    {{- $base := strings.TrimSuffix (path.Ext $filename) $filename -}}
     {{- $noPrefix := replaceRE "^[0-9]+" "" $base -}}
     {{- $trimmed := strings.Trim $noPrefix "_" -}}
     {{- $caption := replace $trimmed "_" " " -}}
     <figure class="gallery-item">
-      <button class="lb-trigger" data-src="/{{ $dir }}/{{ .Name }}" data-caption="{{ $caption }}" aria-label="View larger image">
-        <img src="/{{ $dir }}/{{ .Name }}" alt="{{ $caption }}" loading="lazy">
+      <button class="lb-trigger" data-src="{{ $full.RelPermalink }}" data-caption="{{ $caption }}" aria-label="View larger image">
+        <img src="{{ $thumb.RelPermalink }}" alt="{{ $caption }}" loading="lazy">
       </button>
     </figure>
     {{- end -}}
