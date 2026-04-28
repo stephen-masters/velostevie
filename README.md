@@ -2,6 +2,8 @@
 
 A personal cycling blog by Stephen Masters, built with [Hugo](https://gohugo.io).
 
+I might convert this into a Hugo theme at some point, but for now, feel free to use this site as a template for your own. The article content and images are not open source, but feel free to use the code and structure in your own travel blog.
+
 ## Prerequisites
 
 - [Git](https://git-scm.com)
