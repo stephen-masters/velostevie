@@ -27,6 +27,7 @@
     "mod:tidy": "hugo mod tidy",
     "mod:vendor": "rimraf _vendor && hugo mod vendor",
     "test": "npm run -s lint",
+    "test:watermark": "node --test tests/watermark-build.test.mjs",
     "env": "hugo env",
     "precheck": "npm version",
     "check": "hugo version",
@@ -68,6 +69,7 @@
     "netlify-plugin-hugo-cache-resources": "^0.2.1",
     "npm-run-all": "^4.1.5",
     "replace-in-files-cli": "^4.0.0",
+    "sharp": "^0.34.5",
     "shx": "^0.4.0",
     "stylelint": "^17.5.0",
     "stylelint-config-standard-scss": "^17.0.0"
