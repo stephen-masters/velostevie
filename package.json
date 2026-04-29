@@ -1,8 +1,7 @@
 {
-  "name": "@gethinode/template",
+  "name": "velostevie",
   "version": "2.0.0",
-  "description": "Hinode is a production-ready Hugo theme built on Bootstrap 5. Open source, actively maintained, and built for developers.",
-  "main": "index.js",
+  "description": "A personal cycling blog by Stephen Masters, built with Hugo.",
   "scripts": {
     "extract-gps": "node scripts/extract-gps.mjs",
     "prestart": "npm run -s mod:vendor && npm run -s extract-gps",
@@ -12,10 +11,6 @@
     "build": "hugo --gc --minify",
     "build:cache": "npm run -s prebuild && hugo config | grep cachedir && hugo --gc --minify -e ci",
     "build:debug": "hugo -e debug --debug",
-    "build:headers": "npm run build:headers:dev && npm run build:headers:prod",
-    "build:headers:dev": "hugo --renderSegments headers -d prebuild-headers-dev -e development && cpy prebuild-headers-dev/server.toml config/_default/ --flat",
-    "build:headers:prod": "hugo --renderSegments headers -d prebuild-headers-prod -e production && cpy prebuild-headers-prod/netlify.toml ./ --flat",
-    "build:preview": "npm run build -D -F",
     "clean:public": "rimraf public",
     "clean:install": "rimraf package-lock.json node_modules",
     "lint": "npm-run-all lint:**",
@@ -35,14 +30,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gethinode/template.git"
+    "url": "git+https://github.com/stephen-masters/velostevie.git"
   },
-  "author": "",
+  "author": "Stephen Masters",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gethinode/hinode/issues"
+    "url": "https://github.com/stephen-masters/velostevie/issues"
   },
-  "homepage": "https://gethinode.com",
+  "homepage": "https://velostevie.com",
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^8.0.0",
     "autoprefixer": "^10.4.27",
@@ -61,16 +56,12 @@
     "@playwright/test": "^1.59.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^25.6.0",
-    "cpy-cli": "^7.0.0",
     "eslint": "^10.1.0",
     "globals": "^17.4.0",
     "husky": "^9.1.7",
     "markdownlint-cli2": "^0.22.0",
-    "netlify-plugin-hugo-cache-resources": "^0.2.1",
     "npm-run-all": "^4.1.5",
-    "replace-in-files-cli": "^4.0.0",
     "sharp": "^0.34.5",
-    "shx": "^0.4.0",
     "stylelint": "^17.5.0",
     "stylelint-config-standard-scss": "^17.0.0"
   },
