@@ -5,7 +5,7 @@
     Access-Control-Allow-Origin = '*'
     Content-Security-Policy = """
         base-uri 'self'; \
-        connect-src 'self' *.analytics.google.com *.google.com *.google-analytics.com *.googletagmanager.com; \
+        connect-src 'self' https://velostevie.com *.analytics.google.com *.google.com *.google-analytics.com *.googletagmanager.com; \
         default-src 'none'; \
         font-src 'self' https://velostevie.com fonts.gstatic.com data:; \
         form-action 'self'; \

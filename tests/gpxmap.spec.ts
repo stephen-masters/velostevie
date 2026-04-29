@@ -1,10 +1,38 @@
 import { test, expect } from '@playwright/test';
 
-const GPX_PAGE = 'http://localhost:1313/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/';
+const BASE_URL = 'http://localhost:1313';
+const GPX_PAGE = `${BASE_URL}/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/`;
 
 test('gpx map renders with leaflet tiles', async ({ page }) => {
   const consoleErrors: string[] = [];
-  const cspViolations: string[] = [];
+
+  // canonifyURLs rewrites all asset URLs to https://velostevie.com/…, so scripts
+  // and styles are cross-origin from localhost's perspective.  Cross-origin SRI requires
+  // a crossorigin attribute on the tag, which Hugo doesn't add, so the browser blocks
+  // those resources.  Fix by:
+  //   1. Stripping integrity attributes from HTML served by localhost (disables SRI).
+  //   2. Intercepting velostevie.com requests and serving them from localhost instead.
+  // Only intercept HTML page navigations — non-HTML resources pass through unchanged.
+  await page.route(`${BASE_URL}/**`, async (route) => {
+    const accept = route.request().headers()['accept'] || '';
+    if (!accept.includes('text/html')) {
+      await route.continue();
+      return;
+    }
+    const response = await route.fetch();
+    let body = await response.text();
+    body = body.replace(/ integrity="[^"]*"/g, '');
+    await route.fulfill({ response, body });
+  });
+
+  await page.route('https://velostevie.com/**', async (route) => {
+    const localUrl = route.request().url().replace('https://velostevie.com', BASE_URL);
+    const response = await fetch(localUrl);
+    const body = Buffer.from(await response.arrayBuffer());
+    const headers: Record<string, string> = {};
+    response.headers.forEach((value, key) => { headers[key] = value; });
+    await route.fulfill({ status: response.status, headers, body });
+  });
 
   page.on('console', msg => {
     if (msg.type() === 'error') consoleErrors.push(msg.text());

@@ -31,6 +31,16 @@ npm run extract-gps  # regenerate data/photo-gps.json (run after adding new imag
 
 `npm run start` and `npm run build` automatically run `extract-gps` before Hugo, so `data/photo-gps.json` stays in sync on every build.
 
+## Before committing
+
+Always run all tests successfully before creating a git commit:
+
+```bash
+npm run lint                                          # ESLint, Stylelint, markdownlint
+npx playwright test --project=chromium --reporter=line  # requires dev server on :1313
+node --test tests/watermark-build.test.mjs            # build-time watermark check
+```
+
 ## Content conventions
 
 - Articles live at `content/articles/<year>/<series>/<YYYY-MM-DD>_<slug>/index.md`.
