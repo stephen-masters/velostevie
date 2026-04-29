@@ -58,7 +58,7 @@ Articles can include an interactive Leaflet map using the `{{< gpxmap >}}` short
 
 Place the shortcode in the article's `index.md`. If the article's page bundle contains one or more `.gpx` files, they are drawn as a route polyline automatically — no extra parameter is needed for the route.
 
-To overlay photo markers, pass the `gallery` parameter pointing to the article's gallery directory (relative to `static/`):
+To overlay photo markers, pass the `gallery` parameter pointing to the article's gallery directory (relative to `assets/`):
 
 ```
 {{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/gallery" >}}
@@ -68,7 +68,9 @@ If no `.gpx` file is present, the map will still render and fit its view to the 
 
 ### How photo markers work
 
-When the page loads, the browser reads the GPS metadata embedded in each gallery image using the [exifr](https://github.com/MikeKovarik/exifr) library. For every image that has a location, a numbered circle marker is placed on the map at that position. The number corresponds to the image's position in the gallery. Hovering a marker shows the image caption; clicking it opens the lightbox directly to that image.
+GPS coordinates are extracted from image EXIF data at build time by `scripts/extract-gps.mjs`, which writes them to `data/photo-gps.json`. Hugo's `gpxmap` shortcode reads that file and embeds the coordinates directly into the page HTML as a `data-photo-markers` JSON attribute — no browser-side GPS reading happens at all.
+
+When the page loads, the map script reads the pre-embedded coordinates and places a numbered circle marker for each image that has a location. Clicking a marker opens the lightbox directly to that image.
 
 Images without GPS metadata are shown in the gallery as normal but do not appear on the map.
 
@@ -80,7 +82,7 @@ To find gallery images that are missing GPS data, run:
 ./scripts/check-gps.sh
 ```
 
-This scans all `gallery/` folders under `static/images/` and lists any images that do not have a `GPSLatitude` property, along with a total count.
+This scans all `gallery/` folders under `assets/images/` and lists any images that do not have a `GPSLatitude` property, along with a total count.
 
 ## Other commands
 
