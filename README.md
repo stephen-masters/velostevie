@@ -60,7 +60,7 @@ Place the shortcode in the article's `index.md`. If the article's page bundle co
 
 To overlay photo markers, pass the `gallery` parameter pointing to the article's gallery directory (relative to `assets/`):
 
-```
+```go-html-template
 {{< gpxmap gallery="images/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/gallery" >}}
 ```
 

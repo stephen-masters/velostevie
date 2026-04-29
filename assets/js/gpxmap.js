@@ -11,7 +11,7 @@
   function addPhotoMarkers(map, el, onBoundsReady) {
     var raw = el.dataset.photoMarkers;
     var markers = [];
-    try { markers = raw ? JSON.parse(raw) : []; } catch (e) {}
+    try { markers = raw ? JSON.parse(raw) : []; } catch { /* malformed JSON — leave markers empty */ }
 
     var photoBounds = L.latLngBounds();
     markers.forEach(function (m, i) {

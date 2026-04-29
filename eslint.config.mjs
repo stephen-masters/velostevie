@@ -7,7 +7,7 @@ export default [
   stylistic.configs.customize({
     indent: 2,
     quotes: 'single',
-    semi: false,
+    semi: true,
     arrowParens: false,
     braceStyle: '1tbs',
     commaDangle: 'never'
@@ -15,27 +15,20 @@ export default [
   {
     languageOptions: {
       globals: {
-        ...globals.browser
+        ...globals.browser,
+        L: 'readonly'
       }
     },
     rules: {
-      // Match neostandard/StandardJS conventions
-      '@stylistic/space-before-function-paren': ['error', 'always'],
+      '@stylistic/space-before-function-paren': ['error', { named: 'never', anonymous: 'always', asyncArrow: 'always' }],
       '@stylistic/arrow-parens': ['error', 'as-needed'],
       '@stylistic/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
       '@stylistic/max-statements-per-line': 'off',
-      'no-unused-vars': ['error', { vars: 'all', args: 'after-used', argsIgnorePattern: '^_', ignoreRestSiblings: true }]
+      'no-unused-vars': ['error', { vars: 'all', args: 'after-used', argsIgnorePattern: '^_', caughtErrors: 'none', ignoreRestSiblings: true }]
     }
   },
   {
     ignores: [
-      'assets/js/critical/languageSelector.js',
-      'assets/js/critical/color.js',
-      'assets/js/analytics.js',
-      'assets/js/flexsearch.js',
-      'assets/js/navbar.js',
-      'assets/js/sharing.js',
-      'assets/js/vendor/**',
       'node_modules/**'
     ]
   }

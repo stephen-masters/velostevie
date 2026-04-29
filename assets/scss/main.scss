@@ -11,11 +11,9 @@
   --stone:        #8B8579;
   --stone-soft:   #C8C0B0;
   --stone-faint:  #E4DECC;
-
   --forest:       #2F4A3A;
   --forest-deep:  #24392D;
   --moss:         #6B8A6E;
-
   --clay:         #B85C3C;
   --clay-deep:    #9B4A2E;
 
@@ -31,9 +29,9 @@
   --link-hover:   var(--clay);
 
   // Type: families
-  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --font-sans:  'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-serif: 'Newsreader', georgia, 'Times New Roman', serif;
+  --font-sans:  'Geist', -apple-system, blinkmacsystemfont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, 'SF Mono', menlo, monospace;
 
   // Type: scale
   --fs-xs:   12px;
@@ -77,14 +75,14 @@
   --radius-pill: 9999px;
 
   // Shadows
-  --shadow-sm: 0 1px 2px rgba(31, 27, 23, 0.06);
-  --shadow-md: 0 6px 20px rgba(31, 27, 23, 0.10);
+  --shadow-sm: 0 1px 2px rgb(31 27 23 / 6%);
+  --shadow-md: 0 6px 20px rgb(31 27 23 / 10%);
 
   // Layout
   --content-max: 1200px;
   --prose-max:   680px;
   --nav-height:  64px;
-  --nav-bg:      rgba(251, 250, 246, 0.88); // --paper at 88% opacity (frosted nav)
+  --nav-bg:      rgb(251 250 246 / 88%); // --paper at 88% opacity (frosted nav)
 
   // Motion
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -327,7 +325,7 @@ hr {
 .footer-tagline {
   font-size: var(--fs-sm);
   color: var(--fg-muted);
-  margin: 14px 0 0 0;
+  margin: 14px 0 0;
   max-width: 380px;
   line-height: 1.5;
 
@@ -358,7 +356,7 @@ hr {
     font-size: var(--fs-4xl);
     letter-spacing: -0.025em;
     line-height: 1.02;
-    margin: 12px 0 20px 0;
+    margin: 12px 0 20px;
     color: var(--ink);
     max-width: 900px;
     font-optical-sizing: auto;
@@ -460,7 +458,7 @@ hr {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--fg-muted);
-    margin: 14px 0 0 0;
+    margin: 14px 0 0;
   }
 
   .card-title {
@@ -469,7 +467,7 @@ hr {
     font-size: var(--fs-xl);
     letter-spacing: -0.01em;
     line-height: 1.15;
-    margin: 6px 0 8px 0;
+    margin: 6px 0 8px;
     color: var(--ink);
   }
 
@@ -494,7 +492,7 @@ hr {
     font-size: var(--fs-4xl);
     letter-spacing: -0.025em;
     line-height: 1.05;
-    margin: 12px 0 20px 0;
+    margin: 12px 0 20px;
     max-width: 900px;
     font-optical-sizing: auto;
   }
@@ -671,7 +669,7 @@ hr {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.92);
+  background: rgb(0 0 0 / 92%);
   align-items: center;
   justify-content: center;
 
@@ -747,7 +745,7 @@ hr {
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   letter-spacing: 0.04em;
-  background: rgba(0, 0, 0, 0.72);
+  background: rgb(0 0 0 / 72%);
   padding: var(--sp-1) var(--sp-4);
   border-radius: var(--radius);
   pointer-events: none;
@@ -804,7 +802,7 @@ hr {
   font-size: 11px;
   font-weight: 700;
   border: 2px solid #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 35%);
   cursor: pointer;
 }
 
@@ -858,12 +856,12 @@ hr {
 // Responsive
 // =============================================================================
 
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .route-grid     { grid-template-columns: repeat(2, 1fr); }
   .list-grid      { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .container,
   .nav-inner,
   .site-footer    { padding-inline: 20px; }
@@ -876,7 +874,7 @@ hr {
   .page-prose     { padding-inline: 20px; }
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .route-grid    { grid-template-columns: 1fr; }
   .list-grid     { grid-template-columns: 1fr; }
   .photo-gallery { grid-template-columns: repeat(2, 1fr); }

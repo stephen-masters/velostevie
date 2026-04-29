@@ -12,7 +12,7 @@ thumbnail:
 
 Today was a particularly pretty stretch of the Loire, starting the river and church at Candes Saint Martin, then Monsoureau.
 
-As I was passing through Turquant, I spotted a café and took the opportunity 
+As I was passing through Turquant, I spotted a café and took the opportunity
 to sit down for a decent lunch. The lunchtime special was a tasty steak frites. On this trip, I have found it best to grab those opportunities when you can, although on this occasion I did notice that there were plenty more options for lunch just beyond the village.
 
 Turquant and the area nearby is known for its troglodyte dwellings. Up the hill above the village, there are shops and restaurants built into the limestone cliffs. Great for a little pause to check out the arts and crafts.

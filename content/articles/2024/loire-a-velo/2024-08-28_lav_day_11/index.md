@@ -18,7 +18,7 @@ But it was a lovely day. It started with a little stop at a medieval church at G
 
 A little further on, I came across a little café that had a stew going as a lunch special. I took the opportunity to grab that and it was delicious. And it was fortuitous, because at that point I didn't realise how much further I would need to be riding. I was lucky to have a break and take on some tasty calories.
 
-Eventually I arrived my B&B called [Le Mouton](https://www.booking.com/hotel/fr/le-mouton.en-gb.html) near Blaison St Sulpice. It wasn't too late. Maybe 5pm, but I could have been an hour earlier. Fortunately, the couple who run it are incredibly welcoming. I was immediately given a glass of rosé and nibbles to welcome me. The owners told me that as I was their only guest that night, 
+Eventually I arrived my B&B called [Le Mouton](https://www.booking.com/hotel/fr/le-mouton.en-gb.html) near Blaison St Sulpice. It wasn't too late. Maybe 5pm, but I could have been an hour earlier. Fortunately, the couple who run it are incredibly welcoming. I was immediately given a glass of rosé and nibbles to welcome me. The owners told me that as I was their only guest that night,
 they could cook dinner for me. I had looked at eating options nearby and there was nothing near, so I jumped at the chance.
 
 I was sent to have a swim in the cool pool and then sit in the hot tub. In the hot tub, monsieur came over and gave me a glass of sparking crémant de Loire. I headed to my room to get changed and came down again. I was then sat at a table looking across the yard, and madame brought me a bottle of wine and served a three course meal. All excellent. If you're cycling through the area, I have to recommend that you stop here. You won't regret it.

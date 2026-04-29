@@ -4,8 +4,12 @@ import { test, expect, Page } from '@playwright/test';
 const ARTICLE_PAGE = 'http://localhost:1313/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/';
 const BASE_URL = 'http://localhost:1313';
 
-function toAbsolute(url: string): string {
-  return url.startsWith('http') ? url : `${BASE_URL}${url}`;
+// canonifyURLs rewrites image URLs to https://velostevie.com/... — redirect
+// them to the local dev server so the test is self-contained.
+function toLocal(url: string): string {
+  return url.startsWith('http')
+    ? url.replace(/^https?:\/\/velostevie\.com/, BASE_URL)
+    : `${BASE_URL}${url}`;
 }
 
 // Counts pixels with R, G, B all above 200 within the watermark region.
@@ -48,7 +52,7 @@ test('hero image has copyright watermark', async ({ page }) => {
   const src = await heroImg.getAttribute('src');
   expect(src).toBeTruthy();
 
-  const count = await nearWhitePixelCount(page, toAbsolute(src!));
+  const count = await nearWhitePixelCount(page, toLocal(src!));
   console.log(`Hero watermark: ${count} near-white pixels in watermark region`);
   expect(count).toBeGreaterThan(50);
 });
@@ -63,7 +67,7 @@ test('gallery lightbox images have copyright watermark', async ({ page }) => {
   const dataSrc = await trigger.getAttribute('data-src');
   expect(dataSrc).toBeTruthy();
 
-  const count = await nearWhitePixelCount(page, toAbsolute(dataSrc!));
+  const count = await nearWhitePixelCount(page, toLocal(dataSrc!));
   console.log(`Lightbox watermark: ${count} near-white pixels in watermark region`);
   expect(count).toBeGreaterThan(50);
 });

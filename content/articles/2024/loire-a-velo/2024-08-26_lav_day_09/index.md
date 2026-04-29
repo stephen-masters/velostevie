@@ -14,12 +14,11 @@ Today was a day of magical images. I passed through fields full of sunflowers, a
 
 I then passed through the commune of Savonières on a beautifully still stretch of the Cher river. The surface was so smooth that it reflected trees, birds, and sky like a mirror.
 
-My destination for the day was Rigny Ussé, a small village with the Château d'Ussé as I entered. This château is celebrated as Charles Perrault's inspiration for the story Sleeping Beauty. 
+My destination for the day was Rigny Ussé, a small village with the Château d'Ussé as I entered. This château is celebrated as Charles Perrault's inspiration for the story Sleeping Beauty.
 
 Compared to other châteaux that I visited, this one is particularly well furnished inside, giving a true feel of the luxury of living there.
 
-
-Due to the connection to Sleeping Beauty, part of the tour around the buildings includes a section where some rooms are set up as scenes from the story. It's a fun addition. The route takes visitors up into the roof, where various dusty old objects are stashed away. 
+Due to the connection to Sleeping Beauty, part of the tour around the buildings includes a section where some rooms are set up as scenes from the story. It's a fun addition. The route takes visitors up into the roof, where various dusty old objects are stashed away.
 
 The Château d'Ussé also has a chapel and gardens. This includes a large section full of tomatoes and other vegetables.
 
