@@ -44,7 +44,7 @@ async function nearWhitePixelCount(page: Page, imageUrl: string): Promise<number
 }
 
 test('hero image has copyright watermark', async ({ page }) => {
-  await page.goto(ARTICLE_PAGE, { waitUntil: 'networkidle' });
+  await page.goto(ARTICLE_PAGE, { waitUntil: 'load' });
 
   const heroImg = page.locator('.article-hero-image img');
   await expect(heroImg).toBeAttached();
@@ -58,9 +58,8 @@ test('hero image has copyright watermark', async ({ page }) => {
 });
 
 test('gallery lightbox images have copyright watermark', async ({ page }) => {
-  await page.goto(ARTICLE_PAGE, { waitUntil: 'networkidle' });
+  await page.goto(ARTICLE_PAGE, { waitUntil: 'load' });
 
-  // data-src on .lb-trigger is rewritten to absolute by canonifyURLs
   const trigger = page.locator('.lb-trigger').first();
   await expect(trigger).toBeAttached();
 

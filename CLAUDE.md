@@ -16,7 +16,7 @@ All content, comments, and documentation should use **British English** (e.g. "c
 - **Layouts:** Custom templates in `layouts/` — `_default/`, `articles/`, `partials/`, `shortcodes/`, and `index.html`. No external theme.
 - **Styles:** Single SCSS file at `assets/scss/main.scss`, processed via Hugo pipes (dart-sass). CSS custom properties are used as design tokens throughout. The full visual design system — colours, typography, voice, and UI components — is defined in the `velostevie-design` skill at `.claude/skills/velostevie-design/`. Load that skill before making any design or styling changes.
 - **JavaScript:** `assets/js/` — loaded via Hugo pipes in `layouts/_default/baseof.html` with fingerprinting. Currently: `lightbox.js`, `gpxmap.js`.
-- **Config:** `config/_default/` — `hugo.toml`, `params.toml`, `languages.toml`, `menus/`, etc.
+- **Config:** `config/_default/` — `hugo.toml`, `params.toml`, `languages.toml`, `menus/`, etc. `config/development/hugo.toml` overrides `canonifyURLs = false` for the dev server (see below).
 - **Scripts:** `scripts/` — utility scripts. Run from the project root.
 - **Build output:** `public/` — generated, do not edit directly.
 
@@ -168,7 +168,9 @@ npm run start 2>&1 | grep -i "error\|warn"
 - **GPS is embedded at build time** — `data/photo-gps.json` must exist before Hugo runs. `npm run start` and `npm run build` run `extract-gps` automatically. The Cloudflare Pages build command must include this step too (see Deployment).
 - **`resources.Match` returns full paths** — `.Name` on a resource is the full path relative to `assets/` with a leading `/` (e.g. `/images/articles/.../foo.png`). Use `path.Base .Name` for the filename and `strings.TrimLeft "/" .Name` for the GPS key lookup.
 - **`strings.TrimLeft` argument order** — Hugo's `strings.TrimLeft cutset string` takes the cutset first. `strings.TrimLeft "/" .Name` is correct; `strings.TrimLeft .Name "/"` would treat the full path as the cutset and return an empty string.
-- **Marker URLs must be absolute** — use `.Permalink` (not `.RelPermalink`) for photo marker URLs in `gpxmap.html`. The gallery's `data-src` is absolute (rewritten by `canonifyURLs = true`); marker URLs must match.
+- **`canonifyURLs = false` in development** — `config/development/hugo.toml` disables `canonifyURLs` so the dev server loads all assets (CSS, JS, Leaflet) from localhost rather than fetching them from `velostevie.com`. Without this, any local fingerprint that differs from the deployed version causes 404s and a broken dev site. Production builds still use `canonifyURLs = true` from `config/_default/hugo.toml`.
+- **`data-src` on `.lb-trigger` uses `.Permalink`** — `gallery.html` uses `.Permalink` (not `.RelPermalink`) so `data-src` is already an absolute URL and does not rely on `canonifyURLs` to rewrite it. In dev mode `.Permalink` points to localhost; in production it points to `velostevie.com`. Marker URLs in `gpxmap.html` also use `.Permalink` for the same reason — both must be absolute and must match for marker clicks to open the correct image.
+- **Marker URLs must be absolute** — use `.Permalink` (not `.RelPermalink`) for photo marker URLs in `gpxmap.html`.
 - **No `crossorigin=""` on local scripts** — adding it to same-origin Leaflet script tags causes a CORS preflight that will fail.
 - **GPX namespace** — GPX files use a default XML namespace so `querySelectorAll('trkpt')` finds nothing; `getElementsByTagName('trkpt')` works correctly.
 - **`absURL` requires a path-relative input** — `absURL "/images/foo"` (leading `/`) gives the wrong URL. Use `.Permalink` on processed resources instead.
@@ -188,9 +190,11 @@ npx playwright test --project=chromium --reporter=line
 npx playwright test tests/gpxmap.spec.ts --project=chromium --reporter=line
 ```
 
-- `tests/gpxmap.spec.ts` — validates that the Leaflet map renders tiles and the GPX polyline loads.
-- The dev server must be running (`npm run start`) before executing tests.
-- `tests/example.spec.ts` is the Playwright scaffold — ignore or delete.
+- `tests/gpxmap.spec.ts` — validates that the Leaflet map renders tiles and the GPX polyline loads. Uses Playwright route handlers to strip `integrity` attributes from HTML (SRI would block cross-origin scripts when `canonifyURLs = true` in production mode) and to proxy `velostevie.com` asset requests to localhost.
+- `tests/watermark.spec.ts` — validates copyright watermarks on hero and lightbox images via canvas pixel sampling.
+- `tests/watermark-build.test.mjs` — uses Node.js `node:test` (not Playwright) to run a full Hugo build and check watermarks on every large image in `public/`. Run separately: `node --test tests/watermark-build.test.mjs`. It is excluded from Playwright's test discovery (`testIgnore` in `playwright.config.ts`) to prevent it running concurrently with browser tests and starving the dev server.
+- Playwright is configured with `workers: 1` and `fullyParallel: false` — serial execution prevents the gpxmap route handlers from flooding the dev server with extra fetch calls while other tests are also loading pages.
+- The dev server must be running (`npm run start`) before executing Playwright tests.
 
 ### Screenshotting the map for blog posts
 
