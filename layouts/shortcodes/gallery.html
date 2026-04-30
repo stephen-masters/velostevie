@@ -19,7 +19,7 @@
     {{- $trimmed := strings.Trim $noPrefix "_" -}}
     {{- $caption := replace $trimmed "_" " " -}}
     <figure class="gallery-item">
-      <button class="lb-trigger" data-src="{{ $full.RelPermalink }}" data-caption="{{ $caption }}" aria-label="View larger image">
+      <button class="lb-trigger" data-src="{{ $full.Permalink }}" data-caption="{{ $caption }}" aria-label="View larger image">
         <img src="{{ $thumb.RelPermalink }}" alt="{{ $caption }}" loading="lazy">
       </button>
     </figure>
