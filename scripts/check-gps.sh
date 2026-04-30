@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
-# check-gps.sh — report gallery images missing GPS metadata
+#
+# check-gps.sh
+#
+# Scans every image under assets/images/*/gallery/ and reports those that lack
+# GPS metadata (GPSLatitude). Useful for identifying photos that will not appear
+# as map markers in the gpxmap shortcode.
+#
+# Prerequisites: exiftool must be installed (`brew install exiftool`).
+#
+# Run:  ./scripts/check-gps.sh
 
 ASSETS_DIR="$(cd "$(dirname "$0")/.." && pwd)/assets"
 missing=0

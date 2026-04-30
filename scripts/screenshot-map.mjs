@@ -1,3 +1,26 @@
+/**
+ * screenshot-map.mjs
+ *
+ * Captures screenshots of a live article page for use in tech-writing posts.
+ * Saves three PNGs to the matching post folder inside the stevie-writing repo:
+ *   gpxmap-overview.png  — the map block only (GPX polyline + photo markers)
+ *   gpxmap-full-page.png — the full viewport showing the map in page context
+ *   gpxmap-lightbox.png  — after clicking the first photo marker (lightbox open)
+ *
+ * Prerequisites:
+ *   - Dev server running on localhost:1313 (`npm run start`)
+ *   - Node 24 (`nvm use`)
+ *
+ * Run:  node scripts/screenshot-map.mjs
+ *
+ * Targets the Day 1 Canal des Deux Mers article by default. To screenshot a
+ * different article, update both PAGE_URL and POST_SLUG below — POST_SLUG must
+ * match the folder name under stevie-writing/Tech Writing/.
+ *
+ * Note: waitForSelector with state:'visible' is unreliable for Leaflet panes.
+ * A fixed waitForTimeout after scrolling the map into view is used instead.
+ */
+
 import { chromium } from 'playwright';
 import { mkdirSync } from 'fs';
 import { join } from 'path';

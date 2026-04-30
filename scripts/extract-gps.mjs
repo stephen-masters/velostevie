@@ -1,3 +1,20 @@
+/**
+ * extract-gps.mjs
+ *
+ * Reads GPS EXIF data from every image under assets/images/ and writes the
+ * results to data/photo-gps.json as a flat map of image path → { lat, lng }.
+ *
+ * Hugo's gpxmap shortcode reads this file at build time to embed photo marker
+ * coordinates directly in the page HTML, so no GPS reading happens in the
+ * browser.
+ *
+ * Run:  node scripts/extract-gps.mjs
+ *       (or via `npm run extract-gps`)
+ *
+ * This script runs automatically before every `npm run start` and
+ * `npm run build`, so data/photo-gps.json is always up to date.
+ */
+
 import exifr from 'exifr';
 import { readdir, writeFile, mkdir } from 'fs/promises';
 import { join, relative } from 'path';

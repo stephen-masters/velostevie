@@ -248,3 +248,4 @@ When adding new features, ask: *can this computation happen during the build ins
 - Edit source files (`content/`, `config/`, `assets/`, `static/`) — never edit generated `public/` output.
 - Custom templates live in `layouts/` — edit these directly to change site structure or appearance.
 - Images are stored under `assets/images/` (not `static/images/`), processed by Hugo's pipeline at build time.
+- Every script in `scripts/` must have a header comment block explaining its purpose, prerequisites, and how to run it. Apply this to any new script added to the project.
