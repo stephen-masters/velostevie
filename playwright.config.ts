@@ -13,7 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
-  testIgnore: ['**/watermark-build.test.mjs'],
+  testIgnore: ['**/watermark-build.test.mjs', '**/content-images.test.mjs'],
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,

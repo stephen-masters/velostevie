@@ -23,6 +23,7 @@
     "mod:vendor": "rimraf _vendor && hugo mod vendor",
     "test": "npm run -s lint",
     "test:watermark": "node --test tests/watermark-build.test.mjs",
+    "test:content-images": "node --test tests/content-images.test.mjs",
     "env": "hugo env",
     "precheck": "npm version",
     "check": "hugo version",
