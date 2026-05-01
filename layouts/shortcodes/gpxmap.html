@@ -31,11 +31,12 @@
         {{- $wmShadow := images.Text $copyright (dict "color" "#000000cc" "size" 16 "font" $font "x" (add $wmX 1) "y" (add $wmY 1)) -}}
         {{- $wmText := images.Text $copyright (dict "color" "#ffffff" "size" 16 "font" $font "x" $wmX "y" $wmY) -}}
         {{- $full := $fullBase | images.Filter $wmShadow $wmText -}}
+        {{- $thumb := .Resize "200x webp q80" -}}
         {{- $base := strings.TrimSuffix (path.Ext $filename) $filename -}}
         {{- $noPrefix := replaceRE "^[0-9]+" "" $base -}}
         {{- $trimmed := strings.Trim $noPrefix "_" -}}
         {{- $caption := replace $trimmed "_" " " -}}
-        {{- $marker := dict "url" $full.Permalink "lat" $gps.lat "lng" $gps.lng "caption" $caption -}}
+        {{- $marker := dict "url" $full.Permalink "thumb" $thumb.Permalink "lat" $gps.lat "lng" $gps.lng "caption" $caption -}}
         {{- $photoMarkers = $photoMarkers | append $marker -}}
       {{- end -}}
     {{- end -}}
