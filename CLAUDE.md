@@ -136,7 +136,7 @@ Hugo caches processed images in `resources/_gen/`. The first build after adding 
    - Picks up the map div by `.gpx-map` class.
    - If `data-gpx-files` is present: fetches each GPX, draws a coloured polyline, fits map to route bounds.
    - Reads `data-photo-markers` JSON synchronously, creates numbered `<button>` markers via `L.divIcon`.
-   - Hovering a marker shows a floating thumbnail preview (`.velo-preview`) with edge-flip positioning, 80 ms hover-in / 200 ms hover-out delays, touch and keyboard support.
+   - Hovering a marker shows a floating thumbnail preview (`.velo-preview`) with edge-flip positioning, 80 ms hover-in / 200 ms hover-out delays. On touch devices the preview is not shown — tapping a marker opens the lightbox directly.
    - Clicking a marker (or second-tapping on touch) matches the marker URL against `.lb-trigger[data-src]` to open the lightbox.
    - If no GPX files: fits map to photo marker bounds after placing markers.
 

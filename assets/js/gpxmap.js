@@ -49,7 +49,6 @@
     var hoverInTimer = null;
     var hoverOutTimer = null;
     var activeUrl = null;
-    var stickyUrl = null; // touch: URL of the "stuck-open" preview
 
     function showFor(m, btnEl, index) {
       activeUrl = m.url;
@@ -92,7 +91,6 @@
 
     function hide() {
       activeUrl = null;
-      stickyUrl = null;
       clearTimeout(hoverInTimer);
       clearTimeout(hoverOutTimer);
       tip.classList.remove('is-visible');
@@ -118,11 +116,8 @@
       hoverOutTimer = setTimeout(hide, HOVER_OUT_DELAY);
     }
 
-    function isTouch() {
-      return matchMedia('(hover: none)').matches;
-    }
-
     function openLightbox(url) {
+      hide(); // dismiss preview before lightbox opens
       var triggers = document.querySelectorAll('.lb-trigger');
       for (var j = 0; j < triggers.length; j++) {
         try {
@@ -149,26 +144,11 @@
         var btnEl = marker.getElement() && marker.getElement().querySelector('.photo-marker-label');
         if (!btnEl) return;
 
-        btnEl.addEventListener('mouseenter', function () {
-          if (stickyUrl !== null) return;
-          scheduleShow(m, btnEl, i);
-        });
-        btnEl.addEventListener('mouseleave', function () {
-          if (stickyUrl !== null) return;
-          scheduleHide();
-        });
+        btnEl.addEventListener('mouseenter', function () { scheduleShow(m, btnEl, i); });
+        btnEl.addEventListener('mouseleave', function () { scheduleHide(); });
         btnEl.addEventListener('focus', function () { scheduleShow(m, btnEl, i); });
         btnEl.addEventListener('blur', function () { scheduleHide(); });
-        btnEl.addEventListener('click', function () {
-          // Touch: first tap previews, second tap opens lightbox
-          if (isTouch() && stickyUrl !== m.url) {
-            stickyUrl = m.url;
-            showFor(m, btnEl, i);
-          } else {
-            stickyUrl = null;
-            openLightbox(m.url);
-          }
-        });
+        btnEl.addEventListener('click', function () { openLightbox(m.url); });
       });
     });
 
