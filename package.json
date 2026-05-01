@@ -24,6 +24,7 @@
     "test": "npm run -s lint",
     "test:watermark": "node --test tests/watermark-build.test.mjs",
     "test:content-images": "node --test tests/content-images.test.mjs",
+    "audit:deps": "npm audit --audit-level=high",
     "env": "hugo env",
     "precheck": "npm version",
     "check": "hugo version",

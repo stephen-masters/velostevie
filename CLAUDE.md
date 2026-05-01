@@ -237,6 +237,12 @@ The site is deployed to **Cloudflare Pages** (`velostevie.pages.dev`). Cloudflar
 
 The `.github/workflows/deploy.yml` is a **build-check only** workflow (no deployment step); it runs on push to catch build errors in CI independently of Cloudflare.
 
+`.github/workflows/security.yml` runs two security jobs on every push, PR, and weekly on Mondays:
+- **npm-audit** — runs `npm audit --audit-level=high`; fails the workflow on any high or critical CVE in npm dependencies.
+- **trivy** — scans `package-lock.json` for HIGH/CRITICAL vulnerabilities (ignoring unfixed), then generates a CycloneDX SBOM (`sbom.cdx.json`) uploaded as a workflow artefact with 90-day retention.
+
+To run the npm audit locally: `npm run audit:deps`. Trivy is CI-only (no local binary required). To suppress a known false positive, add the CVE ID to `.trivyignore` at the repo root.
+
 To test a production build locally: `HUGO_BASEURL="https://velostevie.com/" npm run build`
 
 ## Architectural principle: build time over runtime
