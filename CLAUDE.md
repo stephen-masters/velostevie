@@ -33,12 +33,16 @@ npm run extract-gps  # regenerate data/photo-gps.json (run after adding new imag
 
 ## Before committing
 
-Always run all tests successfully before creating a git commit:
+Always run all tests successfully before creating a git commit. Run server-free checks first; browser tests last (they require a running dev server):
 
 ```bash
-npm run lint                                          # ESLint, Stylelint, markdownlint
-npx playwright test --project=chromium --reporter=line  # requires dev server on :1313
-node --test tests/watermark-build.test.mjs            # build-time watermark check
+# No server required — run these first
+npm run lint                                            # ESLint, Stylelint, markdownlint
+node --test tests/content-images.test.mjs              # front matter image references
+node --test tests/watermark-build.test.mjs             # build-time watermark check (runs hugo build)
+
+# Requires dev server on :1313 — run last
+npx playwright test --project=chromium --reporter=line
 ```
 
 ## Content conventions
