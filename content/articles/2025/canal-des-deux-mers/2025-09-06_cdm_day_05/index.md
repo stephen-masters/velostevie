@@ -5,9 +5,9 @@ tags:
   - "Le Canal des Deux Mers"
   - "bikepacking"
   - "veloroute"
-image: /images/articles/2025/canal-des-deux-mers/2025-09-06_cdm_day_05/gallery/01_canal.png
+image: /images/articles/2025/canal-des-deux-mers/2025-09-06_cdm_day_05/gallery/05_Castelnaudry.png
 thumbnail:
-  url: /images/articles/2025/canal-des-deux-mers/2025-09-06_cdm_day_05/gallery/01_canal.png
+  url: /images/articles/2025/canal-des-deux-mers/2025-09-06_cdm_day_05/gallery/05_Castelnaudry.png
 ---
 
 The stretch of canal from Toulouse to Castelnaudary was a bit more exposed than more of the journey so far. I had been warned that there had been some disease in the poplar trees along this section and that a lot had been cut down to prevent spread of the disease. The surface was also a little bit rougher, but I was riding a gravel bike with reasonably fat tyres, so it was comfortable enough.
