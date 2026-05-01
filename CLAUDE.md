@@ -72,6 +72,7 @@ All images go through Hugo's asset pipeline:
 | Inline article images | `.Resize "1200x webp"` | `image.html` shortcode |
 | Article hero | `.Resize "1400x webp"` | `_default/single.html` |
 | Route cards / homepage | `.Resize "640x webp"` | `index.html`, list layouts |
+| Map marker thumbnails | `.Resize "200x webp q80"` | `gpxmap.html` shortcode |
 
 A copyright watermark ("© YYYY Stephen Masters") is applied at build time to the three largest sizes; thumbnails are too small to be useful:
 
@@ -82,6 +83,7 @@ A copyright watermark ("© YYYY Stephen Masters") is applied at build time to th
 | Article hero (1400px) | Yes |
 | Gallery thumbnails (800px) | No |
 | Route card thumbnails (640px) | No |
+| Map marker thumbnails (200px) | No |
 
 The year comes from the article's `date` front matter, so 2024 articles get "© 2024" and 2025 articles get "© 2025" automatically.
 
@@ -121,7 +123,7 @@ Hugo caches processed images in `resources/_gen/`. The first build after adding 
 2. **`layouts/shortcodes/gpxmap.html`** runs at Hugo build time:
    - Finds `*.gpx` page-bundle resources → passed as `data-gpx-files="url1|url2"` on the map div.
    - Reads the `gallery` param, matches images via `resources.Match`, looks up GPS from `site.Data["photo-gps"]`.
-   - For each image with GPS: generates a 1920px WebP and builds a `{url, lat, lng, caption}` marker object.
+   - For each image with GPS: generates a 1920px WebP (watermarked, for the lightbox) and a 200px WebP (thumbnail, for the hover preview), and builds a `{url, thumb, lat, lng, caption}` marker object.
    - Serialises the marker array as JSON into `data-photo-markers` on the map div.
    - No browser-side GPS reading — all coordinates are baked in at build time.
    - Renders only if at least one GPX file **or** at least one photo marker exists.
@@ -129,8 +131,9 @@ Hugo caches processed images in `resources/_gen/`. The first build after adding 
 3. **`assets/js/gpxmap.js`** runs in the browser (IIFE, no ES modules):
    - Picks up the map div by `.gpx-map` class.
    - If `data-gpx-files` is present: fetches each GPX, draws a coloured polyline, fits map to route bounds.
-   - Reads `data-photo-markers` JSON synchronously, creates numbered `L.divIcon` markers.
-   - Clicking a marker matches the marker URL against `.lb-trigger[data-src]` to open the lightbox.
+   - Reads `data-photo-markers` JSON synchronously, creates numbered `<button>` markers via `L.divIcon`.
+   - Hovering a marker shows a floating thumbnail preview (`.velo-preview`) with edge-flip positioning, 80 ms hover-in / 200 ms hover-out delays, touch and keyboard support.
+   - Clicking a marker (or second-tapping on touch) matches the marker URL against `.lb-trigger[data-src]` to open the lightbox.
    - If no GPX files: fits map to photo marker bounds after placing markers.
 
 4. **`static/leaflet/`** — Leaflet served locally (not CDN). Loaded only on pages that use `{{< gpxmap >}}`.
@@ -190,7 +193,7 @@ npx playwright test --project=chromium --reporter=line
 npx playwright test tests/gpxmap.spec.ts --project=chromium --reporter=line
 ```
 
-- `tests/gpxmap.spec.ts` — validates that the Leaflet map renders tiles and the GPX polyline loads. Uses Playwright route handlers to strip `integrity` attributes from HTML (SRI would block cross-origin scripts when `canonifyURLs = true` in production mode) and to proxy `velostevie.com` asset requests to localhost.
+- `tests/gpxmap.spec.ts` — validates Leaflet map rendering, GPX polyline loading, and photo marker behaviour (JSON data fields, button rendering, hover preview tooltip, thumbnail wiring, lightbox open on click). Uses a shared `setupInterceptors` helper to strip `integrity` attributes from HTML (SRI would block cross-origin scripts when `canonifyURLs = true` in production mode) and to proxy `velostevie.com` asset requests to localhost.
 - `tests/watermark.spec.ts` — validates copyright watermarks on hero and lightbox images via canvas pixel sampling.
 - `tests/watermark-build.test.mjs` — uses Node.js `node:test` (not Playwright) to run a full Hugo build and check watermarks on every large image in `public/`. Run separately: `node --test tests/watermark-build.test.mjs`. It is excluded from Playwright's test discovery (`testIgnore` in `playwright.config.ts`) to prevent it running concurrently with browser tests and starving the dev server.
 - Playwright is configured with `workers: 1` and `fullyParallel: false` — serial execution prevents the gpxmap route handlers from flooding the dev server with extra fetch calls while other tests are also loading pages.

@@ -1,12 +1,12 @@
 (function () {
-  var HOVER_IN_DELAY  = 80;
+  var HOVER_IN_DELAY = 80;
   var HOVER_OUT_DELAY = 200;
   var TOOLTIP_W = 200;
   var TOOLTIP_GAP = 12;
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[c];
     });
   }
 
@@ -33,12 +33,12 @@
     tip.innerHTML =
       '<img class="velo-preview__img" alt="" />' +
       '<div class="velo-preview__body">' +
-        '<div class="velo-preview__index"></div>' +
-        '<div class="velo-preview__caption"></div>' +
+      '<div class="velo-preview__index"></div>' +
+      '<div class="velo-preview__caption"></div>' +
       '</div>';
     map.getContainer().appendChild(tip);
-    var tipImg     = tip.querySelector('.velo-preview__img');
-    var tipIndex   = tip.querySelector('.velo-preview__index');
+    var tipImg = tip.querySelector('.velo-preview__img');
+    var tipIndex = tip.querySelector('.velo-preview__index');
     var tipCaption = tip.querySelector('.velo-preview__caption');
 
     // Prefetch thumbs to avoid a blank flash on first hover
@@ -46,10 +46,10 @@
       if (m.thumb) { var img = new Image(); img.src = m.thumb; }
     });
 
-    var hoverInTimer  = null;
+    var hoverInTimer = null;
     var hoverOutTimer = null;
     var activeUrl = null;
-    var stickyUrl = null;  // touch: URL of the "stuck-open" preview
+    var stickyUrl = null; // touch: URL of the "stuck-open" preview
 
     function showFor(m, btnEl, index) {
       activeUrl = m.url;
@@ -65,8 +65,8 @@
       // Edge-flip positioning: prefer above-right of marker, flip near edges
       var containerRect = map.getContainer().getBoundingClientRect();
       var btnRect = btnEl.getBoundingClientRect();
-      var mx = btnRect.left - containerRect.left + btnRect.width  / 2;
-      var my = btnRect.top  - containerRect.top  + btnRect.height / 2;
+      var mx = btnRect.left - containerRect.left + btnRect.width / 2;
+      var my = btnRect.top - containerRect.top + btnRect.height / 2;
 
       // Measure tooltip height while hidden
       tip.style.visibility = 'hidden';
@@ -79,13 +79,13 @@
       var H = containerRect.height;
       var tx = mx + 14;
       var ty = my - th - TOOLTIP_GAP;
-      if (tx + TOOLTIP_W > W - 8) { tx = mx - TOOLTIP_W - 14; }  // flip left
-      if (ty < 8)                  { ty = my + 14; }               // flip below
+      if (tx + TOOLTIP_W > W - 8) { tx = mx - TOOLTIP_W - 14; } // flip left
+      if (ty < 8) { ty = my + 14; } // flip below
       tx = Math.max(8, Math.min(W - TOOLTIP_W - 8, tx));
       ty = Math.max(8, Math.min(H - th - 8, ty));
 
       tip.style.left = tx + 'px';
-      tip.style.top  = ty + 'px';
+      tip.style.top = ty + 'px';
       tip.classList.add('is-visible');
       tip.setAttribute('aria-hidden', 'false');
     }
@@ -158,7 +158,7 @@
           scheduleHide();
         });
         btnEl.addEventListener('focus', function () { scheduleShow(m, btnEl, i); });
-        btnEl.addEventListener('blur',  function () { scheduleHide(); });
+        btnEl.addEventListener('blur', function () { scheduleHide(); });
         btnEl.addEventListener('click', function () {
           // Touch: first tap previews, second tap opens lightbox
           if (isTouch() && stickyUrl !== m.url) {

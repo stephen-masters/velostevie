@@ -70,7 +70,7 @@ If no `.gpx` file is present, the map will still render and fit its view to the 
 
 GPS coordinates are extracted from image EXIF data at build time by `scripts/extract-gps.mjs`, which writes them to `data/photo-gps.json`. Hugo's `gpxmap` shortcode reads that file and embeds the coordinates directly into the page HTML as a `data-photo-markers` JSON attribute — no browser-side GPS reading happens at all.
 
-When the page loads, the map script reads the pre-embedded coordinates and places a numbered circle marker for each image that has a location. Clicking a marker opens the lightbox directly to that image.
+When the page loads, the map script reads the pre-embedded coordinates and places a numbered circle marker for each image that has a location. Hovering a marker shows a floating thumbnail preview with the photo and caption. Clicking a marker opens the lightbox directly to that image. On touch devices, the first tap shows the preview and the second tap opens the lightbox.
 
 Images without GPS metadata are shown in the gallery as normal but do not appear on the map.
 
