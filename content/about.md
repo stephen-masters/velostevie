@@ -4,10 +4,16 @@ description: I'm Steve. I ride bikes for longer than is sensible, then write abo
 layout: about
 portrait:
   src: /images/about/portrait.png
-  caption: Somewhere on the Rhins of Galloway, May 2025. Photo by a kind stranger.
+  caption: Me having a break, somewhere alongside the Loire.
 ---
 
-I started cycling properly in my forties, which tells you most of what you need to know about my relationship with good timing. Since then I've ridden across France twice: [La Loire à Vélo](/articles/2024/loire-a-velo/) in 2024 and the [Canal des Deux Mers](/articles/2025/canal-des-deux-mers/) in 2025 — roughly 800&nbsp;km and 1,200&nbsp;km respectively, mostly on a loaded touring bike with questionable knees.
+Back during my studies, I joined the Staffordshire University mountain bike club, and that became my thing for a long time. Later, meeting like-minded friends at work, I started organising trips away to the new (at the time) trail centres, such as Coed y Brenin, Dalbeattie, and Glentress. We even travelled to the Alps for the trails around Les Gets and Morzine.
+
+But after a house move, I found that the local tracks were not great for mountain biking, but the roads were fantastic for road cycling. So I gradually migrated my cycling time into the roads and travelling for Sportives. Combined with enjoying running and swimming, this led me into competing in triathlons.
+
+At some point, I learned about the véloroutes in Europe and France. As a kid, I lived in Paris for four years, and I've loved France ever since. In 2024, thinking about ideas for a vacation and wanting to explore France, I had the idea to try [La Loire à Vélo](/articles/2024/loire-a-velo/), known as one of the best cycle routes in France, around 800km from Nevers near the source of the Loire, all the way to the Atlantic coast. I loved it, so I went to the Fnac website and bought a pile of books about cycle routes in France. In 2025 I picked on the [Canal des Deux Mers](/articles/2025/canal-des-deux-mers/) from Bordeaux to the Mediterranean.
+
+I'm loving this as an approach to vacations, riding a bike with my luggage attached, cycling through a part of the world I don't know, visiting all sorts of sights on the way, and being in France, it also means it's quite easy to enjoy some fantastic food and wine on the way.
 
 This site exists to document those trips and whatever comes next. The posts are a mix of day-by-day route notes, photos, and the odd bit of practical information in case you're planning something similar.
 
@@ -15,4 +21,6 @@ No ads. No newsletter. No tracking beyond what Cloudflare logs at the edge. If y
 
 ---
 
-The site itself is built with [Hugo](https://gohugo.io/) and deployed via [Cloudflare Pages](https://pages.cloudflare.com/). Maps use [Leaflet](https://leafletjs.com/) with OpenStreetMap tiles. Photos are taken on a Fujifilm X-T5. The source code is [on GitHub](https://github.com/stephen-masters/velostevie) if you're curious.
+The site itself is built with [Hugo](https://gohugo.io/) and deployed via [Cloudflare Pages](https://pages.cloudflare.com/). Maps use [Leaflet](https://leafletjs.com/) with OpenStreetMap tiles. The source code is [on GitHub](https://github.com/stephen-masters/velostevie) if you're curious.
+
+The source code includes an extensive `CLAUDE.md` and a design skill generated from [Claude Design](https://claude.ai/design/). If you would like to grab the code and put in your own content, then assistants such as Claude Code and Copilot will be able to read those files and help you get started fast. But even without them, the site has been designed to be very easy to work with and the `README.md` should get you started.
