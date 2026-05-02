@@ -2,6 +2,9 @@
 title: Hello.
 description: I'm Steve. I ride bikes for longer than is sensible, then write about it here.
 layout: about
+portrait:
+  src: /images/about/portrait.jpg
+  caption: Somewhere on the Rhins of Galloway, May 2025. Photo by a kind stranger.
 ---
 
 I started cycling properly in my forties, which tells you most of what you need to know about my relationship with good timing. Since then I've ridden across France twice: [La Loire à Vélo](/articles/2024/loire-a-velo/) in 2024 and the [Canal des Deux Mers](/articles/2025/canal-des-deux-mers/) in 2025 — roughly 800&nbsp;km and 1,200&nbsp;km respectively, mostly on a loaded touring bike with questionable knees.

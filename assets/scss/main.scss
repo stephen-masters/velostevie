@@ -531,6 +531,17 @@ hr {
   }
 }
 
+.about-portrait {
+  margin: 0 0 28px;
+
+  img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+}
+
 .article-hero-image {
   img {
     width: 100%;

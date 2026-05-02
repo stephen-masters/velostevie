@@ -3,8 +3,22 @@
   <header class="about-header">
     <div class="eyebrow">About</div>
     <h1 class="about-title">{{ .Title }}</h1>
-    {{ with .Description }}<p class="about-lede">{{ . }}</p>{{ end }}
   </header>
+
+  {{- with .Params.portrait -}}
+  {{- $src := .src -}}
+  {{- if $src -}}
+  {{- $img := resources.Get (strings.TrimLeft "/" $src) -}}
+  {{- if $img -}}
+  {{- $portrait := $img.Resize "680x webp" -}}
+  <figure class="about-portrait">
+    <img src="{{ $portrait.RelPermalink }}" alt="{{ $.Params.portrait.caption | default $.Title }}" loading="lazy">
+    {{- with $.Params.portrait.caption }}<figcaption>{{ . }}</figcaption>{{ end -}}
+  </figure>
+  {{- end -}}
+  {{- end -}}
+  {{- end }}
+
   {{ .Content }}
 </div>
 {{ end }}
