@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="prose">
+  <header class="about-header">
+    <div class="eyebrow">About</div>
+    <h1 class="about-title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="about-lede">{{ . }}</p>{{ end }}
+  </header>
+  {{ .Content }}
+</div>
+{{ end }}

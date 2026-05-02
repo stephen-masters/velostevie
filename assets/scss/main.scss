@@ -508,6 +508,29 @@ hr {
   }
 }
 
+.about-header {
+  padding: var(--sp-16) 0 var(--sp-8);
+
+  .about-title {
+    font-family: var(--font-serif);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-4xl);
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 12px 0 20px;
+    font-optical-sizing: auto;
+  }
+
+  .about-lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+}
+
 .article-hero-image {
   img {
     width: 100%;
@@ -928,6 +951,7 @@ hr {
 
   .hero .hero-title           { font-size: var(--fs-3xl); }
   .article-header .article-title { font-size: var(--fs-3xl); }
+  .about-header .about-title  { font-size: var(--fs-3xl); }
   .list-header .list-title    { font-size: var(--fs-3xl); }
 
   .prose          { padding-inline: 20px; }
