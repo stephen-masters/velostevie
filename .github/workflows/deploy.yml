@@ -26,10 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Vendor Hugo modules
-        run: hugo mod vendor
-
       - name: Build
-        run: hugo --gc --minify
+        run: npm run build
         env:
           HUGO_BASEURL: https://velostevie.com/
