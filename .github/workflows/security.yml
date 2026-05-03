@@ -9,6 +9,9 @@ on:
     - cron: '0 8 * * 1'  # Weekly on Mondays — catches newly disclosed CVEs between pushes
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   npm-audit:
     name: npm audit
