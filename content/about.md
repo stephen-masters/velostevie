@@ -9,11 +9,11 @@ portrait:
 
 Back during my studies, I joined the Staffordshire University mountain bike club, and that became my thing for a long time. Later, meeting like-minded friends at work, I started organising trips away to the new (at the time) trail centres, such as Coed y Brenin, Dalbeattie, and Glentress. We even travelled to the Alps for the trails around Les Gets and Morzine.
 
-But after a house move, I found that the local tracks were not great for mountain biking, but the roads were fantastic for road cycling. So I gradually migrated my cycling time into the roads and travelling for Sportives. Combined with enjoying running and swimming, this led me into competing in triathlons.
+Gradually, I my cycling time migrated on to the roads with some travelling for Sportives. Combined with enjoying running and swimming, this led me to competing in triathlons.
 
-At some point, I learned about the véloroutes in Europe and France. As a kid, I lived in Paris for four years, and I've loved France ever since. In 2024, thinking about ideas for a vacation and wanting to explore France, I had the idea to try [La Loire à Vélo](/articles/2024/loire-a-velo/), known as one of the best cycle routes in France, around 800km from Nevers near the source of the Loire, all the way to the Atlantic coast. I loved it, so I went to the Fnac website and bought a pile of books about cycle routes in France. In 2025 I picked on the [Canal des Deux Mers](/articles/2025/canal-des-deux-mers/) from Bordeaux to the Mediterranean.
+At some point, I learned about the véloroutes of Europe and France. As a kid, I lived in Paris for four years, and I've loved France ever since. In 2024, thinking about ideas for a vacation and wanting to explore France, I had the idea to try [La Loire à Vélo](/articles/2024/loire-a-velo/), known as one of the best cycle routes in France, around 800km from Nevers near the source of the Loire, all the way to the Atlantic coast. I loved it, so I went to the Fnac website and bought a pile of books about cycle routes in France. In 2025 I picked on the [Canal des Deux Mers](/articles/2025/canal-des-deux-mers/) from Bordeaux to the Mediterranean.
 
-I'm loving this as an approach to vacations, riding a bike with my luggage attached, cycling through a part of the world I don't know, visiting all sorts of sights on the way, and being in France, it also means it's quite easy to enjoy some fantastic food and wine on the way.
+I'm loving this as an approach to travel, riding a bike with my luggage attached, discovering new places and people, eating the food, drinking the wine, and learning the history.
 
 This site exists to document those trips and whatever comes next. The posts are a mix of day-by-day route notes, photos, and the odd bit of practical information in case you're planning something similar.
 
