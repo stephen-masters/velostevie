@@ -2,6 +2,9 @@
 .DS_Store
 Thumbs.db
 
+# Local AI assistant settings (contain machine-specific paths)
+.claude/
+
 # Hugo generated files
 /public
 /prebuild
