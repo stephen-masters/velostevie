@@ -28,25 +28,31 @@
     {{ .Content }}
   </div>
 
-  {{ with .Site.Params.giscus }}
-  <section class="comments container">
-    <h2 class="comments-heading">Comments</h2>
-    <script src="https://giscus.app/client.js"
-      data-repo="{{ .repo }}"
-      data-repo-id="{{ .repoId }}"
-      data-category="{{ .category }}"
-      data-category-id="{{ .categoryId }}"
-      data-mapping="{{ .mapping }}"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="bottom"
-      data-theme="{{ .theme }}"
-      data-lang="en"
-      crossorigin="anonymous"
-      async>
-    </script>
+  <section class="share container">
+    <p class="share-label">Share this report</p>
+    <div class="share-links">
+      <a class="btn btn--secondary" href="https://twitter.com/intent/tweet?url={{ .Permalink | urlquery }}&amp;text={{ .Title | urlquery }}" rel="noopener noreferrer" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+        X / Twitter
+      </a>
+      <a class="btn btn--secondary" href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" rel="noopener noreferrer" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <button class="btn btn--secondary js-copy-link" data-url="{{ .Permalink }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <span>Copy link</span>
+      </button>
+    </div>
   </section>
-  {{ end }}
+  <script>
+  document.querySelector('.js-copy-link')?.addEventListener('click', function () {
+    navigator.clipboard.writeText(this.dataset.url).then(() => {
+      const label = this.querySelector('span');
+      label.textContent = 'Copied!';
+      setTimeout(() => { label.textContent = 'Copy link'; }, 2000);
+    });
+  });
+  </script>
 </article>
 {{ end }}
