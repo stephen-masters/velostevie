@@ -9,6 +9,9 @@ image: /images/articles/2025/canal-des-deux-mers/2025-09-07_cdm_day_06/gallery/1
 thumbnail:
   url: /images/articles/2025/canal-des-deux-mers/2025-09-07_cdm_day_06/gallery/11_Carcassonne.png
 description: "A short 41 km stage from Castelnaudary to Carcassonne, with two nights to explore the spectacular medieval fortified city at leisure"
+distance_km: 41
+elevation_m: 112
+duration: "2h 39m"
 ---
 
 If you’re following the Canal des Deux Mers, then an essential stop is the City of Carcassonne and its spectacular fortified city. There is such a lot to see up there that you really should keep a day set aside to take your time and explore.

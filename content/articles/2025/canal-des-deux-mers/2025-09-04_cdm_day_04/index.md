@@ -9,6 +9,9 @@ image: "/images/articles/2025/canal-des-deux-mers/2025-09-04_cdm_day_04/gallery/
 thumbnail:
   url: "/images/articles/2025/canal-des-deux-mers/2025-09-04_cdm_day_04/gallery/16_Toulouse Halles de la Machine.png"
 description: "62 km from Castelsarasin to Toulouse past the remarkable Montech water slope, then a day exploring the pink city — the Basilica of Saint-Sernin, the city's best cassoulet, and a thrilling visit to Les Halles de la Machine"
+distance_km: 62
+elevation_m: 140
+duration: "3h 27m"
 ---
 
 What a start to the day at Peniche GEMJO. I woke to find a table all to myself set on the deck. It was raining, but the deck was covered, so I enjoyed breakfast listening to the sound of rain falling on the canopy and watching it splash across the canal.

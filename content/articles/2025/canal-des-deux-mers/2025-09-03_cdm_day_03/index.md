@@ -9,6 +9,9 @@ image: "/images/articles/2025/canal-des-deux-mers/2025-09-03_cdm_day_03/gallery/
 thumbnail:
   url: "/images/articles/2025/canal-des-deux-mers/2025-09-03_cdm_day_03/gallery/08_Moissac cloisters.png"
 description: "64 km from Sérignac-sur-Garonne to Castelsarasin, stopping at the magnificent cloisters of Moissac abbey before spending the night aboard the houseboat Péniche GEMJO"
+distance_km: 64
+elevation_m: 220
+duration: "4h 1m"
 ---
 
 Today’s included a stop at the beautiful abbey at Moissac. It is a beautiful church at the front, but it’s important to go around to the back and go inside the cloisters; they’re gorgeous. The centre has a bright green lawn with a huge cedar.

@@ -9,6 +9,9 @@ image: /images/articles/2025/canal-des-deux-mers/2025-09-06_cdm_day_05/gallery/0
 thumbnail:
   url: /images/articles/2025/canal-des-deux-mers/2025-09-06_cdm_day_05/gallery/05_Castelnaudry.png
 description: "65 km from Toulouse to Castelnaudary along the Canal du Midi, arriving at the Grand Bassin and sampling cassoulet in the town widely regarded as its birthplace"
+distance_km: 65
+elevation_m: 311
+duration: "4h 6m"
 ---
 
 The stretch of canal from Toulouse to Castelnaudary was a bit more exposed than more of the journey so far. I had been warned that there had been some disease in the poplar trees along this section and that a lot had been cut down to prevent spread of the disease. The surface was also a little bit rougher, but I was riding a gravel bike with reasonably fat tyres, so it was comfortable enough.

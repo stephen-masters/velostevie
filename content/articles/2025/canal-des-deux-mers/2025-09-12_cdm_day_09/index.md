@@ -9,6 +9,9 @@ image: /images/articles/2025/canal-des-deux-mers/2025-09-12_cdm_day_09/gallery/0
 thumbnail:
   url: /images/articles/2025/canal-des-deux-mers/2025-09-12_cdm_day_09/gallery/06_Gruissan_salt_lake_pink_water.png
 description: "46 km from Gruissan to Béziers along the Mediterranean coast, passing the pink salt ponds of Gruissan and the famous nine locks of Fonseranes before climbing into the historic hilltop city"
+distance_km: 46
+elevation_m: 204
+duration: "2h 55m"
 ---
 
 The final leg of the trip. I took my time in the morning, and paid a visit to the pink salt ponds at Gruissan before making my way along the coast to Béziers, where I was planning to catch a train back to Paris.
