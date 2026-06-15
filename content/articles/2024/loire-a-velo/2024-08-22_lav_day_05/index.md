@@ -9,6 +9,9 @@ image: /images/articles/2024/loire-a-velo/lav_day_05/orleans_cathedral_truncated
 thumbnail:
   url: /images/articles/2024/loire-a-velo/lav_day_05/orleans_cathedral_truncated.png
 description: "A short 23 km ride from Jargeau into Orléans — the first proper city on the route — with time to explore the cathedral, the Renaissance Hôtel Groslot, and the riverfront"
+distance_km: 24
+elevation_m: 30
+duration: "1h 45m"
 ---
 
 Day 5 would be a relatively short ride of about 23 km from Jargeau to the city of Orléans. I could easily have ridden further but Orléans is a must-visit city for me.

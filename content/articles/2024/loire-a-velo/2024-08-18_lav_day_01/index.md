@@ -9,6 +9,9 @@ image: "/images/articles/2024/loire-a-velo/lav_day_01/gallery/08_On the aqueduct
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_01/gallery/08_On the aqueduct.png"
 description: "58 km from Nevers to Pouilly-sur-Loire along the canal towpath, passing the confluence of the Alier and Loire at Bec d'Alier and the medieval bookshop town of La Charité-sur-Loire"
+distance_km: 64
+elevation_m: 137
+duration: "4h 4m"
 ---
 
 Today was the first day of my La Loire à Vélo itinerary, taking me 60km from Neversto Pouilly-sur-Loire. The day would take me past Cuffy, Bec d'Alier, and include a stop at La Charité-sur-Loire to have a look around the bookshops.

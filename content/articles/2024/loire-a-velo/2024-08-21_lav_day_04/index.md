@@ -9,6 +9,9 @@ image: /images/articles/2024/loire-a-velo/lav_day_04/gallery/16_Châteauneuf-sur
 thumbnail:
   url: /images/articles/2024/loire-a-velo/lav_day_04/gallery/16_Châteauneuf-sur-Loire.png
 description: "A short 30 km stage from Sully-sur-Loire to Jargeau, stopping at the Romanesque abbey of St-Benoît-sur-Loire and the Carolingian Oratory at Germigny-des-Prés with its mosaic of the Ark of the Covenant"
+distance_km: 40
+elevation_m: 59
+duration: "3h 7m"
 ---
 
 Once again, the included breakfast was bread, pastries, yoghurt, juice, and coffee. I was looking forward to a relatively easy 30 km of riding.

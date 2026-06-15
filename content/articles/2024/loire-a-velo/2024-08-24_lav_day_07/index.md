@@ -9,6 +9,9 @@ image: "/images/articles/2024/loire-a-velo/lav_day_07/Panoramic view in central 
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_07/gallery/08_Boats on the river at Chaumont-sur-Loire.png"
 description: "43 km from Blois to Amboise, passing the hilltop Château de Chaumont-sur-Loire and arriving in the medieval town that was home to Leonardo da Vinci in his final years"
+distance_km: 36
+elevation_m: 200
+duration: "2h 35m"
 ---
 
 Candé-sur-Beuvron is a small town about 10km from Blois. As you approach the town, there is a pretty alley under the trees and to the right is a boulangerie/patisserie. It seems to be a popular spot for cyclists looking to have a short break and a treat. I stopped to get a religieuse and sat outside to eat it and watch the world go by.

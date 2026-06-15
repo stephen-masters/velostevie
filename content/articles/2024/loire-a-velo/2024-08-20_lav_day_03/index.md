@@ -9,6 +9,9 @@ image: "/images/articles/2024/loire-a-velo/lav_day_03/Wide view across the river
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_03/Wide view across the river leaving Ousson-sur-Loire.png"
 description: "41 km from Ousson-sur-Loire to Sully-sur-Loire, passing the spectacular Briare aqueduct — built with help from Gustave Eiffel — and the brick château at Gien"
+distance_km: 51
+elevation_m: 203
+duration: "3h 49m"
 ---
 
 I began the day with a breakfast which included some wonderfully fresh pain au chocolat. During breakfast, I got chatting to a French couple in their seventies who were also cycling the Loire. They explained that they had e-bikes, which is a great way to be able to stay active and do holidays like this when the body might struggle to keep up with the demands.

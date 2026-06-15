@@ -9,6 +9,9 @@ image: "/images/articles/2024/loire-a-velo/lav_day_11/Le Mouton - B&B at Blaison
 thumbnail:
   url: /images/articles/2024/loire-a-velo/lav_day_11/gallery/09_Le Mouton - B&B at Blaison St Sulpice.png
 description: "A day planned as 43 km from Saumur that stretched to nearly 80 after a wrong turn — rescued by the extraordinary hospitality at Le Mouton B&B near Blaison-Saint-Sulpice"
+distance_km: 83
+elevation_m: 274
+duration: "5h 2m"
 ---
 
 Today was significantly more riding than planned! I had planned to stay in La Daguennière, but I ended up finding a B&B on the opposite side of the river near Blaison St Sulpice. Unfortunately, I missed a turning, which led to me riding all the way to Les Ponts de Cé, and then back to La Daguennière. And no - I didn't realise that I wasn't supposed to finish at La Daguennière until I got there and tried to find my accommodation.

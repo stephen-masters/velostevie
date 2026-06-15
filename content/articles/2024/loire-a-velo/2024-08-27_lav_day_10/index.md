@@ -9,6 +9,9 @@ image: "/images/articles/2024/loire-a-velo/lav_day_10/gallery/02_Candes Saint Ma
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_10/gallery/02_Candes Saint Martin.png"
 description: "43 km from Rigny-Ussé to Saumur along a particularly scenic stretch of the Loire, with troglodyte dwellings at Turquant and a surprising underground cave café at Souzay"
+distance_km: 37
+elevation_m: 152
+duration: "2h 40m"
 ---
 
 Today was a particularly pretty stretch of the Loire, starting the river and church at Candes Saint Martin, then Monsoureau.

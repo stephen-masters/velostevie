@@ -9,6 +9,9 @@ image: "/images/articles/2024/loire-a-velo/lav_day_08/gallery/08_Château du Clo
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_08/gallery/08_Château du Clos Lucé.png"
 description: "27 km from Amboise to Tours, starting with a visit to Château du Clos Lucé — Leonardo da Vinci's last residence — then following vineyard paths into Tours and its Gothic cathedral"
+distance_km: 31
+elevation_m: 128
+duration: "2h 1m"
 ---
 
 After breakfast in the luxurious dining room of the [Logis Hôtel la Brèche](https://www.logishotels.com/en/hotel/logis-hotel-la-breche-3421),
