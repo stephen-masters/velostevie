@@ -559,6 +559,15 @@ hr {
   }
 }
 
+.about-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: var(--sp-12);
+  padding-top: var(--sp-12);
+  border-top: 1px solid var(--border);
+}
+
 .article-hero-image {
   img {
     width: 100%;
