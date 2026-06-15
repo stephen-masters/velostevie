@@ -52,6 +52,14 @@
   {{ with .Description }}<p class="list-intro">{{ . }}</p>{{ end }}
 </div>
 
+{{ if or .Params.total_km .Params.total_days .Params.date_range }}
+<div class="route-stats container">
+  {{ with .Params.total_km }}<div class="route-stats__item"><span class="route-stats__val">{{ . }}&thinsp;km</span><span class="route-stats__label">total distance</span></div>{{ end }}
+  {{ with .Params.total_days }}<div class="route-stats__item"><span class="route-stats__val">{{ . }}</span><span class="route-stats__label">{{ if eq (int .) 1 }}day{{ else }}days{{ end }}</span></div>{{ end }}
+  {{ with .Params.date_range }}<div class="route-stats__item"><span class="route-stats__val">{{ . }}</span><span class="route-stats__label">dates</span></div>{{ end }}
+</div>
+{{ end }}
+
 {{ .Content }}
 
 <div class="list-grid container">

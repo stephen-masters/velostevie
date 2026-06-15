@@ -301,6 +301,22 @@ hr {
   &:hover { color: var(--ink); }
 }
 
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: var(--sp-6);
+  z-index: 100;
+  background: var(--forest);
+  color: var(--paper);
+  padding: var(--sp-2) var(--sp-6);
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+  font-family: var(--font-sans);
+  text-decoration: none;
+
+  &:focus { top: var(--sp-2); }
+}
+
 // =============================================================================
 // Footer
 // =============================================================================
@@ -344,6 +360,7 @@ hr {
     flex-direction: column;
     gap: 6px;
   }
+
   a {
     font-size: var(--fs-sm);
     color: var(--fg-muted);
@@ -576,6 +593,79 @@ hr {
   }
 }
 
+.article-route-link {
+  margin-bottom: var(--sp-3);
+
+  a {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-muted);
+    text-decoration: none;
+
+    &:hover { color: var(--link-hover); }
+  }
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+
+.article-tag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--fg-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+
+  &:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+}
+
+.day-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-8);
+  padding: var(--sp-6) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: var(--sp-6);
+  max-width: var(--prose-max);
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  &__val {
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-semibold);
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  &__label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-muted);
+  }
+}
+
 // =============================================================================
 // Prose
 // =============================================================================
@@ -662,6 +752,39 @@ hr {
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   padding-bottom: var(--sp-24);
+}
+
+.route-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-8);
+  padding: var(--sp-6) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-8);
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  &__val {
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-semibold);
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  &__label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-muted);
+  }
 }
 
 // =============================================================================
@@ -978,6 +1101,51 @@ hr {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+  }
+}
+
+.day-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-8);
+  border-top: 1px solid var(--border);
+  max-width: var(--prose-max);
+
+  &__next { margin-left: auto; }
+}
+
+// =============================================================================
+// 404
+// =============================================================================
+
+.notfound {
+  padding: var(--sp-24) 0 var(--sp-32);
+  text-align: center;
+
+  &__code {
+    font-family: var(--font-mono);
+    font-size: var(--fs-5xl);
+    font-weight: var(--fw-bold);
+    color: var(--stone-soft);
+    line-height: 1;
+    margin-bottom: var(--sp-4);
+  }
+
+  &__title {
+    font-family: var(--font-serif);
+    font-size: var(--fs-3xl);
+    margin-bottom: var(--sp-3);
+  }
+
+  &__message {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--fs-lg);
+    color: var(--fg-muted);
+    margin-bottom: var(--sp-8);
   }
 }
 

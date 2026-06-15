@@ -1,0 +1,8 @@
+{{ define "main" }}
+<div class="notfound container">
+  <div class="notfound__code">404</div>
+  <h1 class="notfound__title">Page not found</h1>
+  <p class="notfound__message">That route seems to have disappeared. Maybe the map was wrong.</p>
+  <a class="btn btn--primary" href="{{ "/" | relURL }}">Back to home</a>
+</div>
+{{ end }}

@@ -19,14 +19,37 @@
   {{ end }}
 
   <header class="article-header container">
+    <div class="article-route-link"><a href="{{ .CurrentSection.Permalink }}">← {{ .CurrentSection.Title }}</a></div>
     <div class="eyebrow">Route report · {{ .Date.Format "January 2006" }}</div>
     <h1 class="article-title">{{ .Title }}</h1>
     {{ with .Description }}<p class="article-lede">{{ . }}</p>{{ end }}
+    {{ with .Params.tags }}
+    <div class="article-tags">
+      {{ range . }}<a href="/tags/{{ . | urlize }}/" class="article-tag">{{ . }}</a>{{ end }}
+    </div>
+    {{ end }}
   </header>
+
+  {{ if or .Params.distance_km .Params.elevation_m .Params.duration }}
+  <div class="day-stats container">
+    {{ with .Params.distance_km }}<div class="day-stats__item"><span class="day-stats__val">{{ . }}&thinsp;km</span><span class="day-stats__label">distance</span></div>{{ end }}
+    {{ with .Params.elevation_m }}<div class="day-stats__item"><span class="day-stats__val">{{ . }}&thinsp;m</span><span class="day-stats__label">elevation</span></div>{{ end }}
+    {{ with .Params.duration }}<div class="day-stats__item"><span class="day-stats__val">{{ . }}</span><span class="day-stats__label">moving time</span></div>{{ end }}
+  </div>
+  {{ end }}
 
   <div class="prose">
     {{ .Content }}
   </div>
+
+  <nav class="day-nav container" aria-label="Day navigation">
+    {{ with .PrevInSection }}
+    <a class="btn btn--secondary day-nav__prev" href="{{ .Permalink }}">← Previous day</a>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a class="btn btn--secondary day-nav__next" href="{{ .Permalink }}">Next day →</a>
+    {{ end }}
+  </nav>
 
   <section class="share container">
     <p class="share-label">Share this report</p>
