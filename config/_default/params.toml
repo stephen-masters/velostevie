@@ -4,6 +4,9 @@
 [author]
   name = "Stephen Masters"
   github = "https://github.com/stephen-masters"
+  mastodon = "https://hachyderm.io/@Stevie"
+  linkedin = "stephenmasters"
+  scattercode = "https://scattercode.dev"
 
 [giscus]
   repo       = "stephen-masters/velostevie"

@@ -7,6 +7,14 @@
         <a href="{{ "/index.xml" | relURL }}">RSS lives here.</a>
       </p>
     </div>
+    <div class="footer-links">
+      <ul>
+        {{ with .Site.Params.author.github }}<li><a href="{{ . }}">GitHub</a></li>{{ end }}
+        {{ with .Site.Params.author.mastodon }}<li><a href="{{ . }}">Mastodon</a></li>{{ end }}
+        {{ with .Site.Params.author.linkedin }}<li><a href="https://linkedin.com/in/{{ . }}">LinkedIn</a></li>{{ end }}
+        {{ with .Site.Params.author.scattercode }}<li><a href="{{ . }}">scattercode.dev ↗</a></li>{{ end }}
+      </ul>
+    </div>
     <div class="footer-copy">© {{ now.Year }} · no cookies · no tracking</div>
   </div>
 </footer>
