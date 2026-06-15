@@ -1,6 +1,6 @@
 ---
-title: Hello.
-description: I'm Steve. I ride bikes for longer than is sensible, then write about it here.
+title: Hello, I'm Stevie.
+description: I'm Stevie. I ride bikes for longer than is sensible, then write about it here.
 layout: about
 portrait:
   src: /images/about/portrait.png
