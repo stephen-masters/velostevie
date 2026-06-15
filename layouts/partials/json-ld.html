@@ -1,0 +1,21 @@
+{{- $authorUrl := print .Site.BaseURL "about/" -}}
+{{- $author := dict "@type" "Person" "name" .Site.Params.author.name "url" $authorUrl -}}
+
+{{- if .IsHome -}}
+  {{- $schema := dict "@context" "https://schema.org" "@type" "WebSite" "name" .Site.Title "url" .Site.BaseURL "description" .Site.Params.main.description "author" $author -}}
+  {{- printf "<script type=\"application/ld+json\">%s</script>" ($schema | jsonify) | safeHTML }}
+{{- else if .IsPage -}}
+  {{- $desc := or .Description .Site.Params.main.description -}}
+  {{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "author" $author "publisher" $author -}}
+  {{- with .Params.tags -}}
+    {{- $schema = merge $schema (dict "keywords" (delimit . ", ")) -}}
+  {{- end -}}
+  {{- printf "<script type=\"application/ld+json\">%s</script>" ($schema | jsonify) | safeHTML }}
+{{- else if .IsSection -}}
+  {{- $desc := or .Description .Site.Params.main.description -}}
+  {{- $schema := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "url" .Permalink "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "author" $author "publisher" $author -}}
+  {{- with .Params.tags -}}
+    {{- $schema = merge $schema (dict "keywords" (delimit . ", ")) -}}
+  {{- end -}}
+  {{- printf "<script type=\"application/ld+json\">%s</script>" ($schema | jsonify) | safeHTML }}
+{{- end -}}
