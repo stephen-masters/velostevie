@@ -8,6 +8,7 @@ tags:
 image: /images/articles/2025/canal-des-deux-mers/2025-09-02_cdm_day_02/gallery/02_castets_boats.png
 thumbnail:
   url: /images/articles/2025/canal-des-deux-mers/2025-09-02_cdm_day_02/gallery/02_castets_boats.png
+description: "80 km from Langon to Sérignac-sur-Garonne, with an essential stop at the 12th-century church of Saint Vincent in Le Mas d'Agenais, home to Rembrandt's painting of Christ on the Cross"
 ---
 
 An essential stop on this leg was to visit the 12th century church of Saint Vincent in Le Mas d’Agenais. It is famed as the home of Rembrandt’s oil painting of a tormented Christ on the Cross.

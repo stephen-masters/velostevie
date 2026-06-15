@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2025/canal-des-deux-mers/2025-09-09_cdm_day_07/gallery/19_Narbonne - View from top of bishops palace.png"
 thumbnail:
   url: "/images/articles/2025/canal-des-deux-mers/2025-09-09_cdm_day_07/gallery/19_Narbonne - View from top of bishops palace.png"
+description: "69 km from Carcassonne to Narbonne via the vineyards, with a rest day to explore this former Roman port — its soaring cathedral, the Bishop's Palace museum, and a vibrant covered market"
 ---
 
 This stage followed the canal initially, but instead of staying on the canal through to Béziers, it is a detour into the hills and vineyards approaching Narbonne. I had been told that Narbonne is a beautiful city to visit, so I had planned to get myself there and have a day to explore.

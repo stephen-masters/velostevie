@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2024/loire-a-velo/lav_day_14/gallery/03_Saint-Nazaire foot sculpture.png"
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_14/gallery/03_Saint-Nazaire foot sculpture.png"
+description: "The final day of La Loire à Vélo — a train to Saint-Nazaire to touch the Atlantic coast, then the TGV back to Paris in time to see the Olympic flame balloon lit at the Louvre"
 ---
 
 The Loire à Vélo route officially finishes at the coast, either at Saint Brevin les Pins or Saint Nazaire. In the time constraints I had, I didn't have time to cycle that and return to Nantes for my train to Paris. But I did have time to get a train from Nantes to Saint Nazaire and back again with a couple of hours to have a look around.

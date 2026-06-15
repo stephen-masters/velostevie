@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2024/loire-a-velo/lav_day_02/gallery/05_View of vineyards from Sancerre.png"
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_02/gallery/05_View of vineyards from Sancerre.png"
+description: "60 km from Pouilly-sur-Loire to Ousson-sur-Loire, with a rewarding climb to the hilltop wine town of Sancerre for lunch and panoramic views across the Loire valley"
 ---
 
 Day two of my La Loire à Vélo itinerary took me 60 km from Pouilly-sur-Loire to Ousson-sur-Loire with stops in Sancerre and Cosne-Cours-sur-Loire.

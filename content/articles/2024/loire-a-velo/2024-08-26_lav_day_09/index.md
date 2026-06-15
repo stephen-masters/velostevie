@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2024/loire-a-velo/lav_day_09/Boat on the Loire at Savonnières (wide).png"
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_09/gallery/01_Sunflower face.png"
+description: "43 km from Tours to Rigny-Ussé, passing sunflower fields and the mirror-still Cher river before visiting the Château d'Ussé, Charles Perrault's inspiration for Sleeping Beauty"
 ---
 
 Today was a day of magical images. I passed through fields full of sunflowers, and spotted that there seems to be a trend for picking out some of the seeds to make faces on many of the flower heads that are close to the path. It really is quite effective and a bit spooky!

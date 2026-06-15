@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2024/loire-a-velo/lav_day_13/Les Machines de L'Île Elephant.png"
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_13/Les Machines de L'Île Elephant.png"
+description: "56 km from Montjean-sur-Loire towards Nantes, finishing with a visit to Les Halles de la Machine — the extraordinary workshop of giant mechanical creatures that built the horse ridden by Jeanne d'Arc at the Paris Olympics"
 ---
 
 Today was 56 km from the farmhouse B&B on Île de Chalonnes to Nantes. However, my knee was painful from the start. For a little way after passing Mauges-sur-Loire, there's a fun stretch of river with regular art installations next to the cycle path. These seemed a regular occurrence until I pulled into the town of Ancenis after about 30 km.

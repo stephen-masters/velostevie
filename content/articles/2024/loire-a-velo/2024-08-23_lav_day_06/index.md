@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2024/loire-a-velo/lav_day_06/gallery/10_Selfie at Chambord.png"
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_06/gallery/10_Selfie at Chambord.png"
+description: "A 63 km day from Orléans to Blois, with an unmissable detour to Chambord — François I's magnificent hunting lodge with its famous double-helix staircase — before climbing into the Renaissance town of Blois"
 ---
 
 Today's ride was planned to be around 63 km, but ended up somewhat longer to a detour to Chambord. However, of all the châteaux of the Loire, Chambord stands out as one of the most famous for its incredible architecture. It really isn't an optional detour – you must do it.

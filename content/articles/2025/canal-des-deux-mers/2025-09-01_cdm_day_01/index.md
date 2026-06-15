@@ -8,6 +8,7 @@ tags:
 image: /images/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/gallery/14_Bike_path_leaving_Bordeaux.png
 thumbnail:
   url: /images/articles/2025/canal-des-deux-mers/2025-09-01_cdm_day_01/gallery/14_Bike_path_leaving_Bordeaux.png
+description: "74 km from Bordeaux to Langon following the Piste Cyclable Roger Lapebie, a flat greenway on a former railway line, before a hillier finale crossing the valleys towards the Garonne"
 ---
 
 After enjoying a day exploring Bordeaux, this was a gentle start to the route. Crossing the river, the route doesn’t follow the river or canals. Instead, it follows the Piste Cyclable Roger Lapebie. This greenway was a railway track at some point in its past.

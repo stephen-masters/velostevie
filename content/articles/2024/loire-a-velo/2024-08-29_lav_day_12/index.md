@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2024/loire-a-velo/lav_day_12/gallery/08_Au bout de l'île - Ginguette.png"
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_12/gallery/08_Au bout de l'île - Ginguette.png"
+description: "58 km from La Daguenière to the Île de Chalonnes, with a detour to Brissac — home to the tallest château in the Loire — and an evening at a traditional riverside guinguette"
 ---
 
 Today is a reasonably long 58km ride from the wonderful chambre d'hôte (B&B) at La Daguenière to Île de Chalonnes, an island close to Montjean-sur-Loire. At breakfast this morning my hosts recommended that I start with a detour to nearby Brissac which has the tallest château in the Loire. I think it took less than an hour to get there and it was a nice stop. I was able to find a nice café in the town centre and ate a nice crépe from a vendor in the market.

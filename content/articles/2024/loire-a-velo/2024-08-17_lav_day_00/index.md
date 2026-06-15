@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2024/loire-a-velo/lav_day_00/gallery/01_Leaving home.png"
 thumbnail:
   url: "/images/articles/2024/loire-a-velo/lav_day_00/gallery/01_Leaving home.png"
+description: "The logistics of getting from Stoke-on-Trent to Nevers to start La Loire à Vélo — trains to Dover, a ferry to Calais, and trains via Paris to the Loire"
 ---
 
 I live in Staffordshire, so getting to Nevers was a bit of a mission. The Eurostar doesn't accept bicycles except in bags, so it wasn't an option for me on this occasion. Therefore, I planned the route to get trains to Dover on Saturday, take a ferry across the Channel, a train from Calais to Paris, then a train from Paris to Nevers.

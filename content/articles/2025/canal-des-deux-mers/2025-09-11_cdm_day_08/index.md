@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2025/canal-des-deux-mers/2025-09-11_cdm_day_08/gallery/05_Selfie to celebrate reaching the Mediterranean.png"
 thumbnail:
   url: "/images/articles/2025/canal-des-deux-mers/2025-09-11_cdm_day_08/gallery/05_Selfie to celebrate reaching the Mediterranean.png"
+description: "A short 19 km ride from Narbonne to reach the Mediterranean at Gruissan Plage — the beach setting from the film Betty Blue — celebrated with fish stew and a glass of rosé"
 ---
 
 When I was planning the route, I was in the mood to get from Narbonne to the coast as quickly as possible and follow the coast to Béziers. In my research I discovered that the move Betty Blue (37.2 degrés le matin) had been filmed at Gruissan. I remembered the seemingly idyllic setting on the beach with wooden houses on stilts and decided that I should stay there.

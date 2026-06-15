@@ -8,6 +8,7 @@ tags:
 image: "/images/articles/2025/canal-des-deux-mers/2025-09-13_cdm_day_10/gallery/01_At Béziers station with my bike bag.png"
 thumbnail:
   url: "/images/articles/2025/canal-des-deux-mers/2025-09-13_cdm_day_10/gallery/01_At Béziers station with my bike bag.png"
+description: "The journey home from Béziers — a train to Paris for a final afternoon exploring the Marais and Île Saint-Louis before the Eurostar back to the UK"
 ---
 
 To get myself back home, I had myself booked on an early train from Béziers to Paris. I aimed to get to Paris early so that I could explore and then enjoy good food in the evening. The following day, I would be getting the Eurostar back to the UK.
