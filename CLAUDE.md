@@ -245,6 +245,18 @@ To run the npm audit locally: `npm run audit:deps`. Trivy is CI-only (no local b
 
 To test a production build locally: `HUGO_BASEURL="https://velostevie.com/" npm run build`
 
+## Analytics
+
+Web analytics are provided by **Plausible** (privacy-friendly, no cookies).
+
+| | |
+|---|---|
+| Dashboard | https://plausible.io/velostevie.com |
+| Script URL | Stored in `config/_default/params.toml` under `[analytics] plausible_src` |
+| Template | `layouts/partials/head.html` — emitted only when `hugo.IsProduction` is true |
+
+The snippet is absent from `hugo server` (development) builds and present in the Cloudflare Pages production build. To update the script URL, edit `params.toml`.
+
 ## Architectural principle: build time over runtime
 
 **The site's priority is a fast experience for readers.** Longer build times are an acceptable trade-off. When facing a design choice, always prefer doing work at build time over doing it in the browser.
