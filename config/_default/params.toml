@@ -8,6 +8,9 @@
   linkedin = "stephenmasters"
   scattercode = "https://scattercode.dev"
 
+[analytics]
+  plausible_src = "https://plausible.io/js/pa-OvjX9Vo86uvrgAHL-3EkJ.js"
+
 [giscus]
   repo       = "stephen-masters/velostevie"
   repoId     = "R_kgDORzLGcA"
