@@ -298,3 +298,24 @@ When adding new features, ask: *can this computation happen during the build ins
 - Custom templates live in `layouts/` — edit these directly to change site structure or appearance.
 - Images are stored under `assets/images/` (not `static/images/`), processed by Hugo's pipeline at build time.
 - Every script in `scripts/` must have a header comment block explaining its purpose, prerequisites, and how to run it. Apply this to any new script added to the project.
+
+
+## Commit messages
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/).
+They are enforced on every local commit by a shared git hook at
+`.githooks/commit-msg`.
+
+Format: `<type>[(scope)][!]: <description>`
+
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`,
+  `ci`, `chore`, `revert`.
+- The description is non-empty with no trailing full stop.
+- The header is 100 characters or fewer (72 or fewer preferred).
+- A body, if present, is separated from the header by a blank line.
+
+After cloning, enable the shared hooks once:
+
+```sh
+git config core.hooksPath .githooks
+```
