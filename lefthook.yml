@@ -1,0 +1,31 @@
+# Lefthook — git hooks manager. Installed via the "prepare" npm script
+# (npx lefthook install), which writes the hooks into .git/hooks.
+#
+# pre-commit runs the linters on staged files only (fast); the full build
+# runs on pre-push. commit-msg enforces Conventional Commits by calling the
+# shared script in .githooks/.
+
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: "*.{js,mjs,cjs}"
+      run: npx eslint {staged_files}
+    stylelint:
+      glob: "*.{css,scss,sass,sss,less}"
+      run: npx stylelint {staged_files}
+    markdownlint:
+      glob: "*.md"
+      exclude:
+        - CLAUDE.md
+      run: npx markdownlint-cli2 {staged_files}
+
+pre-push:
+  commands:
+    build:
+      run: npm run build
+
+commit-msg:
+  commands:
+    conventional:
+      run: .githooks/commit-msg {1}

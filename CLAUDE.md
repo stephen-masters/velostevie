@@ -300,22 +300,23 @@ When adding new features, ask: *can this computation happen during the build ins
 - Every script in `scripts/` must have a header comment block explaining its purpose, prerequisites, and how to run it. Apply this to any new script added to the project.
 
 
-## Commit messages
+## Git hooks
 
-This project uses [Conventional Commits](https://www.conventionalcommits.org/).
-They are enforced on every local commit by a shared git hook at
-`.githooks/commit-msg`.
+Git hooks are managed by [Lefthook](https://lefthook.dev) (`lefthook.yml`) and
+installed automatically by the `prepare` npm script on `npm install`.
 
-Format: `<type>[(scope)][!]: <description>`
+- **pre-commit** — ESLint, Stylelint and markdownlint on staged files.
+- **pre-push** — the full `npm run build`.
+- **commit-msg** — enforces [Conventional Commits](https://www.conventionalcommits.org/)
+  via the shared script at `.githooks/commit-msg`.
+
+Conventional Commits format: `<type>[(scope)][!]: <description>`
 
 - Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`,
   `ci`, `chore`, `revert`.
-- The description is non-empty with no trailing full stop.
-- The header is 100 characters or fewer (72 or fewer preferred).
+- The description is non-empty with no trailing full stop; the header is 100
+  characters or fewer (72 or fewer preferred).
 - A body, if present, is separated from the header by a blank line.
 
-After cloning, enable the shared hooks once:
-
-```sh
-git config core.hooksPath .githooks
-```
+If the hooks are not active after cloning, run `lefthook install` (or
+`npm install`).
