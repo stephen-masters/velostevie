@@ -25,4 +25,4 @@ The site itself is built with [Hugo](https://gohugo.io/) and deployed via [Cloud
 
 The source code includes an extensive `CLAUDE.md` and a design skill generated from [Claude Design](https://claude.ai/design/). If you would like to grab the code and put in your own content, then assistants such as Claude Code and Copilot will be able to read those files and help you get moving fast. But even without them, the site has been designed to be very easy to work with. Take a look at the `README.md` and start your own journey.
 
-In my day job, I develop software. I also help out at the [Armenian Institute](https://www.armenianinstitute.org/), where I'm cuttently on the Board of Trustees. If you're curious about that, then feel free to check out [my blog](https://scattercode.dev/).
+In my day job, I develop software. I also help out at the [Armenian Institute](https://www.armenianinstitute.org/), where I'm currently on the Board of Trustees. If you're curious about that, then feel free to check out [my blog](https://scattercode.dev/).
