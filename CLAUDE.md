@@ -252,10 +252,33 @@ Web analytics are provided by **Plausible** (privacy-friendly, no cookies).
 | | |
 |---|---|
 | Dashboard | https://plausible.io/velostevie.com |
-| Script URL | Stored in `config/_default/params.toml` under `[analytics] plausible_src` |
+| Snippet path | `config/_default/params.toml` under `[analytics] plausible_src` — the **first-party path** `/js/script.js`, not the plausible.io URL |
 | Template | `layouts/partials/head.html` — emitted only when `hugo.IsProduction` is true |
+| Script proxy | `functions/js/script.js.js` (Cloudflare Pages Function) |
+| Event proxy | `functions/api/event.js` (Cloudflare Pages Function) |
 
-The snippet is absent from `hugo server` (development) builds and present in the Cloudflare Pages production build. To update the script URL, edit `params.toml`.
+The snippet is absent from `hugo server` (development) builds and present in the Cloudflare Pages production build.
+
+### First-party proxy
+
+Both the tracking script and the event beacon are proxied through the site's own
+origin via Cloudflare Pages Functions, so that tracker blocklists (which match on
+the `plausible.io` domain) do not block them:
+
+- `/js/script.js` → proxied to the hashed Plausible script by `functions/js/script.js.js`
+- `/api/event` → proxied to Plausible's ingest endpoint by `functions/api/event.js`, which forwards the real client IP (`CF-Connecting-IP` → `X-Forwarded-For`) and `User-Agent` so geolocation and unique-visitor counts stay correct
+
+The snippet points `<script src>` at `/js/script.js` and calls
+`plausible.init({endpoint:"/api/event"})`. The **upstream hashed script URL lives
+in the Pages Function** (`UPSTREAM_SCRIPT`), not in `params.toml`. To rotate the
+script, update the dashboard and edit `functions/js/script.js.js`. The Pages
+Functions run only on Cloudflare (production) — they are not exercised by
+`hugo server`, so verify the proxy after deploy by requesting
+`https://velostevie.com/js/script.js` (expect HTTP 200, JS body).
+
+The proxy defeats domain-based blocking but not bots: Cloudflare's server-side
+"unique visitors" count includes crawlers that never run JavaScript, so it will
+always read much higher than Plausible's JS-based count.
 
 ## Architectural principle: build time over runtime
 

@@ -9,7 +9,14 @@
   scattercode = "https://scattercode.dev"
 
 [analytics]
-  plausible_src = "https://plausible.io/js/pa-OvjX9Vo86uvrgAHL-3EkJ.js"
+  # First-party path served by the Cloudflare Pages Function at
+  # functions/js/script.js.js, which proxies the real Plausible script.
+  # The event beacon is likewise proxied via functions/api/event.js and
+  # wired up with plausible.init({endpoint:"/api/event"}) in head.html.
+  # Proxying keeps both requests same-origin so tracker blocklists that
+  # match the plausible.io domain do not block them. The upstream hashed
+  # script URL lives in the Pages Function, not here.
+  plausible_src = "/js/script.js"
 
 [giscus]
   repo       = "stephen-masters/velostevie"

@@ -15,7 +15,7 @@
     "clean:public": "rimraf public",
     "clean:install": "rimraf package-lock.json node_modules",
     "lint": "npm-run-all lint:**",
-    "lint:scripts": "eslint assets/js --no-error-on-unmatched-pattern",
+    "lint:scripts": "eslint assets/js functions --no-error-on-unmatched-pattern",
     "lint:styles": "stylelint \"assets/scss/**/*.{css,sass,scss,sss,less}\" --allow-empty-input",
     "lint:markdown": "markdownlint-cli2 \"*.md\" \"content/**/*.md\"",
     "mod:clean": "hugo mod clean",
