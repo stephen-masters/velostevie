@@ -6,3 +6,6 @@ config:
   MD031: false
   MD032: false
   MD060: false
+  # Keep a Changelog repeats "### Added" etc. under each version heading
+  MD024:
+    siblings_only: true
