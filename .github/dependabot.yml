@@ -21,6 +21,15 @@
 # Weekly rather than daily: daily on a 549-package tree is how a dependency
 # feed becomes noise that gets ignored, which is the failure mode this is
 # supposed to fix.
+# The groups blocks exist because separate lockfile PRs conflict with each
+# other by construction: merging any one rewrites package-lock.json and leaves
+# the rest needing a rebase. Grouped, minor and patch updates arrive as a single
+# PR with a single lockfile. Majors stay ungrouped on purpose -- cssnano 7 -> 9
+# is the kind of change that deserves a build check on its own, not a place in a
+# batch of five.
+#
+# No target-branch: this repository has only main, and commits land there
+# directly.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -30,6 +39,10 @@ updates:
     commit-message:
       prefix: "ci"
       include: "scope"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -38,3 +51,10 @@ updates:
     commit-message:
       prefix: "build"
       include: "scope"
+    groups:
+      npm-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
