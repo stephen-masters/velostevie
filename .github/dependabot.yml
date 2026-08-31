@@ -1,0 +1,22 @@
+# Dependabot keeps the workflow actions current.
+#
+# Added August 2026, after an audit found actions/checkout pinned anywhere
+# between v2 and v7 across the sibling repositories. The two that had this
+# configured were the only two on the current major; everything else had
+# drifted, because nothing was bumping it. The fix is the config, not the
+# one-off sweep that came with it.
+#
+# The commit-message prefix matters here: the repository enforces Conventional
+# Commits through .githooks/commit-msg, and git-cliff builds CHANGELOG.md by
+# parsing commit types. Dependabot commits on GitHub's side, bypassing the
+# hook, so without this its PRs would land as "Bump x from y to z" and be
+# miscategorised in the changelog.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
