@@ -5,9 +5,16 @@
 # CHANGELOG.md for that version, tags it, and publishes a GitHub Release whose
 # notes are that version's changelog section.
 #
-# The release commit is pushed with GITHUB_TOKEN, which by design does not
-# retrigger workflows — so this never loops. If there are no releasable commits
-# since the last tag, the job is a no-op.
+# main is protected: nothing reaches it except by merge, the bot included. So
+# the tag and the GitHub Release are published directly (a tag is not a branch
+# and protection does not apply), while the regenerated CHANGELOG.md arrives as
+# its own pull request with auto-merge enabled — it goes through the same gate
+# as every other change and lands unattended once the checks pass.
+#
+# The loop guard is the PR title. A squash merge takes the PR title as its
+# commit subject, so the changelog PR lands as "chore(release): …" and the `if`
+# below skips it. Belt and braces: even if it did run, the tag already exists,
+# so git-cliff computes no new version and the job is a no-op.
 name: Release
 
 on:
@@ -16,6 +23,8 @@ on:
 
 permissions:
   contents: write
+  # Needed to open the changelog pull request and turn auto-merge on for it.
+  pull-requests: write
 
 concurrency:
   group: release
@@ -50,7 +59,7 @@ jobs:
             echo "No releasable changes since ${latest:-repo start}."
           fi
 
-      - name: Update changelog, tag and release
+      - name: Tag, release, and open the changelog pull request
         if: steps.version.outputs.release == 'true'
         env:
           VERSION: ${{ steps.version.outputs.next }}
@@ -66,10 +75,26 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add CHANGELOG.md
-          git commit -m "chore(release): ${VERSION#v}"
+          # Tag the merge commit that triggered this run. Tags are not branches,
+          # so branch protection does not apply and this needs no bypass.
           git tag -a "$VERSION" -m "$VERSION"
-          git push origin HEAD:main
           git push origin "$VERSION"
 
           gh release create "$VERSION" --title "$VERSION" --notes-file RELEASE_NOTES.md
+
+          # The changelog itself goes through a pull request, because main
+          # takes nothing by direct push. Auto-merge lands it once the checks
+          # pass, so this costs a PR per release and no attention.
+          branch="chore/changelog-${VERSION#v}"
+          git switch -c "$branch"
+          git add CHANGELOG.md
+          git commit -m "chore(release): ${VERSION#v}"
+          git push origin "$branch"
+
+          # One line: an unindented continuation would close the YAML block
+          # scalar this run: step is written in.
+          gh pr create --base main --head "$branch" \
+            --title "chore(release): ${VERSION#v}" \
+            --body "Regenerated CHANGELOG.md for $VERSION. Opened by the release workflow -- main accepts nothing by direct push, so the changelog arrives the same way every other change does. Auto-merge is on; this lands by itself once the checks pass."
+
+          gh pr merge "$branch" --squash --auto --delete-branch
