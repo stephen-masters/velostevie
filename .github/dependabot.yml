@@ -1,4 +1,4 @@
-# Dependabot keeps the workflow actions current.
+# Dependabot keeps the npm dependencies and the workflow actions current.
 #
 # Added August 2026, after an audit found actions/checkout pinned anywhere
 # between v2 and v7 across the sibling repositories. The two that had this
@@ -11,6 +11,16 @@
 # parsing commit types. Dependabot commits on GitHub's side, bypassing the
 # hook, so without this its PRs would land as "Bump x from y to z" and be
 # miscategorised in the changelog.
+# npm was added a few hours after the actions entry, and for a blunt reason:
+# the weekly Security workflow had been failing since 3 August -- five
+# consecutive red scheduled runs nobody was looking at -- on 14 real advisories,
+# 13 high and one critical. Every one of them would have arrived as a pull
+# request had this entry existed. The scan was doing its job; there was just
+# nothing turning its findings into work.
+#
+# Weekly rather than daily: daily on a 549-package tree is how a dependency
+# feed becomes noise that gets ignored, which is the failure mode this is
+# supposed to fix.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -19,4 +29,12 @@ updates:
       interval: "weekly"
     commit-message:
       prefix: "ci"
+      include: "scope"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "build"
       include: "scope"
