@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.9] - 2026-08-31
+
+### Changed
+
+- Bump cssnano-preset-advanced from 7.0.15 to 9.0.1 (#10)
+
 ## [2.0.8] - 2026-08-31
 
 ### Changed
@@ -164,6 +170,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove Hinode references and clean up unused dependencies
 - Remove redundant commitlint dev dependencies
 
+[2.0.9]: https://github.com/stephen-masters/velostevie/compare/v2.0.8..v2.0.9
 [2.0.8]: https://github.com/stephen-masters/velostevie/compare/v2.0.7..v2.0.8
 [2.0.7]: https://github.com/stephen-masters/velostevie/compare/v2.0.6..v2.0.7
 [2.0.6]: https://github.com/stephen-masters/velostevie/compare/v2.0.5..v2.0.6
